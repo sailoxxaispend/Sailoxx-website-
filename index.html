@@ -1019,6 +1019,51 @@ function handleFormSubmit(formId,btnId,successId){
 handleFormSubmit('discoveryForm','discoverySub','discoverySuccess');
 handleFormSubmit('surveyForm','surveySub','surveySuccess');
 handleFormSubmit('toolForm','toolSub','toolSuccess');
+  
+  // your existing code (FAQ, form stuff, etc...)
+
+  // 👇 PASTE MY CALCULATOR CODE HERE
+
+  const sTools = document.getElementById("s-tools");
+  const sCost = document.getElementById("s-cost");
+  const sTeam = document.getElementById("s-team");
+
+  const vTools = document.getElementById("v-tools");
+  const vCost = document.getElementById("v-cost");
+  const vTeam = document.getElementById("v-team");
+
+  const rSpend = document.getElementById("r-spend");
+  const rWaste = document.getElementById("r-waste");
+  const rAnnual = document.getElementById("r-annual");
+
+  function formatINR(num) {
+    return "₹" + num.toLocaleString("en-IN");
+  }
+
+  function updateCalc() {
+    const tools = parseInt(sTools.value);
+    const cost = parseInt(sCost.value);
+    const team = parseInt(sTeam.value);
+
+    const monthlySpend = tools * cost * (team / 10);
+    const waste = monthlySpend * 0.38;
+    const annual = waste * 12;
+
+    vTools.textContent = tools;
+    vCost.textContent = formatINR(cost);
+    vTeam.textContent = team;
+
+    rSpend.textContent = formatINR(Math.round(monthlySpend));
+    rWaste.textContent = formatINR(Math.round(waste));
+    rAnnual.textContent = formatINR(Math.round(annual));
+  }
+
+  [sTools, sCost, sTeam].forEach(slider => {
+    slider.addEventListener("input", updateCalc);
+  });
+
+  updateCalc();
+
 </script>
 </body>
 </html>
