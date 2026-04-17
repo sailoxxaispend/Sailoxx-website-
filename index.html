@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sailoxx — AI Spend Audit | Know Which AI Tools Are Worth Keeping</title>
-<link rel="icon" type="image/png" href="favicon.png">
 <meta name="description" content="Sailoxx audits your company's AI tool spend and delivers a clear 5-day report. Find out exactly which tools are saving money, which are wasted, and how much you can cut. Starting at ₹15,000.">
 <meta name="keywords" content="AI spend audit India, AI ROI audit, AI tool cost optimization, ChatGPT ROI, Copilot ROI, AI budget audit India">
 <meta name="author" content="Sailoxx">
@@ -33,8 +32,7 @@
 :root{
 --navy:#050A1F;--navy2:#0B1530;--navy3:#0F1E42;
 --cyan:#00E5CC;--cyan2:#00B8A4;--cyan3:rgba(0,229,204,0.12);
---gold:#FFB830;--gold2:rgba(255,184,48,0.15);
---white:#F0F4FF;--muted:#8899BB;
+--gold:#FFB830;--white:#F0F4FF;--muted:#8899BB;
 --card:#0D1A3A;--card2:#111F45;
 --border:rgba(0,229,204,0.15);--border2:rgba(0,229,204,0.3);
 --red:#FF4D6A;--green:#00E5A0;
@@ -44,7 +42,7 @@ body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;
 h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.15}
 @media(max-width:768px){body{cursor:auto}}
 
-/* CURSOR - desktop only */
+/* CURSOR */
 #cursor,#cursor-ring{pointer-events:none;z-index:9999;position:fixed;border-radius:50%}
 #cursor{width:12px;height:12px;background:var(--cyan);transform:translate(-50%,-50%);transition:transform 0.1s,background 0.2s;mix-blend-mode:screen}
 #cursor-ring{width:40px;height:40px;border:1.5px solid var(--cyan);transform:translate(-50%,-50%);transition:all 0.15s ease;opacity:0.5}
@@ -56,7 +54,7 @@ h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.15}
 ::-webkit-scrollbar-track{background:var(--navy)}
 ::-webkit-scrollbar-thumb{background:var(--cyan2);border-radius:2px}
 
-/* ===== NAV ===== */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(5,10,31,0.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all 0.3s}
 .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--white);letter-spacing:-0.02em}
 .nav-logo span{color:var(--cyan)}
@@ -65,29 +63,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 4rem;display:fl
 .nav-links a:hover{color:var(--cyan)}
 .nav-cta{background:var(--cyan);color:var(--navy);padding:0.55rem 1.4rem;border-radius:100px;font-weight:700;font-size:0.85rem;text-decoration:none;font-family:'Syne',sans-serif;transition:all 0.2s;border:none;cursor:pointer}
 .nav-cta:hover{background:var(--gold);transform:translateY(-1px)}
-
-/* HAMBURGER */
 .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .nav-hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s;display:block}
 .nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .nav-hamburger.open span:nth-child(2){opacity:0}
 .nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-
-/* MOBILE MENU */
 .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(5,10,31,0.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:var(--white);font-size:1.5rem;font-family:'Syne',sans-serif;font-weight:700;text-decoration:none;transition:color 0.2s}
 .mobile-menu a:hover{color:var(--cyan)}
 .mobile-menu .mob-cta{background:var(--cyan);color:var(--navy);padding:0.8rem 2.5rem;border-radius:100px;font-size:1.1rem}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.nav-cta{display:none}.nav-hamburger{display:flex}}
 
-@media(max-width:768px){
-  nav{padding:1rem 1.5rem}
-  .nav-links{display:none}
-  .nav-cta{display:none}
-  .nav-hamburger{display:flex}
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(0,229,204,0.12) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(255,184,48,0.06) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 60%,rgba(0,229,204,0.05) 0%,transparent 60%)}
 .grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,204,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,204,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 70%)}
@@ -96,11 +84,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 4rem;display:fl
 .orb2{width:300px;height:300px;background:rgba(255,184,48,0.05);bottom:50px;left:-50px;animation-delay:-3s}
 .orb3{width:200px;height:200px;background:rgba(0,229,204,0.04);bottom:100px;right:20%;animation-delay:-6s}
 @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
-
 .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,229,204,0.1);border:1px solid var(--border2);padding:0.4rem 1rem;border-radius:100px;font-size:0.8rem;color:var(--cyan);font-weight:500;margin-bottom:2rem;letter-spacing:0.05em;text-transform:uppercase;animation:fadeUp 0.8s ease both}
 .badge-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.5)}}
-
 .hero h1{font-size:clamp(2.4rem,7vw,5.5rem);font-weight:800;letter-spacing:-0.04em;line-height:1.05;max-width:900px;animation:fadeUp 0.8s ease 0.1s both}
 .hero h1 .highlight{color:var(--cyan);position:relative;display:inline-block}
 .hero h1 .highlight::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),transparent);border-radius:2px}
@@ -111,11 +97,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 4rem;display:fl
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,229,204,0.4);background:var(--gold)}
 .btn-secondary{border:1px solid var(--border2);color:var(--white);padding:0.9rem 2rem;border-radius:100px;font-weight:500;font-size:0.95rem;text-decoration:none;transition:all 0.25s;cursor:pointer;background:transparent;display:inline-flex;align-items:center;gap:0.5rem}
 .btn-secondary:hover{background:var(--card);border-color:var(--cyan);transform:translateY(-2px)}
-
 .hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border);animation:fadeUp 0.8s ease 0.4s both}
 .hero-stat .num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--cyan);letter-spacing:-0.03em}
 .hero-stat .label{font-size:0.78rem;color:var(--muted);margin-top:0.1rem;letter-spacing:0.05em;text-transform:uppercase}
-
 .hero-cards{position:absolute;pointer-events:none;width:100%;height:100%;top:0;left:0}
 .floating-card{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1rem 1.2rem;font-size:0.78rem;backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
 .floating-card.card-a{top:15%;left:3%;animation:cardFloatA 6s ease-in-out infinite}
@@ -131,15 +115,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 4rem;display:fl
 .fc-tag{display:inline-block;padding:0.15rem 0.6rem;border-radius:100px;font-size:0.68rem;font-weight:600;margin-top:0.5rem}
 .fc-green{background:rgba(0,229,160,0.15);color:var(--green)}
 .fc-red{background:rgba(255,77,106,0.15);color:var(--red)}
+@media(max-width:768px){.hero{padding:7rem 1.5rem 3rem}.floating-card.card-a,.floating-card.card-b{display:none}.hero-stats{gap:1.2rem}.hero-stat .num{font-size:1.5rem}}
 
-@media(max-width:768px){
-  .hero{padding:7rem 1.5rem 3rem}
-  .floating-card.card-a,.floating-card.card-b{display:none}
-  .hero-stats{gap:1.2rem}
-  .hero-stat .num{font-size:1.5rem}
-}
-
-/* ===== SECTIONS ===== */
+/* SECTIONS */
 section{padding:6rem 2rem}
 .container{max-width:1100px;margin:0 auto;padding:0 1rem}
 .section-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--cyan);font-weight:600;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
@@ -149,7 +127,7 @@ section{padding:6rem 2rem}
 .section-sub{color:var(--muted);font-size:1rem;margin-top:1rem;max-width:550px;line-height:1.75;font-weight:300}
 @media(max-width:768px){section{padding:4rem 1.5rem}}
 
-/* ===== PROBLEM ===== */
+/* PROBLEM */
 .problem-section{background:var(--navy2)}
 .problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
 .problem-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;transition:all 0.3s;position:relative;overflow:hidden;cursor:default}
@@ -160,11 +138,11 @@ section{padding:6rem 2rem}
 .problem-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.5rem}
 .problem-card p{font-size:0.88rem;color:var(--muted);line-height:1.7}
 
-/* ===== PROCESS ===== */
+/* PROCESS */
 .process-section{position:relative}
 .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 @media(max-width:768px){.process-grid{grid-template-columns:1fr;gap:2rem}}
-.process-track{display:flex;flex-direction:column;gap:0;margin-top:3rem;position:relative}
+.process-track{display:flex;flex-direction:column;margin-top:3rem;position:relative}
 .process-track::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),transparent)}
 .process-step{display:flex;gap:2rem;padding:2rem 0;position:relative}
 .step-num{width:56px;height:56px;border-radius:50%;border:1px solid var(--border2);background:var(--card);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--cyan);flex-shrink:0;position:relative;z-index:1;transition:all 0.3s}
@@ -174,7 +152,7 @@ section{padding:6rem 2rem}
 .step-body p{color:var(--muted);font-size:0.88rem;line-height:1.75;max-width:500px}
 .step-detail{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.8rem;font-size:0.78rem;background:var(--cyan3);border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:100px;color:var(--cyan)}
 
-/* ===== PRICING ===== */
+/* PRICING */
 .pricing-section{background:var(--navy2)}
 .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem;align-items:start}
 .pricing-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2.5rem;transition:all 0.3s;cursor:default}
@@ -217,16 +195,18 @@ section{padding:6rem 2rem}
 .form-submit{width:100%;padding:1rem;border-radius:100px;background:var(--cyan);color:var(--navy);font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all 0.25s;letter-spacing:0.02em}
 .form-submit:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 10px 30px rgba(255,184,48,0.3)}
 .form-note{font-size:0.78rem;color:var(--muted);margin-top:1rem;text-align:center;line-height:1.6}
-.form-success{display:none;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.3);border-radius:12px;padding:1rem;text-align:center;color:var(--green);font-size:0.9rem;margin-top:1rem}
+.form-success{display:none;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.3);border-radius:12px;padding:1.2rem;text-align:center;color:var(--green);font-size:0.95rem;margin-top:1rem;font-weight:500}
 
-/* ===== TOOL CHECKER ===== */
-.checker-section{background:var(--navy2)}
+/* TOOL CHIPS */
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.8rem;margin:1.5rem 0}
 .tool-chip{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.9rem;border-radius:12px;border:1px solid var(--border);background:var(--card);font-size:0.82rem;cursor:pointer;transition:all 0.2s;user-select:none}
 .tool-chip:hover{border-color:var(--border2)}
 .tool-chip.selected{border-color:var(--cyan2);background:var(--cyan3);color:var(--cyan)}
 .tool-dot{width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background 0.2s}
 .tool-chip.selected .tool-dot{background:var(--cyan)}
+
+/* CHECKER */
+.checker-section{background:var(--navy2)}
 .checker-result{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;margin-top:1.5rem;display:none}
 .checker-result.show{display:block}
 .result-row{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border);font-size:0.88rem}
@@ -235,7 +215,7 @@ section{padding:6rem 2rem}
 .result-val{color:var(--white)}
 .result-val.big{font-size:1.4rem;color:var(--cyan)}
 
-/* ===== TESTIMONIALS ===== */
+/* TESTIMONIALS */
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
 .testi-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;transition:all 0.3s}
 .testi-card:hover{transform:translateY(-3px);border-color:var(--border2)}
@@ -246,7 +226,7 @@ section{padding:6rem 2rem}
 .testi-name{font-size:0.88rem;font-weight:600}
 .testi-role{font-size:0.78rem;color:var(--muted)}
 
-/* ===== ABOUT ===== */
+/* ABOUT */
 .about-section{background:var(--navy2)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
 @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:3rem}}
@@ -260,7 +240,7 @@ section{padding:6rem 2rem}
 .orbit-ring:nth-child(4){width:280px;height:280px;animation-duration:20s}
 @keyframes spin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
 
-/* ===== FAQ ===== */
+/* FAQ */
 .faq-grid{max-width:700px;margin:3rem auto 0;display:flex;flex-direction:column;gap:0.5rem}
 .faq-item{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.2s;cursor:pointer}
 .faq-item.open{border-color:var(--border2)}
@@ -270,12 +250,12 @@ section{padding:6rem 2rem}
 .faq-a{padding:0 1.5rem;max-height:0;overflow:hidden;color:var(--muted);font-size:0.88rem;line-height:1.75;transition:max-height 0.4s ease,padding 0.3s}
 .faq-item.open .faq-a{max-height:300px;padding-bottom:1.2rem}
 
-/* ===== CTA ===== */
+/* CTA */
 .cta-section{background:linear-gradient(135deg,var(--card2) 0%,var(--navy3) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center}
 .cta-section h2{font-size:clamp(1.8rem,5vw,3.5rem);font-weight:800;letter-spacing:-0.03em}
 .cta-section p{color:var(--muted);margin:1rem auto 2.5rem;max-width:500px;font-size:1.05rem;line-height:1.75}
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
 .footer-inner{max-width:1100px;margin:0 auto}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
@@ -288,21 +268,22 @@ footer{padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
 .footer-bottom a{color:var(--muted);text-decoration:none}
 .footer-bottom a:hover{color:var(--cyan)}
 
-/* ===== MISC ===== */
+/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(30px);transition:all 0.7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* NOTICE */
 .notice{background:var(--cyan3);border-bottom:1px solid var(--border2);padding:0.5rem 1rem;text-align:center;font-size:0.8rem;color:var(--cyan);letter-spacing:0.03em}
 .notice strong{color:var(--white)}
 
-/* ===== ROI CALC ===== */
+/* ROI CALC */
 .calc-section{background:var(--navy2)}
 .calc-box{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2.5rem;max-width:680px}
 @media(max-width:768px){.calc-box{padding:1.5rem}}
 .calc-slider-group{margin-bottom:1.8rem}
-.calc-label{display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;color:var(--muted);margin-bottom:0.6rem}
-.calc-label span{color:var(--white);font-weight:600;font-family:'Syne',sans-serif}
+.calc-label{display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;color:var(--muted);margin-bottom:0.6rem;gap:1rem}
+.calc-label .val{color:var(--white);font-weight:600;font-family:'Syne',sans-serif;white-space:nowrap;flex-shrink:0}
 input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 .calc-result{background:var(--navy3);border:1px solid var(--border2);border-radius:16px;padding:1.5rem;margin-top:2rem;display:flex;flex-wrap:wrap;gap:1.5rem}
 .calc-metric{flex:1;min-width:120px}
@@ -310,7 +291,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 .calc-metric .m-val{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-0.03em}
 .m-cyan{color:var(--cyan)}.m-gold{color:var(--gold)}.m-red{color:var(--red)}
 
-/* ===== WHAT HAPPENS CARDS ===== */
+/* STEPS */
 .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem}
 .step-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.8rem}
 .step-card .sn{font-family:'Syne',sans-serif;font-size:2rem;color:var(--cyan);font-weight:800;margin-bottom:0.8rem}
@@ -325,12 +306,12 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#problem" onclick="closeMobileMenu()">Problem</a>
-  <a href="#process" onclick="closeMobileMenu()">Process</a>
-  <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
-  <a href="#forms" onclick="closeMobileMenu()">Get Started</a>
-  <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-  <a href="#forms" class="mob-cta" onclick="closeMobileMenu()">Book Free Call →</a>
+  <a href="#problem" onclick="closeMob()">Problem</a>
+  <a href="#process" onclick="closeMob()">Process</a>
+  <a href="#pricing" onclick="closeMob()">Pricing</a>
+  <a href="#forms" onclick="closeMob()">Get Started</a>
+  <a href="#faq" onclick="closeMob()">FAQ</a>
+  <a href="#forms" class="mob-cta" onclick="closeMob()">Book Free Call →</a>
 </div>
 
 <!-- NOTICE -->
@@ -347,7 +328,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
     <a href="#faq">FAQ</a>
   </div>
   <a href="#forms" class="nav-cta">Book Free Call →</a>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMob()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -423,11 +404,11 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
         <p class="section-sub">Our process is built to be low-friction for your team and high-precision in output. No lengthy consultancy engagements. No disruption to your workflow.</p>
       </div>
       <div class="process-track reveal">
-        <div class="process-step"><div class="step-num">01</div><div class="step-body"><h3>Discovery Call</h3><p>A focused 20-minute call where we understand your company size, current AI tools, and goals. We tell you honestly upfront whether an audit will find meaningful savings.</p><div class="step-detail">⏱ 20 minutes · Day 0</div></div></div>
-        <div class="process-step"><div class="step-num">02</div><div class="step-body"><h3>Tool Inventory</h3><p>You fill a simple spreadsheet with every AI tool, cost, and department. We also cross-check against your invoices and card statements to catch anything missed.</p><div class="step-detail">📋 Google Sheet · Day 1</div></div></div>
-        <div class="process-step"><div class="step-num">03</div><div class="step-body"><h3>Employee Usage Survey</h3><p>We send a structured 10-question survey to your team members. Takes 5 minutes each. Captures real usage frequency, time saved, and trust levels — anonymously.</p><div class="step-detail">📝 Async survey · Day 1–2</div></div></div>
-        <div class="process-step"><div class="step-num">04</div><div class="step-body"><h3>ROI Calculation</h3><p>We run every tool through our proprietary ROI model — calculating actual value generated vs. actual cost. No estimates. Numbers only from your own data.</p><div class="step-detail">🔢 Data analysis · Day 3</div></div></div>
-        <div class="process-step"><div class="step-num">05</div><div class="step-body"><h3>Report & Debrief</h3><p>You receive a clean, plain-English report with a verdict for every tool, a savings roadmap with exact rupee amounts, and a 30-minute walkthrough call.</p><div class="step-detail">📄 Full report · Day 5</div></div></div>
+        <div class="process-step"><div class="step-num">01</div><div class="step-body"><h3>Discovery Call</h3><p>A focused 20-minute call where we understand your company size, current AI tools, and goals.</p><div class="step-detail">⏱ 20 minutes · Day 0</div></div></div>
+        <div class="process-step"><div class="step-num">02</div><div class="step-body"><h3>Tool Inventory</h3><p>You fill a simple spreadsheet with every AI tool, cost, and department. We cross-check against your invoices to catch anything missed.</p><div class="step-detail">📋 Google Sheet · Day 1</div></div></div>
+        <div class="process-step"><div class="step-num">03</div><div class="step-body"><h3>Employee Usage Survey</h3><p>We send a structured 10-question survey to your team. Takes 5 minutes each. Captures real usage, time saved, and trust levels — anonymously.</p><div class="step-detail">📝 Async survey · Day 1–2</div></div></div>
+        <div class="process-step"><div class="step-num">04</div><div class="step-body"><h3>ROI Calculation</h3><p>We run every tool through our ROI model — calculating actual value generated vs. actual cost. Numbers only from your own data.</p><div class="step-detail">🔢 Data analysis · Day 3</div></div></div>
+        <div class="process-step"><div class="step-num">05</div><div class="step-body"><h3>Report & Debrief</h3><p>A clean plain-English report with a verdict for every tool, a savings roadmap with exact rupee amounts, and a 30-minute walkthrough call.</p><div class="step-detail">📄 Full report · Day 5</div></div></div>
       </div>
     </div>
   </div>
@@ -441,16 +422,25 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
     <p class="section-sub" style="margin-bottom:2.5rem">Move the sliders to get a rough estimate before you even book a call.</p>
     <div class="calc-box reveal">
       <div class="calc-slider-group">
-        <div class="calc-label">Number of AI tools you pay for <span id="v-tools">6</span></div>
-        <input type="range" min="1" max="20" value="6" id="s-tools">
+        <div class="calc-label">
+          <span>Number of AI tools you pay for</span>
+          <span class="val" id="v-tools">6</span>
+        </div>
+        <input type="range" min="1" max="20" value="6" id="s-tools" oninput="updateCalc()">
       </div>
       <div class="calc-slider-group">
-        <div class="calc-label">Average cost per tool per month (₹) <span id="v-cost">₹8,000</span></div>
-        <input type="range" min="1000" max="50000" step="1000" value="8000" id="s-cost">
+        <div class="calc-label">
+          <span>Average cost per tool per month (₹)</span>
+          <span class="val" id="v-cost">₹8,000</span>
+        </div>
+        <input type="range" min="1000" max="50000" step="1000" value="8000" id="s-cost" oninput="updateCalc()">
       </div>
       <div class="calc-slider-group">
-        <div class="calc-label">Team size using AI tools <span id="v-team">40</span> people</div>
-        <input type="range" min="5" max="300" value="40" id="s-team">
+        <div class="calc-label">
+          <span>Team size using AI tools</span>
+          <span class="val"><span id="v-team">40</span> people</span>
+        </div>
+        <input type="range" min="5" max="300" value="40" id="s-team" oninput="updateCalc()">
       </div>
       <div class="calc-result">
         <div class="calc-metric"><div class="m-label">Monthly AI Spend</div><div class="m-val m-cyan" id="r-spend">₹48,000</div></div>
@@ -480,7 +470,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
       </div>
       <div class="pricing-card featured">
         <div class="pricing-tier">Audit + Monthly Monitoring</div>
-        <div class="pricing-price"><sup>₹</sup>15,000 <span style="font-size:22px; font-weight:600; margin-left:8px;">+ ₹8,000/mo</span></div>
+        <div class="pricing-price"><sup>₹</sup>15,000 <sub style="font-size:0.7rem">+ ₹8,000/mo</sub></div>
         <p class="pricing-desc">Audit plus ongoing monthly tracking. We flag new tools, drift in usage, and keep your AI spend honest every month.</p>
         <ul class="pricing-features">
           <li>Everything in One-Time Audit</li><li>Monthly 1-page spend update report</li><li>New tool adoption alerts</li><li>Usage drift notifications</li><li>Quarterly re-audit at no extra cost</li><li>WhatsApp / email support</li><li>Cancel anytime — no lock-in</li>
@@ -501,15 +491,16 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 </section>
 
 <!-- FORMS -->
-<section class="forms-section" id="forms">
+<section id="forms" style="padding:6rem 2rem">
   <div class="container">
     <div class="section-label">Get Started</div>
     <h2 class="section-title">Ready to find your <span>savings?</span></h2>
     <p class="section-sub" style="margin-bottom:2.5rem">Choose the right form below — whether you're a founder/COO booking a discovery call, or a team member filling out our usage survey.</p>
+
     <div class="forms-tabs">
-      <button class="form-tab active" onclick="switchTab('discovery')">🎯 Discovery Call</button>
-      <button class="form-tab" onclick="switchTab('survey')">📋 Employee Survey</button>
-      <button class="form-tab" onclick="switchTab('tool')">🔧 Tool Inventory</button>
+      <button class="form-tab active" onclick="switchTab('discovery',this)">🎯 Discovery Call</button>
+      <button class="form-tab" onclick="switchTab('survey',this)">📋 Employee Survey</button>
+      <button class="form-tab" onclick="switchTab('tool',this)">🔧 Tool Inventory</button>
     </div>
 
     <!-- DISCOVERY FORM -->
@@ -517,7 +508,8 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
       <div class="ai-form">
         <h3 style="font-size:1.2rem;margin-bottom:0.4rem">Book Your Free Discovery Call</h3>
         <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">20 minutes. No sales pressure. We'll tell you honestly if an audit makes sense for your company.</p>
-        <form action="https://formspree.io/f/xojpoyel" method="POST" id="discoveryForm">
+        <form action="https://formspree.io/f/xojpoyel" method="POST" onsubmit="handleSubmit(event,'disc-success')">
+          <input type="hidden" name="form-type" value="Discovery Call">
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Your Name <span>*</span></label>
@@ -560,7 +552,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           </div>
           <div class="form-group">
             <label class="form-label">Which AI tools does your team currently use?</label>
-            <input class="form-input" type="text" name="ai-tools" placeholder="e.g. ChatGPT, Copilot, Jasper, Notion AI, Zapier AI...">
+            <input class="form-input" type="text" name="ai-tools" placeholder="e.g. ChatGPT, Copilot, Jasper, Notion AI...">
           </div>
           <div class="form-group">
             <label class="form-label">What is your biggest frustration with your current AI setup?</label>
@@ -573,9 +565,9 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
               <option>Morning (9am–12pm IST)</option><option>Afternoon (12pm–3pm IST)</option><option>Evening (5pm–8pm IST)</option><option>Any time — send me a calendar link</option>
             </select>
           </div>
-          <button type="submit" class="form-submit" id="discoverySub">Book My Free Call →</button>
+          <button type="submit" class="form-submit">Book My Free Call →</button>
         </form>
-        <div class="form-success" id="discoverySuccess">✓ Submitted! We'll be in touch within 4 hours.</div>
+        <div class="form-success" id="disc-success">✅ Submitted! We'll be in touch within 4 business hours.</div>
         <p class="form-note">We respond within 4 business hours. Your information is never shared with third parties.</p>
       </div>
     </div>
@@ -584,8 +576,8 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
     <div class="form-panel" id="tab-survey">
       <div class="ai-form">
         <h3 style="font-size:1.2rem;margin-bottom:0.4rem">Employee AI Usage Survey</h3>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">Takes 5 minutes. Your answers are anonymous. This helps us give your company an honest picture of how AI tools are actually being used.</p>
-        <form action="https://formspree.io/f/xojpoyel" method="POST" id="surveyForm">
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">Takes 5 minutes. Your answers are anonymous.</p>
+        <form action="https://formspree.io/f/xojpoyel" method="POST" onsubmit="handleSubmit(event,'surv-success')">
           <input type="hidden" name="form-type" value="Employee Survey">
           <div class="form-row">
             <div class="form-group">
@@ -596,8 +588,8 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Company (if provided by your manager)</label>
-              <input class="form-input" type="text" name="company" placeholder="Optional — for grouping responses">
+              <label class="form-label">Company (if provided by manager)</label>
+              <input class="form-input" type="text" name="company" placeholder="Optional">
             </div>
           </div>
           <div class="form-group">
@@ -616,8 +608,8 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
               <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>HubSpot AI</div>
               <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Salesforce AI</div>
             </div>
-            <input class="form-input" type="text" name="other-tools" placeholder="Other tools not listed above..." style="margin-top:0.8rem">
-            <input type="hidden" name="tools-selected" id="toolsSelected">
+            <input type="hidden" name="tools-used" id="tools-hidden">
+            <input class="form-input" type="text" name="other-tools" placeholder="Other tools not listed..." style="margin-top:0.8rem">
           </div>
           <div class="form-group">
             <label class="form-label">How often do you use AI tools at work? <span>*</span></label>
@@ -644,11 +636,11 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
             <label class="form-label">How much do you trust AI output without heavy editing? <span>*</span></label>
             <select class="form-select" name="trust-level" required>
               <option value="">Select trust level</option>
-              <option value="1">1 — I almost always rewrite it completely</option><option value="2">2 — I fix a lot before using it</option><option value="3">3 — I make minor edits most of the time</option><option value="4">4 — I use it mostly as-is</option><option value="5">5 — I trust it fully, rarely edit</option>
+              <option>1 — I almost always rewrite it completely</option><option>2 — I fix a lot before using it</option><option>3 — I make minor edits most of the time</option><option>4 — I use it mostly as-is</option><option>5 — I trust it fully, rarely edit</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">If this AI tool disappeared tomorrow, how badly would it affect your work? <span>*</span></label>
+            <label class="form-label">If this tool disappeared tomorrow, how badly would it affect your work? <span>*</span></label>
             <select class="form-select" name="impact" required>
               <option value="">Select impact</option>
               <option>Not at all — I'd manage fine</option><option>Slightly — I'd miss it but adapt quickly</option><option>Significantly — it would slow me down</option><option>Critically — I cannot do my job as well without it</option>
@@ -656,12 +648,12 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           </div>
           <div class="form-group">
             <label class="form-label">What is your biggest frustration with AI tools at your company?</label>
-            <textarea class="form-textarea" name="frustration" placeholder="Be honest — this is anonymous and your feedback helps your company spend smarter..."></textarea>
+            <textarea class="form-textarea" name="frustration" placeholder="Be honest — this is anonymous..."></textarea>
           </div>
-          <button type="submit" class="form-submit" id="surveySub">Submit My Survey →</button>
+          <button type="submit" class="form-submit">Submit My Survey →</button>
         </form>
-        <div class="form-success" id="surveySuccess">✓ Survey submitted! Thank you — your response is anonymous and will only be used in aggregate.</div>
-        <p class="form-note">100% anonymous. Your name is never stored. Responses are only used in aggregate analysis for your company's audit report.</p>
+        <div class="form-success" id="surv-success">✅ Survey submitted! Your response is 100% anonymous. Thank you.</div>
+        <p class="form-note">100% anonymous. Your name is never stored.</p>
       </div>
     </div>
 
@@ -669,8 +661,8 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
     <div class="form-panel" id="tab-tool">
       <div class="ai-form">
         <h3 style="font-size:1.2rem;margin-bottom:0.4rem">AI Tool Inventory Submission</h3>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">Fill this for each AI tool your company pays for. Submit one entry per tool. This is the foundation of your audit.</p>
-        <form action="https://formspree.io/f/xojpoyel" method="POST" id="toolForm">
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">Fill this for each AI tool your company pays for. Submit one entry per tool.</p>
+        <form action="https://formspree.io/f/xojpoyel" method="POST" onsubmit="handleSubmit(event,'tool-success')">
           <input type="hidden" name="form-type" value="Tool Inventory">
           <div class="form-row">
             <div class="form-group">
@@ -684,7 +676,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           </div>
           <div class="form-group">
             <label class="form-label">AI Tool Name <span>*</span></label>
-            <input class="form-input" type="text" name="tool-name" placeholder="e.g. Microsoft Copilot, ChatGPT Team, Jasper AI..." required>
+            <input class="form-input" type="text" name="tool-name" placeholder="e.g. Microsoft Copilot, ChatGPT Team..." required>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -701,7 +693,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
               <label class="form-label">Which department uses it? <span>*</span></label>
               <select class="form-select" name="department" required>
                 <option value="">Select department</option>
-                <option>Marketing</option><option>Sales</option><option>Engineering</option><option>Operations</option><option>HR</option><option>Finance</option><option>All departments</option><option>Multiple — I'll specify below</option>
+                <option>Marketing</option><option>Sales</option><option>Engineering</option><option>Operations</option><option>HR</option><option>Finance</option><option>All departments</option><option>Multiple</option>
               </select>
             </div>
             <div class="form-group">
@@ -728,10 +720,10 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
             <label class="form-label">Any notes about this tool?</label>
             <textarea class="form-textarea" name="notes" placeholder="Anything else we should know..." style="min-height:70px"></textarea>
           </div>
-          <button type="submit" class="form-submit" id="toolSub">Submit Tool Entry →</button>
+          <button type="submit" class="form-submit">Submit Tool Entry →</button>
         </form>
-        <div class="form-success" id="toolSuccess">✓ Tool entry submitted! You can submit another tool by filling the form again.</div>
-        <p class="form-note">Submit one entry per tool. After submitting, the form resets so you can add the next tool.</p>
+        <div class="form-success" id="tool-success">✅ Tool entry submitted! Fill the form again to add another tool.</div>
+        <p class="form-note">Submit one entry per tool. Fill the form again to add the next tool.</p>
       </div>
     </div>
   </div>
@@ -742,7 +734,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
   <div class="container">
     <div class="section-label">Quick Check</div>
     <h2 class="section-title">Which tools are you <span>paying for?</span></h2>
-    <p class="section-sub" style="margin-bottom:2rem">Select all the AI tools your company currently subscribes to. We'll show you an instant rough cost estimate.</p>
+    <p class="section-sub" style="margin-bottom:2rem">Select all the AI tools your company subscribes to for an instant cost estimate.</p>
     <div class="calc-box reveal">
       <div class="tools-grid" id="checkerGrid">
         <div class="tool-chip" onclick="calcChecker(this,1500)"><span class="tool-dot"></span>ChatGPT Team</div>
@@ -771,14 +763,14 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials-section">
+<section>
   <div class="container">
     <div class="section-label">Early Results</div>
     <h2 class="section-title">What founders are <span>saying</span></h2>
     <div class="testi-grid reveal">
       <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"We were spending ₹2.4L/month on AI tools and genuinely had no idea which ones worked. Sailoxx found ₹95,000 in monthly waste in 5 days. The report paid for itself 63 times over."</p><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Rohit Kapoor</div><div class="testi-role">COO, B2B SaaS, Bangalore</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"I was dreading a 3-month consultancy process. This was done in a week. Clear, no-fluff report that I could take to my board and say 'here is exactly what we're doing about AI spend.'"</p><div class="testi-author"><div class="testi-avatar">PM</div><div><div class="testi-name">Priya Mehta</div><div class="testi-role">Founder, D2C Brand, Mumbai</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The employee survey was the revelation. Tools our team said they 'used' were abandoned by 80% of the people who had licenses. Nobody told us. Sailoxx found it in the data."</p><div class="testi-author"><div class="testi-avatar">AS</div><div><div class="testi-name">Arjun Singh</div><div class="testi-role">CFO, Fintech Startup, Delhi</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"I was dreading a 3-month consultancy process. This was done in a week. Clear, no-fluff report I could take to my board and say here is exactly what we're doing about AI spend."</p><div class="testi-author"><div class="testi-avatar">PM</div><div><div class="testi-name">Priya Mehta</div><div class="testi-role">Founder, D2C Brand, Mumbai</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The employee survey was the revelation. Tools our team said they used were abandoned by 80% of the people who had licenses. Nobody told us. Sailoxx found it in the data."</p><div class="testi-author"><div class="testi-avatar">AS</div><div><div class="testi-name">Arjun Singh</div><div class="testi-role">CFO, Fintech Startup, Delhi</div></div></div></div>
     </div>
   </div>
 </section>
@@ -792,7 +784,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
         <h2 class="section-title">Built by operators, <span>for operators</span></h2>
         <p style="color:var(--muted);font-size:0.95rem;line-height:1.85;margin-top:1.2rem">We built Sailoxx because we kept seeing the same problem — companies adopting AI tools fast, with no framework to measure whether they work.</p>
         <p style="color:var(--muted);font-size:0.95rem;line-height:1.85;margin-top:1rem">We are not a large consultancy. We are a lean, focused team that built one methodology and executes it exceptionally well. No overhead. No fluff. Just a clear, honest answer to whether your AI spend is working.</p>
-        <p style="color:var(--muted);font-size:0.95rem;line-height:1.85;margin-top:1rem">We combine structured business analysis with hands-on knowledge of the AI tool landscape to give you an objective view that nobody inside your company can give you — because they all have skin in the game.</p>
+        <p style="color:var(--muted);font-size:0.95rem;line-height:1.85;margin-top:1rem">We combine structured business analysis with hands-on knowledge of the AI tool landscape to give you an objective view that nobody inside your company can give you.</p>
         <div style="display:flex;gap:2rem;margin-top:2rem;flex-wrap:wrap">
           <div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--cyan)">5 Days</div><div style="font-size:0.8rem;color:var(--muted)">Delivery guarantee</div></div>
           <div><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--gold)">₹0</div><div style="font-size:0.8rem;color:var(--muted)">Discovery call cost</div></div>
@@ -826,7 +818,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 </section>
 
 <!-- FAQ -->
-<section class="faq-section" id="faq" style="background:var(--navy2)">
+<section id="faq" style="background:var(--navy2);padding:6rem 2rem">
   <div class="container">
     <div class="section-label" style="justify-content:center">FAQ</div>
     <h2 class="section-title" style="text-align:center">Common <span>questions</span></h2>
@@ -835,17 +827,17 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How much time does this take from our team? <div class="faq-icon">+</div></div><div class="faq-a">Minimal. The manager filling the tool inventory sheet needs about 20–30 minutes. Individual team members filling the survey need 5 minutes each. The only calls required are one 20-minute kickoff and one 30-minute debrief. Total time from your team is under 2 hours across 5 days.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What if we only have 3–4 AI tools? Is it still worth it? <div class="faq-icon">+</div></div><div class="faq-a">Sometimes the most valuable finding is that 3 tools are doing the job of 1. Even small tool stacks often have significant waste. We'll tell you on the discovery call if the math doesn't justify an audit for your specific situation.</div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Is the survey really anonymous for employees? <div class="faq-icon">+</div></div><div class="faq-a">Yes. The survey has no name field required. We never share individual responses with your management team. We only present aggregated findings in the report. Employees can be honest about what isn't working without fear of attribution.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What if the audit finds we're already spending efficiently? <div class="faq-icon">+</div></div><div class="faq-a">Then you have documented proof that your AI spend is justified and optimised. You can show that report to your board, your CFO, or your investors. That certainty has real value. In our experience, though, every company we've audited has found at least one meaningful saving.</div></div>
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can you help us implement the recommendations? <div class="faq-icon">+</div></div><div class="faq-a">Yes. Our monthly monitoring retainer includes implementation follow-up — we track whether the changes in the roadmap are happening, flag if anything is drifting, and advise on any new tools your team wants to adopt. Think of it as an ongoing AI spend accountability partner.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What if the audit finds we're already spending efficiently? <div class="faq-icon">+</div></div><div class="faq-a">Then you have documented proof that your AI spend is justified and optimised — something you can show your board, CFO, or investors. In our experience though, every company we've audited has found at least one meaningful saving.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can you help us implement the recommendations? <div class="faq-icon">+</div></div><div class="faq-a">Yes. Our monthly monitoring retainer includes implementation follow-up — we track whether the changes in the roadmap are happening, flag if anything is drifting, and advise on any new tools your team wants to adopt.</div></div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
-  <div class="container" style="text-align:center;padding:4rem 1rem">
+<section class="cta-section" style="padding:6rem 2rem">
+  <div class="container" style="text-align:center">
     <h2>Stop guessing. Start <span style="color:var(--cyan)">knowing.</span></h2>
-    <p>Book a free 20-minute call. We'll look at your AI setup and tell you honestly if an audit would find real savings. No commitment required.</p>
+    <p>Book a free 20-minute call. We'll look at your AI setup and tell you honestly if an audit would find real savings.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
       <a href="#forms" class="btn-primary">Book Free Discovery Call →</a>
       <a href="#calculator" class="btn-secondary">Estimate My Savings First</a>
@@ -872,7 +864,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 Sailoxx. All rights reserved.</span>
+      <span>© 2026 Sailoxx. All rights reserved.</span>
       <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
         <a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">NDA Template</a>
       </div>
@@ -881,28 +873,33 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 </footer>
 
 <script>
-// CURSOR (desktop only)
+// CURSOR
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursor-ring');
 let mx=0,my=0,rx=0,ry=0;
 if(window.innerWidth>768){
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-  (function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
-  document.querySelectorAll('a,button,.tool-chip,.form-tab,.faq-item,.pricing-card,.problem-card').forEach(el=>{
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cursor.style.left=mx+'px';cursor.style.top=my+'px';
+  });
+  (function animRing(){
+    rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('a,button,.tool-chip,.faq-item,.pricing-card,.problem-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-grow'));
     el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-grow'));
   });
 }
 
 // MOBILE MENU
-function toggleMobileMenu(){
-  const menu=document.getElementById('mobileMenu');
-  const ham=document.getElementById('hamburger');
-  menu.classList.toggle('open');
-  ham.classList.toggle('open');
-  document.body.style.overflow=menu.classList.contains('open')?'hidden':'';
+function toggleMob(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+  document.body.style.overflow=document.getElementById('mobileMenu').classList.contains('open')?'hidden':'';
 }
-function closeMobileMenu(){
+function closeMob(){
   document.getElementById('mobileMenu').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
   document.body.style.overflow='';
@@ -919,56 +916,60 @@ document.querySelectorAll('.problem-card').forEach(card=>{
 
 // NAV SCROLL
 window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').style.background=window.scrollY>50?'rgba(5,10,31,0.97)':'rgba(5,10,31,0.7)';
+  document.getElementById('mainNav').style.background=
+    window.scrollY>50?'rgba(5,10,31,0.97)':'rgba(5,10,31,0.7)';
 });
 
 // REVEAL
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:0.1});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// TABS
-function switchTab(id){
-  document.querySelectorAll('.form-tab').forEach((t,i)=>{
-    t.classList.toggle('active',['discovery','survey','tool'][i]===id);
-  });
-  document.querySelectorAll('.form-panel').forEach(p=>{p.classList.toggle('active',p.id==='tab-'+id)});
+// FORM TABS
+function switchTab(id,btn){
+  document.querySelectorAll('.form-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.form-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
 }
 
-// TOOL CHIPS
+// TOOL CHIPS (survey)
 function toggleTool(el){
   el.classList.toggle('selected');
-  const selected=[...document.querySelectorAll('#toolsGrid .tool-chip.selected')].map(c=>c.textContent.trim()).join(', ');
-  const hidden=document.getElementById('toolsSelected');
-  if(hidden)hidden.value=selected;
+  const selected=[...document.querySelectorAll('#toolsGrid .tool-chip.selected')]
+    .map(c=>c.textContent.trim()).join(', ');
+  document.getElementById('tools-hidden').value=selected;
 }
 
 // CHECKER
-let checkerTotal=0,checkerCount=0;
+let cTotal=0,cCount=0;
 function calcChecker(el,cost){
   el.classList.toggle('selected');
-  checkerTotal+=el.classList.contains('selected')?cost:-cost;
-  checkerCount+=el.classList.contains('selected')?1:-1;
-  const waste=Math.round(checkerTotal*0.38);
-  document.getElementById('cr-count').textContent=checkerCount;
-  document.getElementById('cr-spend').textContent='₹'+checkerTotal.toLocaleString('en-IN');
+  if(el.classList.contains('selected')){cTotal+=cost;cCount++;}
+  else{cTotal-=cost;cCount--;}
+  const waste=Math.round(cTotal*0.38);
+  document.getElementById('cr-count').textContent=cCount;
+  document.getElementById('cr-spend').textContent='₹'+cTotal.toLocaleString('en-IN');
   document.getElementById('cr-waste').textContent='₹'+waste.toLocaleString('en-IN');
   document.getElementById('cr-annual').textContent='₹'+(waste*12).toLocaleString('en-IN');
-  document.getElementById('checkerResult').classList.toggle('show',checkerCount>0);
+  document.getElementById('checkerResult').classList.toggle('show',cCount>0);
 }
 
-// ROI CALC
+// ROI CALCULATOR — all 3 sliders working
 function updateCalc(){
-  const tools=+document.getElementById('s-tools').value;
-  const cost=+document.getElementById('s-cost').value;
+  const tools=parseInt(document.getElementById('s-tools').value);
+  const cost=parseInt(document.getElementById('s-cost').value);
+  const team=parseInt(document.getElementById('s-team').value);
   const spend=tools*cost;
   const waste=Math.round(spend*0.38);
   document.getElementById('v-tools').textContent=tools;
   document.getElementById('v-cost').textContent='₹'+cost.toLocaleString('en-IN');
+  document.getElementById('v-team').textContent=team;
   document.getElementById('r-spend').textContent='₹'+spend.toLocaleString('en-IN');
   document.getElementById('r-waste').textContent='₹'+waste.toLocaleString('en-IN');
   document.getElementById('r-annual').textContent='₹'+(waste*12).toLocaleString('en-IN');
 }
-['s-tools','s-cost','s-team'].forEach(id=>document.getElementById(id).addEventListener('input',updateCalc));
 updateCalc();
 
 // FAQ
@@ -978,24 +979,37 @@ function toggleFaq(el){
   if(!wasOpen)el.classList.add('open');
 }
 
-// FORM SUBMISSIONS — show success message, hide form
-function handleFormSubmit(formId,btnId,successId){
-  const form=document.getElementById(formId);
-  if(!form)return;
-  form.addEventListener('submit',function(e){
-    const btn=document.getElementById(btnId);
-    btn.textContent='Sending...';
-    btn.disabled=true;
-    setTimeout(()=>{
+// FORM SUBMIT — sends to Formspree, shows success message
+function handleSubmit(e,successId){
+  e.preventDefault();
+  const form=e.target;
+  const btn=form.querySelector('button[type=submit]');
+  const orig=btn.textContent;
+  btn.textContent='Sending...';
+  btn.disabled=true;
+
+  fetch(form.action,{
+    method:'POST',
+    body:new FormData(form),
+    headers:{Accept:'application/json'}
+  })
+  .then(res=>{
+    if(res.ok){
       form.style.display='none';
-      const s=document.getElementById(successId);
-      s.style.display='block';
-    },1200);
+      document.getElementById(successId).style.display='block';
+      form.reset();
+    } else {
+      btn.textContent='Something went wrong. Try again.';
+      btn.disabled=false;
+      btn.style.background='var(--red)';
+    }
+  })
+  .catch(()=>{
+    btn.textContent='Something went wrong. Try again.';
+    btn.disabled=false;
+    btn.style.background='var(--red)';
   });
 }
-handleFormSubmit('discoveryForm','discoverySub','discoverySuccess');
-handleFormSubmit('surveyForm','surveySub','surveySuccess');
-handleFormSubmit('toolForm','toolSub','toolSuccess');
 </script>
 </body>
 </html>
