@@ -433,52 +433,29 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
   </div>
 </section>
 
-<!-- ROI CALCULATOR — FIXED -->
+<!-- ROI CALCULATOR -->
 <section class="calc-section" id="calculator">
   <div class="container">
     <div class="section-label">Estimate Your Savings</div>
     <h2 class="section-title">How much are you <span>wasting?</span></h2>
     <p class="section-sub" style="margin-bottom:2.5rem">Move the sliders to get a rough estimate before you even book a call.</p>
-
     <div class="calc-box reveal">
-
       <div class="calc-slider-group">
-        <div class="calc-label">
-          <span>Number of AI tools you pay for</span>
-          <span class="calc-val" id="v-tools">6</span>
-        </div>
+        <div class="calc-label">Number of AI tools you pay for <span id="v-tools">6</span></div>
         <input type="range" min="1" max="20" value="6" id="s-tools">
       </div>
-
       <div class="calc-slider-group">
-        <div class="calc-label">
-          <span>Average cost per tool per month (₹)</span>
-          <span class="calc-val" id="v-cost">₹8,000</span>
-        </div>
+        <div class="calc-label">Average cost per tool per month (₹) <span id="v-cost">₹8,000</span></div>
         <input type="range" min="1000" max="50000" step="1000" value="8000" id="s-cost">
       </div>
-
       <div class="calc-slider-group">
-        <div class="calc-label">
-          <span>Team size using AI tools</span>
-          <span class="calc-val"><span id="v-team">40</span> people</span>
-        </div>
+        <div class="calc-label">Team size using AI tools <span id="v-team">40</span> people</div>
         <input type="range" min="5" max="300" value="40" id="s-team">
       </div>
-
       <div class="calc-result">
-        <div class="calc-metric">
-          <div class="m-label">Monthly AI Spend</div>
-          <div class="m-val m-cyan" id="r-spend">₹48,000</div>
-        </div>
-        <div class="calc-metric">
-          <div class="m-label">Est. Waste (38%)</div>
-          <div class="m-val m-red" id="r-waste">₹18,240</div>
-        </div>
-        <div class="calc-metric">
-          <div class="m-label">Annual Savings Potential</div>
-          <div class="m-val m-gold" id="r-annual">₹2,18,880</div>
-        </div>
+        <div class="calc-metric"><div class="m-label">Monthly AI Spend</div><div class="m-val m-cyan" id="r-spend">₹48,000</div></div>
+        <div class="calc-metric"><div class="m-label">Est. Waste (38%)</div><div class="m-val m-red" id="r-waste">₹18,240</div></div>
+        <div class="calc-metric"><div class="m-label">Annual Savings Potential</div><div class="m-val m-gold" id="r-annual">₹2,18,880</div></div>
       </div>
       <p style="font-size:0.78rem;color:var(--muted);margin-top:1rem;text-align:center">*Estimate based on 38% average waste rate across our audits. Actual savings vary.</p>
     </div>
@@ -1019,51 +996,6 @@ function handleFormSubmit(formId,btnId,successId){
 handleFormSubmit('discoveryForm','discoverySub','discoverySuccess');
 handleFormSubmit('surveyForm','surveySub','surveySuccess');
 handleFormSubmit('toolForm','toolSub','toolSuccess');
-  
-  // your existing code (FAQ, form stuff, etc...)
-
-  // 👇 PASTE MY CALCULATOR CODE HERE
-
-  const sTools = document.getElementById("s-tools");
-  const sCost = document.getElementById("s-cost");
-  const sTeam = document.getElementById("s-team");
-
-  const vTools = document.getElementById("v-tools");
-  const vCost = document.getElementById("v-cost");
-  const vTeam = document.getElementById("v-team");
-
-  const rSpend = document.getElementById("r-spend");
-  const rWaste = document.getElementById("r-waste");
-  const rAnnual = document.getElementById("r-annual");
-
-  function formatINR(num) {
-    return "₹" + num.toLocaleString("en-IN");
-  }
-
-  function updateCalc() {
-    const tools = parseInt(sTools.value);
-    const cost = parseInt(sCost.value);
-    const team = parseInt(sTeam.value);
-
-    const monthlySpend = tools * cost * (team / 10);
-    const waste = monthlySpend * 0.38;
-    const annual = waste * 12;
-
-    vTools.textContent = tools;
-    vCost.textContent = formatINR(cost);
-    vTeam.textContent = team;
-
-    rSpend.textContent = formatINR(Math.round(monthlySpend));
-    rWaste.textContent = formatINR(Math.round(waste));
-    rAnnual.textContent = formatINR(Math.round(annual));
-  }
-
-  [sTools, sCost, sTeam].forEach(slider => {
-    slider.addEventListener("input", updateCalc);
-  });
-
-  updateCalc();
-
 </script>
 </body>
 </html>
