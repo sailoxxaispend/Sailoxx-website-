@@ -572,90 +572,805 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
       </div>
     </div>
 
-    <!-- EMPLOYEE SURVEY -->
-    <div class="form-panel" id="tab-survey">
-      <div class="ai-form">
-        <h3 style="font-size:1.2rem;margin-bottom:0.4rem">Employee AI Usage Survey</h3>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">Takes 5 minutes. Your answers are anonymous.</p>
-        <form action="https://formspree.io/f/xojpoyel" method="POST" onsubmit="handleSubmit(event,'surv-success')">
-          <input type="hidden" name="form-type" value="Employee Survey">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Your Department <span>*</span></label>
-              <select class="form-select" name="department" required>
-                <option value="">Select department</option>
-                <option>Marketing</option><option>Sales</option><option>Operations</option><option>Engineering / Tech</option><option>Finance</option><option>HR / People</option><option>Customer Support</option><option>Product</option><option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Company (if provided by manager)</label>
-              <input class="form-input" type="text" name="company" placeholder="Optional">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Which AI tools do you use at work? <span>*</span></label>
-            <div class="tools-grid" id="toolsGrid">
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>ChatGPT</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>MS Copilot</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Notion AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Jasper AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Grammarly AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Zapier AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Claude AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Midjourney</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>GitHub Copilot</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Gemini</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>HubSpot AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Salesforce AI</div>
-            </div>
-            <input type="hidden" name="tools-used" id="tools-hidden">
-            <input class="form-input" type="text" name="other-tools" placeholder="Other tools not listed..." style="margin-top:0.8rem">
-          </div>
-          <div class="form-group">
-            <label class="form-label">How often do you use AI tools at work? <span>*</span></label>
-            <select class="form-select" name="frequency" required>
-              <option value="">Select frequency</option>
-              <option>Multiple times daily</option><option>Once a day</option><option>A few times per week</option><option>Once a week or less</option><option>Rarely / almost never</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">What specific task do you use AI for most? <span>*</span></label>
-            <input class="form-input" type="text" name="main-task" placeholder="e.g. Writing emails, summarising reports, writing code..." required>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Time BEFORE AI? (minutes) <span>*</span></label>
-              <input class="form-input" type="number" name="time-before" placeholder="e.g. 60" min="1" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Time NOW with AI? (minutes) <span>*</span></label>
-              <input class="form-input" type="number" name="time-now" placeholder="e.g. 15" min="1" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">How much do you trust AI output without heavy editing? <span>*</span></label>
-            <select class="form-select" name="trust-level" required>
-              <option value="">Select trust level</option>
-              <option>1 — I almost always rewrite it completely</option><option>2 — I fix a lot before using it</option><option>3 — I make minor edits most of the time</option><option>4 — I use it mostly as-is</option><option>5 — I trust it fully, rarely edit</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">If this tool disappeared tomorrow, how badly would it affect your work? <span>*</span></label>
-            <select class="form-select" name="impact" required>
-              <option value="">Select impact</option>
-              <option>Not at all — I'd manage fine</option><option>Slightly — I'd miss it but adapt quickly</option><option>Significantly — it would slow me down</option><option>Critically — I cannot do my job as well without it</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">What is your biggest frustration with AI tools at your company?</label>
-            <textarea class="form-textarea" name="frustration" placeholder="Be honest — this is anonymous..."></textarea>
-          </div>
-          <button type="submit" class="form-submit">Submit My Survey →</button>
-        </form>
-        <div class="form-success" id="surv-success">✅ Survey submitted! Your response is 100% anonymous. Thank you.</div>
-        <p class="form-note">100% anonymous. Your name is never stored.</p>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee AI Usage Survey — Sailoxx</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--navy:#050A1F;--navy2:#0B1530;--navy3:#0F1E42;
+--cyan:#00E5CC;--cyan2:#00B8A4;--cyan3:rgba(0,229,204,0.12);
+--gold:#FFB830;--white:#F0F4FF;--muted:#8899BB;
+--card:#0D1A3A;--card2:#111F45;
+--border:rgba(0,229,204,0.15);--border2:rgba(0,229,204,0.3);
+--red:#FF4D6A;--green:#00E5A0;--amber:#F59E0B;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.7;min-height:100vh}
+
+/* PROGRESS BAR */
+.progress-wrap{position:fixed;top:0;left:0;right:0;z-index:999;height:4px;background:rgba(255,255,255,0.08)}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));width:0%;transition:width 0.5s ease;border-radius:0 2px 2px 0}
+.progress-label{position:fixed;top:10px;right:16px;z-index:999;font-size:11px;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:500;letter-spacing:0.05em}
+
+/* LAYOUT */
+.survey-wrap{max-width:680px;margin:0 auto;padding:5rem 1.5rem 4rem}
+
+/* HEADER */
+.survey-header{text-align:center;padding:2rem 0 3rem}
+.survey-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--cyan3);border:1px solid var(--border2);padding:0.35rem 1rem;border-radius:100px;font-size:0.75rem;color:var(--cyan);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.5rem}
+.badge-pulse{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.5)}}
+.survey-header h1{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem}
+.survey-header h1 span{color:var(--cyan)}
+.survey-header p{color:var(--muted);font-size:0.95rem;max-width:500px;margin:0 auto 1.5rem;line-height:1.75}
+.anon-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.3);padding:0.4rem 1rem;border-radius:100px;font-size:0.8rem;color:var(--green);font-weight:500}
+
+/* STEP INDICATORS */
+.steps-nav{display:flex;align-items:center;justify-content:center;gap:0;margin:2rem 0;overflow-x:auto;padding:0.5rem 0}
+.step-dot{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;position:relative}
+.step-dot .dot{width:32px;height:32px;border-radius:50%;border:2px solid var(--border);background:var(--card);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;color:var(--muted);transition:all 0.3s;flex-shrink:0}
+.step-dot.active .dot{border-color:var(--cyan);background:var(--cyan);color:var(--navy)}
+.step-dot.done .dot{border-color:var(--green);background:rgba(0,229,160,0.15);color:var(--green)}
+.step-dot .slabel{font-size:0.65rem;color:var(--muted);white-space:nowrap;font-weight:500;letter-spacing:0.03em}
+.step-dot.active .slabel{color:var(--cyan)}
+.step-connector{width:32px;height:2px;background:var(--border);flex-shrink:0;margin-bottom:16px}
+.step-connector.done{background:var(--green)}
+
+/* SECTIONS */
+.survey-section{display:none;animation:fadeIn 0.4s ease}
+.survey-section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section-intro{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem;margin-bottom:2rem}
+.section-intro .si-num{font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;color:var(--cyan);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem}
+.section-intro h2{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:0.4rem}
+.section-intro p{font-size:0.85rem;color:var(--muted);line-height:1.7}
+
+/* QUESTION CARDS */
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1rem;transition:border-color 0.2s}
+.q-card:focus-within{border-color:var(--border2)}
+.q-label{font-size:0.85rem;font-weight:500;color:var(--white);margin-bottom:0.3rem;line-height:1.5}
+.q-hint{font-size:0.78rem;color:var(--muted);margin-bottom:1rem;line-height:1.6}
+.q-required{color:var(--red);margin-left:3px}
+
+/* TEXT INPUTS */
+.q-input,.q-textarea,.q-select{width:100%;padding:0.75rem 1rem;background:var(--navy3);border:1px solid var(--border);border-radius:12px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;outline:none;-webkit-appearance:none}
+.q-input:focus,.q-textarea:focus,.q-select:focus{border-color:var(--cyan2);box-shadow:0 0 0 3px rgba(0,229,204,0.1)}
+.q-input::placeholder,.q-textarea::placeholder{color:rgba(136,153,187,0.5)}
+.q-textarea{resize:vertical;min-height:90px;line-height:1.6}
+.q-select{background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%238899BB' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer}
+.q-select option{background:var(--navy2);color:var(--white)}
+
+/* CHOICE BUTTONS */
+.choices{display:flex;flex-direction:column;gap:0.5rem}
+.choices.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+.choices.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem}
+@media(max-width:500px){.choices.grid-2,.choices.grid-3{grid-template-columns:1fr}}
+.choice-btn{padding:0.65rem 1rem;background:var(--navy3);border:1px solid var(--border);border-radius:12px;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:400;text-align:left;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.6rem;line-height:1.4}
+.choice-btn:hover{border-color:var(--border2);color:var(--white);background:var(--card2)}
+.choice-btn.selected{border-color:var(--cyan2);background:var(--cyan3);color:var(--cyan)}
+.choice-btn .cb-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.choice-btn.selected .cb-dot{background:var(--cyan);border-color:var(--cyan)}
+.choice-btn.selected .cb-dot::after{content:'';width:6px;height:6px;background:var(--navy);border-radius:50%}
+
+/* STAR RATING */
+.star-group{display:flex;gap:6px;align-items:center}
+.star{font-size:1.6rem;cursor:pointer;color:rgba(136,153,187,0.3);transition:all 0.15s;user-select:none;line-height:1}
+.star:hover,.star.lit{color:var(--gold);transform:scale(1.15)}
+.star-labels{display:flex;justify-content:space-between;margin-top:0.4rem}
+.star-labels span{font-size:0.7rem;color:var(--muted)}
+
+/* FREQUENCY SELECTOR */
+.freq-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0.4rem}
+@media(max-width:500px){.freq-row{grid-template-columns:repeat(3,1fr)}}
+.freq-btn{padding:0.6rem 0.3rem;background:var(--navy3);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-size:0.72rem;font-weight:500;text-align:center;cursor:pointer;transition:all 0.2s;line-height:1.3}
+.freq-btn:hover{border-color:var(--border2);color:var(--white)}
+.freq-btn.selected{border-color:var(--cyan2);background:var(--cyan3);color:var(--cyan)}
+
+/* IMPACT SELECTOR */
+.impact-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem}
+@media(max-width:500px){.impact-row{grid-template-columns:1fr 1fr}}
+.impact-btn{padding:0.8rem 0.5rem;background:var(--navy3);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all 0.2s;text-align:center}
+.impact-btn:hover{border-color:var(--border2)}
+.impact-btn .ib-icon{font-size:1.4rem;margin-bottom:0.3rem;display:block}
+.impact-btn .ib-label{font-size:0.7rem;color:var(--muted);line-height:1.3}
+.impact-btn.selected{border-color:var(--cyan2);background:var(--cyan3)}
+.impact-btn.selected .ib-label{color:var(--cyan)}
+
+/* TOOL BLOCKS */
+.tool-block{background:var(--card2);border:1px solid var(--border);border-radius:16px;padding:1.25rem;margin-bottom:1rem}
+.tool-block-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;cursor:pointer}
+.tool-name-pill{display:inline-flex;align-items:center;gap:0.5rem;background:var(--cyan3);border:1px solid var(--border2);padding:0.3rem 0.9rem;border-radius:100px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--cyan)}
+.tool-toggle{width:24px;height:24px;border-radius:50%;border:1px solid var(--border2);background:var(--card);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--muted);transition:all 0.2s;cursor:pointer;flex-shrink:0}
+.tool-block.expanded .tool-toggle{background:var(--cyan);color:var(--navy);transform:rotate(45deg)}
+.tool-block-body{display:none}
+.tool-block.expanded .tool-block-body{display:block}
+.time-row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:0.5rem}
+.time-input-wrap{position:relative}
+.time-input-wrap .q-input{padding-right:3rem}
+.time-suffix{position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-size:0.75rem;color:var(--muted);pointer-events:none}
+
+/* SLIDER */
+.q-slider-wrap{padding:0.5rem 0}
+.q-slider{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer;margin-bottom:0.5rem}
+.slider-labels{display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted)}
+.slider-val{text-align:center;font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cyan);margin-bottom:0.3rem}
+
+/* NUMBER INPUT ROW */
+.num-row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+
+/* NAVIGATION */
+.nav-row{display:flex;align-items:center;justify-content:space-between;margin-top:2.5rem;gap:1rem}
+.btn-prev{padding:0.75rem 1.5rem;background:transparent;border:1px solid var(--border2);border-radius:100px;color:var(--muted);font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.btn-prev:hover{color:var(--white);border-color:var(--white)}
+.btn-next{padding:0.75rem 2rem;background:var(--cyan);border:none;border-radius:100px;color:var(--navy);font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.2s;flex:1;max-width:200px}
+.btn-next:hover{background:var(--gold);transform:translateY(-1px)}
+.btn-submit{padding:0.9rem 2rem;background:var(--cyan);border:none;border-radius:100px;color:var(--navy);font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all 0.2s;width:100%;margin-top:2rem;box-shadow:0 0 30px rgba(0,229,204,0.25)}
+.btn-submit:hover{background:var(--gold);box-shadow:0 0 50px rgba(255,184,48,0.3);transform:translateY(-1px)}
+
+/* SUCCESS PAGE */
+.success-page{display:none;text-align:center;padding:3rem 1rem}
+.success-page.show{display:block;animation:fadeIn 0.6s ease}
+.success-icon{width:80px;height:80px;border-radius:50%;background:rgba(0,229,160,0.15);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.5rem}
+.success-page h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:0.8rem}
+.success-page p{color:var(--muted);max-width:400px;margin:0 auto;line-height:1.75;font-size:0.95rem}
+
+/* MISC */
+.char-count{font-size:0.72rem;color:var(--muted);text-align:right;margin-top:0.3rem}
+.optional-tag{font-size:0.7rem;color:var(--muted);margin-left:6px;font-style:italic}
+.section-tag{font-size:0.7rem;background:var(--cyan3);color:var(--cyan);padding:0.15rem 0.6rem;border-radius:100px;font-weight:600;margin-left:6px;vertical-align:middle}
+.divider{height:1px;background:var(--border);margin:1.5rem 0}
+.q-sub-label{font-size:0.78rem;color:var(--muted);margin-bottom:0.5rem;font-style:italic}
+</style>
+</head>
+<body>
+
+<div class="progress-wrap">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="progress-label" id="progressLabel">Step 1 of 6</div>
+
+<div class="survey-wrap">
+
+  <!-- HEADER -->
+  <div class="survey-header">
+    <div class="survey-badge"><span class="badge-pulse"></span>Anonymous Survey</div>
+    <h1>How are our <span>AI tools</span><br>actually working for you?</h1>
+    <p>Takes 6–8 minutes. Your answers are completely anonymous — individual responses are never shared with management. Only combined results go into the final report.</p>
+    <div class="anon-badge">🔒 100% Anonymous — your name is never stored</div>
+  </div>
+
+  <!-- STEP INDICATORS -->
+  <div class="steps-nav" id="stepsNav">
+    <div class="step-dot active" onclick="goToStep(0)"><div class="dot">1</div><div class="slabel">You</div></div>
+    <div class="step-connector" id="conn-0"></div>
+    <div class="step-dot" onclick="goToStep(1)"><div class="dot">2</div><div class="slabel">Overview</div></div>
+    <div class="step-connector" id="conn-1"></div>
+    <div class="step-dot" onclick="goToStep(2)"><div class="dot">3</div><div class="slabel">Tools</div></div>
+    <div class="step-connector" id="conn-2"></div>
+    <div class="step-dot" onclick="goToStep(3)"><div class="dot">4</div><div class="slabel">Hidden</div></div>
+    <div class="step-connector" id="conn-3"></div>
+    <div class="step-dot" onclick="goToStep(4)"><div class="dot">5</div><div class="slabel">Reality</div></div>
+    <div class="step-connector" id="conn-4"></div>
+    <div class="step-dot" onclick="goToStep(5)"><div class="dot">6</div><div class="slabel">Honest</div></div>
+  </div>
+
+  <!-- FORM -->
+  <form id="surveyForm" action="https://formspree.io/f/xojpoyel" method="POST">
+    <input type="hidden" name="form-type" value="Employee AI Usage Survey — Full">
+
+    <!-- SECTION 1 — ABOUT YOU -->
+    <div class="survey-section active" id="section-0">
+      <div class="section-intro">
+        <div class="si-num">Section 01 — About You</div>
+        <h2>Let's start simple 👋</h2>
+        <p>Nothing identifying here — just helps us group responses by department so we can spot patterns. Your name is never asked or stored.</p>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Which department are you in?<span class="q-required">*</span></div>
+        <div class="q-hint">Pick the one that best matches your day-to-day work.</div>
+        <div class="choices grid-2" id="dept-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Marketing</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Sales</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Engineering / Tech</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Operations</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Finance</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>HR / People</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Customer Support</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Product</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Design / Creative</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'department')"><span class="cb-dot"></span>Other</button>
+        </div>
+        <input type="hidden" name="department" id="val-department">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Your seniority level<span class="q-required">*</span></div>
+        <div class="q-hint">Helps us understand if AI tool usage patterns differ across experience levels.</div>
+        <div class="choices" id="seniority-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'seniority')"><span class="cb-dot"></span>Junior / Entry level</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'seniority')"><span class="cb-dot"></span>Mid-level</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'seniority')"><span class="cb-dot"></span>Senior / Lead</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'seniority')"><span class="cb-dot"></span>Manager / Team Head</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'seniority')"><span class="cb-dot"></span>Director / VP / C-suite</button>
+        </div>
+        <input type="hidden" name="seniority" id="val-seniority">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">On average, how many hours per day do you spend using AI tools?<span class="q-required">*</span></div>
+        <div class="q-hint">Include everything — ChatGPT, Copilot, Notion AI, any AI feature inside other tools.</div>
+        <div class="choices" id="hours-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'daily-hours')"><span class="cb-dot"></span>I barely use any AI tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'daily-hours')"><span class="cb-dot"></span>Under 1 hour</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'daily-hours')"><span class="cb-dot"></span>1–2 hours</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'daily-hours')"><span class="cb-dot"></span>3–4 hours</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'daily-hours')"><span class="cb-dot"></span>More than 4 hours — I'm basically living in AI tools</button>
+        </div>
+        <input type="hidden" name="daily-hours" id="val-daily-hours">
+      </div>
+
+      <div class="nav-row">
+        <div></div>
+        <button type="button" class="btn-next" onclick="nextStep(0)">Next →</button>
       </div>
     </div>
+
+    <!-- SECTION 2 — OVERVIEW -->
+    <div class="survey-section" id="section-1">
+      <div class="section-intro">
+        <div class="si-num">Section 02 — The Big Picture</div>
+        <h2>Your AI tool landscape 🗺️</h2>
+        <p>Before we get tool-specific, we want to understand the overall vibe. How does AI tool usage actually feel from where you sit?</p>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">How many different AI tools do you personally use for work?<span class="q-required">*</span></div>
+        <div class="choices grid-2" id="toolcount-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-count')"><span class="cb-dot"></span>None — I don't really use AI tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-count')"><span class="cb-dot"></span>1–2 tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-count')"><span class="cb-dot"></span>3–5 tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-count')"><span class="cb-dot"></span>6–10 tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-count')"><span class="cb-dot"></span>More than 10 — I've lost count</button>
+        </div>
+        <input type="hidden" name="tool-count" id="val-tool-count">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">How did you discover most of your AI tools?<span class="q-required">*</span></div>
+        <div class="choices" id="discovery-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-discovery')"><span class="cb-dot"></span>Company assigned them to me officially</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-discovery')"><span class="cb-dot"></span>I found them myself and started using them</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-discovery')"><span class="cb-dot"></span>A colleague recommended them</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-discovery')"><span class="cb-dot"></span>My manager or team lead assigned them</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-discovery')"><span class="cb-dot"></span>Mix of all the above</button>
+        </div>
+        <input type="hidden" name="tool-discovery" id="val-tool-discovery">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Has anyone ever asked you to report on or justify how you use your AI tools?<span class="q-required">*</span></div>
+        <div class="choices" id="justify-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-justify')"><span class="cb-dot"></span>Yes — it comes up regularly</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-justify')"><span class="cb-dot"></span>Once or twice</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-justify')"><span class="cb-dot"></span>Never — nobody tracks this</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-justify')"><span class="cb-dot"></span>I didn't even know I was supposed to</button>
+        </div>
+        <input type="hidden" name="tool-justify" id="val-tool-justify">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Rate how well your company's AI tools are being used across the team<span class="q-required">*</span></div>
+        <div class="q-hint">Be honest. Not how they should be used — how they actually are used.</div>
+        <div class="q-slider-wrap">
+          <div class="slider-val" id="usage-val">5 / 10</div>
+          <input type="range" class="q-slider" min="1" max="10" value="5" id="s-usage" name="team-usage-score" oninput="document.getElementById('usage-val').textContent=this.value+' / 10'">
+          <div class="slider-labels"><span>1 — Total waste</span><span>10 — Used perfectly</span></div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn-prev" onclick="prevStep(1)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(1)">Next →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 3 — TOOL BY TOOL -->
+    <div class="survey-section" id="section-2">
+      <div class="section-intro">
+        <div class="si-num">Section 03 — Tool Deep Dive</div>
+        <h2>Let's talk about specific tools 🔧</h2>
+        <p>This is the most important section. For each tool below, tap to expand and answer honestly. If you don't use a tool at all — that's a valid and useful answer.</p>
+      </div>
+
+      <!-- TOOL: ChatGPT -->
+      <div class="tool-block" id="tool-chatgpt">
+        <div class="tool-block-header" onclick="toggleTool('tool-chatgpt')">
+          <div class="tool-name-pill">💬 ChatGPT / OpenAI</div>
+          <div class="tool-toggle">+</div>
+        </div>
+        <div class="tool-block-body">
+          <div class="q-card" style="background:var(--navy3);border:none;padding:1rem">
+            <div class="q-label">How often do you use ChatGPT?<span class="q-required">*</span></div>
+            <div class="freq-row" id="freq-chatgpt">
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-chatgpt','chatgpt-frequency')">Multiple times<br>daily</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-chatgpt','chatgpt-frequency')">Once<br>a day</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-chatgpt','chatgpt-frequency')">Few times<br>per week</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-chatgpt','chatgpt-frequency')">Rarely /<br>almost never</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-chatgpt','chatgpt-frequency')">Have access,<br>don't use</button>
+            </div>
+            <input type="hidden" name="chatgpt-frequency" id="val-chatgpt-frequency">
+
+            <div class="divider"></div>
+            <div class="q-label">Main task you use ChatGPT for?</div>
+            <div class="q-hint">e.g. writing emails, summarising docs, writing code — type N/A if unused</div>
+            <input type="text" class="q-input" name="chatgpt-task" placeholder="e.g. drafting emails, generating reports...">
+
+            <div class="divider"></div>
+            <div class="q-label">Time saved — before vs now</div>
+            <div class="q-hint">How long did this task take before ChatGPT, and how long now?</div>
+            <div class="time-row">
+              <div class="time-input-wrap">
+                <input type="number" class="q-input" name="chatgpt-time-before" placeholder="60" min="0">
+                <span class="time-suffix">min before</span>
+              </div>
+              <div class="time-input-wrap">
+                <input type="number" class="q-input" name="chatgpt-time-now" placeholder="15" min="0">
+                <span class="time-suffix">min now</span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="q-label">How much do you trust the output without heavy editing?</div>
+            <div class="q-hint">1 star = I rewrite everything &nbsp;·&nbsp; 5 stars = I use it almost as-is</div>
+            <div class="star-group" id="stars-chatgpt">
+              <span class="star" onclick="rateStar('stars-chatgpt','chatgpt-trust',1)">★</span>
+              <span class="star" onclick="rateStar('stars-chatgpt','chatgpt-trust',2)">★</span>
+              <span class="star" onclick="rateStar('stars-chatgpt','chatgpt-trust',3)">★</span>
+              <span class="star" onclick="rateStar('stars-chatgpt','chatgpt-trust',4)">★</span>
+              <span class="star" onclick="rateStar('stars-chatgpt','chatgpt-trust',5)">★</span>
+            </div>
+            <input type="hidden" name="chatgpt-trust" id="val-chatgpt-trust">
+
+            <div class="divider"></div>
+            <div class="q-label">If ChatGPT disappeared tomorrow, impact on your work?</div>
+            <div class="impact-row" id="impact-chatgpt">
+              <div class="impact-btn" onclick="selectImpact(this,'impact-chatgpt','chatgpt-impact')"><span class="ib-icon">😐</span><div class="ib-label">No impact at all</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-chatgpt','chatgpt-impact')"><span class="ib-icon">🤔</span><div class="ib-label">Minor — I'd adapt</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-chatgpt','chatgpt-impact')"><span class="ib-icon">😬</span><div class="ib-label">Significant slowdown</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-chatgpt','chatgpt-impact')"><span class="ib-icon">😱</span><div class="ib-label">Critical — can't work without it</div></div>
+            </div>
+            <input type="hidden" name="chatgpt-impact" id="val-chatgpt-impact">
+
+            <div class="divider"></div>
+            <div class="q-label">One honest sentence leadership should know about ChatGPT <span class="optional-tag">optional</span></div>
+            <input type="text" class="q-input" name="chatgpt-note" placeholder="Be honest — this is anonymous...">
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL: Microsoft Copilot -->
+      <div class="tool-block" id="tool-copilot">
+        <div class="tool-block-header" onclick="toggleTool('tool-copilot')">
+          <div class="tool-name-pill">🤖 Microsoft Copilot</div>
+          <div class="tool-toggle">+</div>
+        </div>
+        <div class="tool-block-body">
+          <div class="q-card" style="background:var(--navy3);border:none;padding:1rem">
+            <div class="q-label">How often do you use Copilot?<span class="q-required">*</span></div>
+            <div class="freq-row" id="freq-copilot">
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-copilot','copilot-frequency')">Multiple times<br>daily</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-copilot','copilot-frequency')">Once<br>a day</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-copilot','copilot-frequency')">Few times<br>per week</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-copilot','copilot-frequency')">Rarely /<br>almost never</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-copilot','copilot-frequency')">Have access,<br>don't use</button>
+            </div>
+            <input type="hidden" name="copilot-frequency" id="val-copilot-frequency">
+            <div class="divider"></div>
+            <div class="q-label">Main task you use Copilot for?</div>
+            <input type="text" class="q-input" name="copilot-task" placeholder="e.g. writing in Word, summarising emails in Outlook...">
+            <div class="divider"></div>
+            <div class="q-label">Time saved — before vs now</div>
+            <div class="time-row">
+              <div class="time-input-wrap"><input type="number" class="q-input" name="copilot-time-before" placeholder="60" min="0"><span class="time-suffix">min before</span></div>
+              <div class="time-input-wrap"><input type="number" class="q-input" name="copilot-time-now" placeholder="15" min="0"><span class="time-suffix">min now</span></div>
+            </div>
+            <div class="divider"></div>
+            <div class="q-label">Trust score — output quality without editing</div>
+            <div class="star-group" id="stars-copilot">
+              <span class="star" onclick="rateStar('stars-copilot','copilot-trust',1)">★</span>
+              <span class="star" onclick="rateStar('stars-copilot','copilot-trust',2)">★</span>
+              <span class="star" onclick="rateStar('stars-copilot','copilot-trust',3)">★</span>
+              <span class="star" onclick="rateStar('stars-copilot','copilot-trust',4)">★</span>
+              <span class="star" onclick="rateStar('stars-copilot','copilot-trust',5)">★</span>
+            </div>
+            <input type="hidden" name="copilot-trust" id="val-copilot-trust">
+            <div class="divider"></div>
+            <div class="q-label">Impact if removed tomorrow</div>
+            <div class="impact-row" id="impact-copilot">
+              <div class="impact-btn" onclick="selectImpact(this,'impact-copilot','copilot-impact')"><span class="ib-icon">😐</span><div class="ib-label">No impact</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-copilot','copilot-impact')"><span class="ib-icon">🤔</span><div class="ib-label">Minor</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-copilot','copilot-impact')"><span class="ib-icon">😬</span><div class="ib-label">Significant</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-copilot','copilot-impact')"><span class="ib-icon">😱</span><div class="ib-label">Critical</div></div>
+            </div>
+            <input type="hidden" name="copilot-impact" id="val-copilot-impact">
+            <div class="divider"></div>
+            <div class="q-label">One honest thought about Copilot <span class="optional-tag">optional</span></div>
+            <input type="text" class="q-input" name="copilot-note" placeholder="Be honest — this is anonymous...">
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL: Notion AI -->
+      <div class="tool-block" id="tool-notion">
+        <div class="tool-block-header" onclick="toggleTool('tool-notion')">
+          <div class="tool-name-pill">📝 Notion AI</div>
+          <div class="tool-toggle">+</div>
+        </div>
+        <div class="tool-block-body">
+          <div class="q-card" style="background:var(--navy3);border:none;padding:1rem">
+            <div class="q-label">How often do you use Notion AI?<span class="q-required">*</span></div>
+            <div class="freq-row" id="freq-notion">
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-notion','notion-frequency')">Multiple times<br>daily</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-notion','notion-frequency')">Once<br>a day</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-notion','notion-frequency')">Few times<br>per week</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-notion','notion-frequency')">Rarely /<br>almost never</button>
+              <button type="button" class="freq-btn" onclick="selectFreq(this,'freq-notion','notion-frequency')">Have access,<br>don't use</button>
+            </div>
+            <input type="hidden" name="notion-frequency" id="val-notion-frequency">
+            <div class="divider"></div>
+            <div class="q-label">Main task + time saved</div>
+            <input type="text" class="q-input" name="notion-task" placeholder="e.g. summarising meeting notes, drafting docs..." style="margin-bottom:0.5rem">
+            <div class="time-row">
+              <div class="time-input-wrap"><input type="number" class="q-input" name="notion-time-before" placeholder="45" min="0"><span class="time-suffix">min before</span></div>
+              <div class="time-input-wrap"><input type="number" class="q-input" name="notion-time-now" placeholder="10" min="0"><span class="time-suffix">min now</span></div>
+            </div>
+            <div class="divider"></div>
+            <div class="q-label">Trust score &nbsp; | &nbsp; Impact if removed</div>
+            <div class="star-group" id="stars-notion" style="margin-bottom:0.8rem">
+              <span class="star" onclick="rateStar('stars-notion','notion-trust',1)">★</span>
+              <span class="star" onclick="rateStar('stars-notion','notion-trust',2)">★</span>
+              <span class="star" onclick="rateStar('stars-notion','notion-trust',3)">★</span>
+              <span class="star" onclick="rateStar('stars-notion','notion-trust',4)">★</span>
+              <span class="star" onclick="rateStar('stars-notion','notion-trust',5)">★</span>
+            </div>
+            <input type="hidden" name="notion-trust" id="val-notion-trust">
+            <div class="impact-row" id="impact-notion">
+              <div class="impact-btn" onclick="selectImpact(this,'impact-notion','notion-impact')"><span class="ib-icon">😐</span><div class="ib-label">No impact</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-notion','notion-impact')"><span class="ib-icon">🤔</span><div class="ib-label">Minor</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-notion','notion-impact')"><span class="ib-icon">😬</span><div class="ib-label">Significant</div></div>
+              <div class="impact-btn" onclick="selectImpact(this,'impact-notion','notion-impact')"><span class="ib-icon">😱</span><div class="ib-label">Critical</div></div>
+            </div>
+            <input type="hidden" name="notion-impact" id="val-notion-impact">
+            <div class="divider"></div>
+            <div class="q-label">Honest thought <span class="optional-tag">optional</span></div>
+            <input type="text" class="q-input" name="notion-note" placeholder="Anything leadership should know...">
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL: Other -->
+      <div class="q-card">
+        <div class="q-label">Any other AI tools you use regularly? <span class="optional-tag">optional</span></div>
+        <div class="q-hint">List any tools not above — Jasper, Grammarly AI, GitHub Copilot, Zapier AI, Midjourney, Gemini, etc. Include roughly how often you use each.</div>
+        <textarea class="q-textarea" name="other-tools" placeholder="e.g. Grammarly AI — daily for proofreading emails&#10;GitHub Copilot — multiple times daily for code suggestions&#10;Midjourney — once a week for design mockups"></textarea>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn-prev" onclick="prevStep(2)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(2)">Next →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 4 — GHOST AND SHADOW -->
+    <div class="survey-section" id="section-3">
+      <div class="section-intro">
+        <div class="si-num">Section 04 — Hidden Spend</div>
+        <h2>The stuff nobody talks about 👻</h2>
+        <p>This is where we find the biggest savings. Be honest — nobody will know it was you who said this.</p>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Are there AI tools your company pays for that you almost never see anyone actually use?<span class="q-required">*</span></div>
+        <div class="choices" id="ghost-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'ghost-tools')"><span class="cb-dot"></span>Yes — I can think of at least one</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'ghost-tools')"><span class="cb-dot"></span>Maybe — not totally sure</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'ghost-tools')"><span class="cb-dot"></span>No — everything seems actively used</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'ghost-tools')"><span class="cb-dot"></span>I don't track what others use</button>
+        </div>
+        <input type="hidden" name="ghost-tools" id="val-ghost-tools">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">If yes — which tools? <span class="optional-tag">optional but hugely helpful</span></div>
+        <div class="q-hint">Even a rough guess helps. 100% anonymous.</div>
+        <input type="text" class="q-input" name="ghost-tools-names" placeholder="e.g. Jasper, that Zapier automation we set up in March...">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Are there AI tools your team uses that you suspect aren't officially tracked or approved?<span class="q-required">*</span></div>
+        <div class="q-hint">This means tools bought on personal cards, free trials that became habits, or tools adopted without IT approval.</div>
+        <div class="choices" id="shadow-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'shadow-tools')"><span class="cb-dot"></span>Yes — definitely</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'shadow-tools')"><span class="cb-dot"></span>Probably — I've seen it happen</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'shadow-tools')"><span class="cb-dot"></span>Not that I know of</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'shadow-tools')"><span class="cb-dot"></span>I genuinely don't know</button>
+        </div>
+        <input type="hidden" name="shadow-tools" id="val-shadow-tools">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">If yes — which ones? <span class="optional-tag">optional</span></div>
+        <input type="text" class="q-input" name="shadow-tools-names" placeholder="Any tools you suspect are being used unofficially...">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Have you ever paid for an AI tool out of your own pocket for work purposes?<span class="q-required">*</span></div>
+        <div class="choices" id="pocket-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'pocket-pay')"><span class="cb-dot"></span>Yes — and I got reimbursed</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'pocket-pay')"><span class="cb-dot"></span>Yes — and I was NOT reimbursed (it came out of my pocket)</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'pocket-pay')"><span class="cb-dot"></span>No — never</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'pocket-pay')"><span class="cb-dot"></span>Not that I can remember</button>
+        </div>
+        <input type="hidden" name="pocket-pay" id="val-pocket-pay">
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn-prev" onclick="prevStep(3)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(3)">Next →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 5 — PRODUCTIVITY REALITY -->
+    <div class="survey-section" id="section-4">
+      <div class="section-intro">
+        <div class="si-num">Section 05 — Reality Check</div>
+        <h2>Actual productivity — be real 📊</h2>
+        <p>No judgement here. We want to know what's actually happening, not what should be happening.</p>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Across ALL your AI tools combined — roughly how many hours per week do they save you?<span class="q-required">*</span></div>
+        <div class="choices" id="timesaved-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'weekly-time-saved')"><span class="cb-dot"></span>Zero — they don't actually save me time</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'weekly-time-saved')"><span class="cb-dot"></span>1–2 hours per week</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'weekly-time-saved')"><span class="cb-dot"></span>3–5 hours per week</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'weekly-time-saved')"><span class="cb-dot"></span>6–10 hours per week</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'weekly-time-saved')"><span class="cb-dot"></span>More than 10 hours — massive time saver</button>
+        </div>
+        <input type="hidden" name="weekly-time-saved" id="val-weekly-time-saved">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">What percentage of AI output do you use without making major changes?<span class="q-required">*</span></div>
+        <div class="q-hint">0% = I rewrite everything the AI gives me &nbsp;·&nbsp; 100% = I use AI output exactly as it comes</div>
+        <div class="q-slider-wrap">
+          <div class="slider-val" id="output-val">50%</div>
+          <input type="range" class="q-slider" min="0" max="100" step="5" value="50" id="s-output" name="output-use-pct" oninput="document.getElementById('output-val').textContent=this.value+'%'">
+          <div class="slider-labels"><span>0% — rewrite everything</span><span>100% — use as-is</span></div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Do any of your AI tools overlap — i.e. do you use two tools that basically do the same thing?<span class="q-required">*</span></div>
+        <div class="choices" id="overlap-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-overlap')"><span class="cb-dot"></span>Yes — definitely, I use overlapping tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-overlap')"><span class="cb-dot"></span>Maybe — I'm not sure they're actually different</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-overlap')"><span class="cb-dot"></span>No — all my tools do different things</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'tool-overlap')"><span class="cb-dot"></span>I don't use enough tools to have overlap</button>
+        </div>
+        <input type="hidden" name="tool-overlap" id="val-tool-overlap">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">What's the biggest time-waster in how your company uses AI tools right now? <span class="optional-tag">optional</span></div>
+        <div class="q-hint">This can be anything — tool quality, how they're set up, how people are trained, anything.</div>
+        <textarea class="q-textarea" name="biggest-timewaste" placeholder="Be as specific as you want. Nobody will know it was you."></textarea>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn-prev" onclick="prevStep(4)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(4)">Next →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 6 — HONEST FINAL -->
+    <div class="survey-section" id="section-5">
+      <div class="section-intro">
+        <div class="si-num">Section 06 — The Honest Part</div>
+        <h2>Last section — say what you really think 💬</h2>
+        <p>This is the most valuable section. The open text questions here are often the most important thing in the whole report. Please be real.</p>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Overall — do you think the company's AI tool investment is actually worth the money?<span class="q-required">*</span></div>
+        <div class="choices" id="worth-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'investment-worth')"><span class="cb-dot"></span>💚 Definitely yes — clear, obvious ROI</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'investment-worth')"><span class="cb-dot"></span>🟡 Probably yes — some value, could be better</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'investment-worth')"><span class="cb-dot"></span>⚪ Neutral — genuinely hard to say</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'investment-worth')"><span class="cb-dot"></span>🟠 Probably not — questionable value</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'investment-worth')"><span class="cb-dot"></span>🔴 Definitely not — mostly wasted budget</button>
+        </div>
+        <input type="hidden" name="investment-worth" id="val-investment-worth">
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">If you had to cut 50% of the company's AI tools tomorrow — what type would you cut first?<span class="q-required">*</span></div>
+        <div class="choices grid-2" id="cut-choices">
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'cut-first')"><span class="cb-dot"></span>Writing / content tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'cut-first')"><span class="cb-dot"></span>Coding / dev tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'cut-first')"><span class="cb-dot"></span>Research / search tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'cut-first')"><span class="cb-dot"></span>Automation / workflow tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'cut-first')"><span class="cb-dot"></span>Meeting / transcription tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'cut-first')"><span class="cb-dot"></span>Data analysis tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'cut-first')"><span class="cb-dot"></span>Image / creative tools</button>
+          <button type="button" class="choice-btn" onclick="selectChoice(this,'cut-first')"><span class="cb-dot"></span>I genuinely don't know</button>
+        </div>
+        <input type="hidden" name="cut-first" id="val-cut-first">
+      </div>
+
+      <div class="q-card" style="border-color:var(--border2)">
+        <div class="q-label" style="font-size:0.95rem">What ONE thing would make your company's AI tool setup significantly better?<span class="q-required">*</span></div>
+        <div class="q-hint">This is the most important question in the survey. Please take 30 seconds to give a real answer. This directly shapes what leadership does next.</div>
+        <textarea class="q-textarea" name="one-improvement" placeholder="e.g. Training people to actually use the tools properly. Most people have licenses but don't know what to do with them..." style="min-height:110px" oninput="updateChar(this,'char-improve',200)" required></textarea>
+        <div class="char-count" id="char-improve">0 / 200</div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Is there anything about your company's AI tool usage that you think leadership genuinely doesn't know? <span class="optional-tag">optional</span></div>
+        <div class="q-hint">100% anonymous. Will never be linked to you. Say what you'd say if nobody could ever know it was you.</div>
+        <textarea class="q-textarea" name="leadership-doesnt-know" placeholder="This could be a tool that's widely hated but nobody says anything. A workflow that's broken. A tool people use but don't officially have access to. Anything." oninput="updateChar(this,'char-leadership',300)"></textarea>
+        <div class="char-count" id="char-leadership">0 / 300</div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-label">Optional follow-up <span class="optional-tag">completely optional</span></div>
+        <div class="q-hint">If you're comfortable with a short anonymous follow-up conversation about your AI tool experience, leave your email below. This is 100% optional. Your email will never be linked to your survey answers.</div>
+        <input type="email" class="q-input" name="followup-email" placeholder="your.email@company.com (totally optional)">
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn" onclick="handleSubmit()">Submit My Survey →</button>
+
+      <div class="nav-row" style="justify-content:center;margin-top:1rem">
+        <button type="button" class="btn-prev" onclick="prevStep(5)">← Back to previous section</button>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS PAGE -->
+  <div class="success-page" id="successPage">
+    <div class="success-icon">✓</div>
+    <h2>Thank you. <span style="color:var(--cyan)">Genuinely.</span></h2>
+    <p>Your answers will directly shape what gets cut, what gets kept, and how the company allocates its AI budget going forward.</p>
+    <p style="margin-top:1rem">The audit report will be shared within <strong style="color:var(--gold)">5 business days</strong>.</p>
+    <p style="margin-top:1rem;font-size:0.82rem;color:var(--muted)">You just helped save the company money. 🎯</p>
+  </div>
+
+</div>
+
+<script>
+const TOTAL_STEPS=6;
+let currentStep=0;
+
+function updateProgress(){
+  const pct=Math.round((currentStep/TOTAL_STEPS)*100);
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('progressLabel').textContent='Step '+(currentStep+1)+' of '+TOTAL_STEPS;
+  document.querySelectorAll('.step-dot').forEach((dot,i)=>{
+    dot.classList.remove('active','done');
+    if(i===currentStep)dot.classList.add('active');
+    if(i<currentStep)dot.classList.add('done');
+  });
+  document.querySelectorAll('.step-connector').forEach((c,i)=>{
+    c.classList.toggle('done',i<currentStep);
+  });
+}
+
+function goToStep(n){
+  if(n>currentStep)return;
+  document.getElementById('section-'+currentStep).classList.remove('active');
+  currentStep=n;
+  document.getElementById('section-'+currentStep).classList.add('active');
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nextStep(from){
+  document.getElementById('section-'+from).classList.remove('active');
+  currentStep=from+1;
+  document.getElementById('section-'+currentStep).classList.add('active');
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function prevStep(from){
+  document.getElementById('section-'+from).classList.remove('active');
+  currentStep=from-1;
+  document.getElementById('section-'+currentStep).classList.add('active');
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function selectChoice(btn,fieldName){
+  const parent=btn.closest('.choices');
+  parent.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const hidden=document.getElementById('val-'+fieldName);
+  if(hidden)hidden.value=btn.textContent.trim();
+}
+
+function selectFreq(btn,groupId,fieldName){
+  const parent=document.getElementById(groupId);
+  parent.querySelectorAll('.freq-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const hidden=document.getElementById('val-'+fieldName);
+  if(hidden)hidden.value=btn.textContent.replace(/\s+/g,' ').trim();
+}
+
+function selectImpact(btn,groupId,fieldName){
+  const parent=document.getElementById(groupId);
+  parent.querySelectorAll('.impact-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const hidden=document.getElementById('val-'+fieldName);
+  if(hidden)hidden.value=btn.querySelector('.ib-label').textContent.trim();
+}
+
+function rateStar(groupId,fieldName,rating){
+  const stars=document.getElementById(groupId).querySelectorAll('.star');
+  stars.forEach((s,i)=>s.classList.toggle('lit',i<rating));
+  const hidden=document.getElementById('val-'+fieldName);
+  if(hidden)hidden.value=rating+' / 5 stars';
+}
+
+function toggleTool(id){
+  const block=document.getElementById(id);
+  block.classList.toggle('expanded');
+}
+
+function updateChar(el,countId,max){
+  const count=el.value.length;
+  document.getElementById(countId).textContent=count+' / '+max;
+  if(count>max*0.8)document.getElementById(countId).style.color='var(--gold)';
+  else document.getElementById(countId).style.color='var(--muted)';
+}
+
+function handleSubmit(){
+  const form=document.getElementById('surveyForm');
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='Submitting...';
+  btn.disabled=true;
+
+  fetch(form.action,{
+    method:'POST',
+    body:new FormData(form),
+    headers:{Accept:'application/json'}
+  })
+  .then(res=>{
+    if(res.ok){
+      document.getElementById('surveyForm').style.display='none';
+      document.querySelector('.steps-nav').style.display='none';
+      document.getElementById('successPage').classList.add('show');
+      document.getElementById('progressBar').style.width='100%';
+      document.getElementById('progressLabel').textContent='Complete ✓';
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      btn.textContent='Something went wrong — try again';
+      btn.disabled=false;
+      btn.style.background='var(--red)';
+    }
+  })
+  .catch(()=>{
+    btn.textContent='Network error — try again';
+    btn.disabled=false;
+    btn.style.background='var(--red)';
+  });
+}
 
     <!-- TOOL INVENTORY -->
     <div class="form-panel" id="tab-tool">
