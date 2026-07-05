@@ -1,0 +1,726 @@
+cat > /home/claude/sample-ai-spend-audit.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample AI Spend Audit Report — Sailoxx</title>
+<meta name="description" content="Explore a completed sample AI Spend Audit to understand the executive insights, recommendations and deliverables organizations receive after a Sailoxx audit.">
+<meta property="og:title" content="Sample AI Spend Audit Report — Sailoxx">
+<meta property="og:description" content="Explore a completed sample AI Spend Audit report. See exactly what your organization receives.">
+<meta property="og:url" content="https://www.sailoxx.com/sample-ai-spend-audit.html">
+<meta property="og:site_name" content="Sailoxx">
+<link rel="canonical" href="https://www.sailoxx.com/sample-ai-spend-audit.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#050A1F;--navy2:#0B1530;--navy3:#0F1E42;
+  --cyan:#00E5CC;--cyan2:#00B8A4;--cyan3:rgba(0,229,204,0.12);
+  --gold:#FFB830;--gold2:rgba(255,184,48,0.15);
+  --white:#F0F4FF;--muted:#8899BB;
+  --card:#0D1A3A;--card2:#111F45;
+  --border:rgba(0,229,204,0.15);--border2:rgba(0,229,204,0.3);
+  --red:#FF4D6A;--green:#00E5A0;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);color:var(--white);
+  font-family:'DM Sans',sans-serif;font-weight:400;
+  line-height:1.7;overflow-x:hidden;cursor:none;
+}
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;line-height:1.15}
+@media(max-width:768px){body{cursor:auto}}
+
+/* ── CUSTOM CURSOR ── */
+#cursor,#cursor-ring{pointer-events:none;z-index:9999;position:fixed;border-radius:50%}
+#cursor{width:12px;height:12px;background:var(--cyan);transform:translate(-50%,-50%);transition:transform .1s,background .2s;mix-blend-mode:screen}
+#cursor-ring{width:40px;height:40px;border:1.5px solid var(--cyan);transform:translate(-50%,-50%);transition:all .15s ease;opacity:.5}
+.cursor-grow #cursor{transform:translate(-50%,-50%) scale(2.5);background:var(--gold)}
+.cursor-grow #cursor-ring{transform:translate(-50%,-50%) scale(1.5);opacity:.2}
+@media(max-width:768px){#cursor,#cursor-ring{display:none}}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:var(--cyan2);border-radius:2px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(5,10,31,0.7);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:all .3s;
+}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--white);letter-spacing:-0.02em;text-decoration:none}
+.nav-logo span{color:var(--cyan)}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+.nav-links a{color:var(--muted);font-size:.9rem;text-decoration:none;transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{
+  background:var(--cyan);color:var(--navy);
+  padding:.55rem 1.4rem;border-radius:100px;
+  font-weight:700;font-size:.85rem;text-decoration:none;
+  font-family:'Syne',sans-serif;letter-spacing:.02em;
+  transition:all .2s;border:none;cursor:pointer;
+}
+.nav-cta:hover{background:var(--gold);transform:translateY(-1px)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s;display:block}
+.nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(5,10,31,.98);z-index:99;
+  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--white);font-size:1.5rem;font-family:'Syne',sans-serif;font-weight:700;text-decoration:none;transition:color .2s}
+.mobile-menu a:hover{color:var(--cyan)}
+.mobile-menu .mob-cta{background:var(--cyan);color:var(--navy);padding:.8rem 2.5rem;border-radius:100px;font-size:1.1rem}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.nav-cta{display:none}.nav-hamburger{display:flex}}
+
+/* ── NOTICE BANNER ── */
+.notice{
+  background:var(--cyan3);border-bottom:1px solid var(--border2);
+  padding:.5rem 2rem;text-align:center;
+  font-size:.8rem;color:var(--cyan);letter-spacing:.03em;
+}
+.notice strong{color:var(--white)}
+
+/* ── HERO ── */
+.hero{
+  min-height:80vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:10rem 2rem 6rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%,rgba(0,229,204,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 80%,rgba(255,184,48,.06) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 60%,rgba(0,229,204,.05) 0%,transparent 60%);
+}
+.grid-overlay{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,229,204,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,204,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 70%);
+}
+.floating-orb{position:absolute;border-radius:50%;filter:blur(60px);animation:float 8s ease-in-out infinite;pointer-events:none}
+.orb1{width:400px;height:400px;background:rgba(0,229,204,.06);top:-100px;right:-100px}
+.orb2{width:300px;height:300px;background:rgba(255,184,48,.05);bottom:50px;left:-50px;animation-delay:-3s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+
+.hero-inner{position:relative;z-index:2;max-width:800px;margin:0 auto}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(0,229,204,.1);border:1px solid var(--border2);
+  padding:.4rem 1rem;border-radius:100px;
+  font-size:.78rem;color:var(--cyan);font-weight:600;
+  margin-bottom:2rem;letter-spacing:.06em;text-transform:uppercase;
+  animation:fadeUp .8s ease both;
+}
+.badge-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.hero h1{
+  font-size:clamp(2.4rem,6vw,4.5rem);
+  font-weight:800;letter-spacing:-0.04em;line-height:1.05;
+  margin-bottom:1.5rem;
+  animation:fadeUp .8s ease .1s both;
+}
+.hero h1 span{color:var(--cyan)}
+.hero-sub{
+  font-size:1.1rem;color:var(--muted);
+  max-width:580px;margin:0 auto 2.5rem;
+  line-height:1.8;font-weight:300;
+  animation:fadeUp .8s ease .2s both;
+}
+.hero-actions{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp .8s ease .3s both;
+}
+.btn-primary{
+  background:var(--cyan);color:var(--navy);
+  padding:.9rem 2rem;border-radius:100px;
+  font-weight:700;font-size:.95rem;text-decoration:none;
+  font-family:'Syne',sans-serif;letter-spacing:.02em;
+  transition:all .25s;cursor:pointer;
+  display:inline-flex;align-items:center;gap:.5rem;
+  box-shadow:0 0 30px rgba(0,229,204,.25);border:none;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,229,204,.4);background:var(--gold)}
+.btn-secondary{
+  border:1px solid var(--border2);color:var(--white);
+  padding:.9rem 2rem;border-radius:100px;
+  font-weight:500;font-size:.95rem;text-decoration:none;
+  transition:all .25s;cursor:pointer;background:transparent;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-secondary:hover{background:var(--card);border-color:var(--cyan);transform:translateY(-2px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.hero-actions{flex-direction:column;align-items:center}.btn-primary,.btn-secondary{width:100%;justify-content:center;max-width:320px}}
+
+/* ── STATS STRIP ── */
+.stats-strip{
+  background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:2rem;
+}
+.stats-inner{
+  max-width:900px;margin:0 auto;
+  display:flex;gap:0;justify-content:center;flex-wrap:wrap;
+}
+.stat-item{
+  flex:1;min-width:150px;text-align:center;
+  padding:1rem 2rem;
+  border-right:1px solid var(--border);
+}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--cyan);letter-spacing:-0.03em;line-height:1}
+.stat-label{font-size:.75rem;color:var(--muted);margin-top:.3rem;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:600px){.stat-item{border-right:none;border-bottom:1px solid var(--border)}.stat-item:last-child{border-bottom:none}}
+
+/* ── PDF VIEWER SECTION ── */
+.pdf-section{padding:5rem 2rem;background:var(--navy2)}
+.pdf-section-inner{max-width:1000px;margin:0 auto}
+.section-label{
+  font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--cyan);font-weight:600;margin-bottom:.8rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.section-label::before{content:'';width:24px;height:1.5px;background:var(--cyan)}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:.8rem}
+.section-title span{color:var(--cyan)}
+.section-sub{color:var(--muted);font-size:1rem;margin-bottom:2.5rem;max-width:560px;line-height:1.75;font-weight:300}
+
+.pdf-viewer-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.4);
+}
+.pdf-toolbar{
+  background:var(--navy3);border-bottom:1px solid var(--border);
+  padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;
+}
+.pdf-toolbar-left{display:flex;align-items:center;gap:.8rem}
+.pdf-doc-icon{
+  width:32px;height:32px;background:var(--cyan3);border:1px solid var(--border2);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;
+}
+.pdf-title-text{font-size:.82rem;font-weight:600;color:var(--white);font-family:'Syne',sans-serif}
+.pdf-title-sub{font-size:.7rem;color:var(--muted);margin-top:1px}
+.pdf-toolbar-right{display:flex;align-items:center;gap:.6rem}
+.pdf-tb-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.45rem .9rem;border-radius:100px;
+  font-size:.75rem;font-weight:600;font-family:'Syne',sans-serif;
+  text-decoration:none;cursor:pointer;transition:all .2s;border:none;
+}
+.pdf-tb-btn.primary{background:var(--cyan);color:var(--navy)}
+.pdf-tb-btn.primary:hover{background:var(--gold);transform:translateY(-1px)}
+.pdf-tb-btn.secondary{background:var(--card2);color:var(--muted);border:1px solid var(--border)}
+.pdf-tb-btn.secondary:hover{color:var(--white);border-color:var(--border2)}
+
+.pdf-embed-container{
+  width:100%;
+  height:780px;
+  background:var(--navy);
+  position:relative;
+}
+.pdf-embed-container iframe{
+  width:100%;height:100%;border:none;display:block;
+}
+.pdf-fallback{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:3rem;
+  background:var(--navy);
+}
+.pdf-fallback-icon{font-size:3rem;margin-bottom:1rem;opacity:.5}
+.pdf-fallback h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.pdf-fallback p{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem;max-width:380px;line-height:1.6}
+@media(max-width:768px){.pdf-embed-container{height:500px}}
+@media(max-width:480px){.pdf-embed-container{height:400px}}
+
+/* ── WHAT'S INSIDE SECTION ── */
+.inside-section{padding:6rem 2rem;background:var(--navy)}
+.inside-inner{max-width:1100px;margin:0 auto}
+.inside-header{text-align:center;margin-bottom:4rem}
+.inside-header .section-label{justify-content:center}
+.inside-header .section-title{text-align:center}
+.inside-header .section-sub{margin:1rem auto 0;text-align:center}
+
+.inside-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;
+}
+.inside-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:2rem;
+  transition:all .3s;cursor:default;
+  position:relative;overflow:hidden;
+}
+.inside-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,229,204,.06) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.inside-card:hover::before{opacity:1}
+.inside-card:hover{border-color:var(--border2);transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.3)}
+.card-icon-wrap{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--cyan3);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.4rem;font-size:1.5rem;
+}
+.inside-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.6rem;color:var(--white)}
+.inside-card p{font-size:.86rem;color:var(--muted);line-height:1.75}
+.card-tag{
+  display:inline-flex;align-items:center;gap:.35rem;
+  margin-top:1.2rem;padding:.25rem .7rem;
+  background:var(--cyan3);border:1px solid var(--border);
+  border-radius:100px;font-size:.68rem;font-weight:600;
+  color:var(--cyan);letter-spacing:.05em;text-transform:uppercase;
+}
+
+/* ── WHAT WE DON'T DO ── */
+.trust-section{padding:6rem 2rem;background:var(--navy2)}
+.trust-inner{max-width:900px;margin:0 auto}
+.trust-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--border);border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);
+  margin-top:3rem;
+}
+.trust-col{background:var(--card);padding:2.5rem}
+.trust-col-header{
+  display:flex;align-items:center;gap:.6rem;
+  margin-bottom:1.5rem;
+  font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;
+}
+.trust-col-header .th-dot{width:8px;height:8px;border-radius:50%}
+.trust-item{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.65rem 0;border-bottom:1px solid var(--border);
+  font-size:.86rem;line-height:1.6;
+}
+.trust-item:last-child{border-bottom:none}
+.trust-icon{flex-shrink:0;font-size:.9rem;margin-top:1px}
+@media(max-width:600px){.trust-grid{grid-template-columns:1fr}}
+
+/* ── BOTTOM CTA ── */
+.cta-section{
+  padding:7rem 2rem;text-align:center;
+  background:linear-gradient(135deg,var(--card2) 0%,var(--navy3) 100%);
+  border-top:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(0,229,204,.05),transparent);
+}
+.cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.cta-section h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem}
+.cta-section h2 span{color:var(--cyan)}
+.cta-section p{color:var(--muted);font-size:1.05rem;line-height:1.8;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.cta-note{font-size:.78rem;color:var(--muted);margin-top:1.2rem}
+@media(max-width:600px){.cta-actions{flex-direction:column;align-items:center}.btn-primary,.btn-secondary{width:100%;justify-content:center;max-width:320px}}
+
+/* ── FOOTER ── */
+footer{padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:2rem}}
+.footer-brand p{color:var(--muted);font-size:.88rem;margin-top:.8rem;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:.85rem;font-weight:700;margin-bottom:1rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:.88rem;margin-bottom:.5rem;transition:color .2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  font-size:.8rem;color:var(--muted);
+}
+.footer-bottom a{color:var(--muted);text-decoration:none}
+.footer-bottom a:hover{color:var(--cyan)}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/index.html#problem" onclick="closeMob()">Problem</a>
+  <a href="/index.html#process" onclick="closeMob()">Process</a>
+  <a href="/index.html#pricing" onclick="closeMob()">Pricing</a>
+  <a href="/index.html#forms" onclick="closeMob()">Get Started</a>
+  <a href="/index.html#faq" onclick="closeMob()">FAQ</a>
+  <a href="/index.html#forms" class="mob-cta" onclick="closeMob()">Book Free Call →</a>
+</div>
+
+<!-- NOTICE -->
+<div class="notice">🎯 <strong>Introductory pricing</strong> — Only 7 audit slots remaining at ₹15,000. Price increases after first 10 clients.</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="/index.html" class="nav-logo">Sail<span>oxx</span></a>
+  <div class="nav-links">
+    <a href="/index.html#problem">Problem</a>
+    <a href="/index.html#process">Process</a>
+    <a href="/index.html#pricing">Pricing</a>
+    <a href="/index.html#forms">Get Started</a>
+    <a href="/index.html#faq">FAQ</a>
+  </div>
+  <a href="/index.html#forms" class="nav-cta">Book Free Call →</a>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMob()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="floating-orb orb1"></div>
+  <div class="floating-orb orb2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Sample Report — Illustrative Example
+    </div>
+    <h1>Sample AI Spend<br><span>Audit Report</span></h1>
+    <p class="hero-sub">Explore a completed sample AI Spend Audit to understand the executive insights, recommendations and deliverables organisations receive after a Sailoxx audit.</p>
+    <div class="hero-actions">
+      <a href="/pdf/sample-ai-spend-audit.pdf" download class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 2v8M5 7l3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download Sample Report
+      </a>
+      <a href="/index.html#forms" class="btn-secondary">
+        Book Free Discovery Call →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">₹1.2L+</div>
+      <div class="stat-label">Avg savings found</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5 Days</div>
+      <div class="stat-label">Delivery time</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">38%</div>
+      <div class="stat-label">Avg AI budget wasted</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Pages of insights</div>
+    </div>
+  </div>
+</div>
+
+<!-- PDF VIEWER -->
+<section class="pdf-section">
+  <div class="pdf-section-inner">
+    <div class="section-label">Sample Audit</div>
+    <h2 class="section-title">Read the <span>full report</span></h2>
+    <p class="section-sub">Scroll through the complete sample audit below. Every page you see is exactly what your organisation receives — fully detailed, executive-ready, and immediately actionable.</p>
+
+    <div class="pdf-viewer-wrap reveal">
+      <div class="pdf-toolbar">
+        <div class="pdf-toolbar-left">
+          <div class="pdf-doc-icon">📄</div>
+          <div>
+            <div class="pdf-title-text">Sailoxx — Sample AI Spend Audit Report</div>
+            <div class="pdf-title-sub">Illustrative example · Confidential</div>
+          </div>
+        </div>
+        <div class="pdf-toolbar-right">
+          <a href="/pdf/sample-ai-spend-audit.pdf" download class="pdf-tb-btn primary">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 1.5v6M3.5 5.5L6 8l2.5-2.5M2 10h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download PDF
+          </a>
+          <a href="/index.html#forms" class="pdf-tb-btn secondary">Book Audit →</a>
+        </div>
+      </div>
+      <div class="pdf-embed-container" id="pdfContainer">
+        <iframe
+          src="/pdf/sample-ai-spend-audit.pdf"
+          title="Sailoxx Sample AI Spend Audit Report"
+          aria-label="PDF viewer showing the Sailoxx sample AI Spend Audit Report"
+          id="pdfFrame"
+          loading="lazy"
+        ></iframe>
+        <div class="pdf-fallback" id="pdfFallback" style="display:none">
+          <div class="pdf-fallback-icon">📋</div>
+          <h3>Preview unavailable in this browser</h3>
+          <p>Your browser does not support inline PDF viewing. Download the report to read it in your PDF viewer.</p>
+          <a href="/pdf/sample-ai-spend-audit.pdf" download class="btn-primary">
+            Download Sample Report
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside-section">
+  <div class="inside-inner">
+    <div class="inside-header">
+      <div class="section-label">Report Contents</div>
+      <h2 class="section-title">What You'll Find <span>Inside</span></h2>
+      <p class="section-sub">Every Sailoxx audit report is structured to give leadership teams the clarity and confidence to act immediately.</p>
+    </div>
+    <div class="inside-grid">
+      <div class="inside-card reveal reveal-delay-1">
+        <div class="card-icon-wrap">📊</div>
+        <h3>Executive Summary</h3>
+        <p>A single-page overview of your total AI spend, estimated waste percentage, number of tools audited, and immediate savings opportunity — designed to be shared directly with your board or investors.</p>
+        <div class="card-tag">Page 3–4</div>
+      </div>
+      <div class="inside-card reveal reveal-delay-2">
+        <div class="card-icon-wrap">🗂️</div>
+        <h3>AI Tool Inventory</h3>
+        <p>A complete structured map of every AI tool your organisation pays for — including cost, department, active user count, usage frequency, and the Sailoxx verdict for each tool in your stack.</p>
+        <div class="card-tag">Pages 5–9</div>
+      </div>
+      <div class="inside-card reveal reveal-delay-3">
+        <div class="card-icon-wrap">🏢</div>
+        <h3>Department Analysis</h3>
+        <p>Detailed breakdown of AI tool usage, spend, and ROI by department. Shows which teams are extracting real value, which are underusing their tools, and where duplication is costing the most.</p>
+        <div class="card-tag">Pages 10–11</div>
+      </div>
+      <div class="inside-card reveal reveal-delay-4">
+        <div class="card-icon-wrap">🎯</div>
+        <h3>Executive Recommendations</h3>
+        <p>A prioritised action roadmap with exact rupee savings attached to every recommendation. Week one actions, month one actions, and quarter one actions — so you know exactly where to start.</p>
+        <div class="card-tag">Pages 12–15</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDEPENDENCE GUARANTEE -->
+<section class="trust-section">
+  <div class="trust-inner">
+    <div class="section-label">Independence Guarantee</div>
+    <h2 class="section-title reveal">What Sailoxx <span>Does Not Do</span></h2>
+    <p class="section-sub reveal">Our independence is our most important asset. Every recommendation is based solely on your data — nothing else.</p>
+    <div class="trust-grid reveal">
+      <div class="trust-col">
+        <div class="trust-col-header">
+          <div class="th-dot" style="background:var(--red)"></div>
+          <span style="color:var(--red)">We Do Not</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--red)">✕</span>
+          <span>Sell AI tools or software of any kind</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--red)">✕</span>
+          <span>Earn commissions or referral fees from any AI vendor</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--red)">✕</span>
+          <span>Access your production systems, databases, or source code</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--red)">✕</span>
+          <span>Push specific vendors or platforms with any financial incentive</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--red)">✕</span>
+          <span>Share your data with any third party under any circumstances</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--red)">✕</span>
+          <span>Lock you into long-term contracts or commitments</span>
+        </div>
+      </div>
+      <div class="trust-col">
+        <div class="trust-col-header">
+          <div class="th-dot" style="background:var(--green)"></div>
+          <span style="color:var(--green)">We Do</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--green)">✓</span>
+          <span>Give fully independent recommendations with zero financial interest in any tool</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--green)">✓</span>
+          <span>Base every verdict purely on your team's actual usage data</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--green)">✓</span>
+          <span>Work entirely from surveys, invoices, and structured interviews</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--green)">✓</span>
+          <span>Give your technical and finance teams the data they need to make better decisions</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--green)">✓</span>
+          <span>Keep all findings strictly between Sailoxx and your leadership team</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" style="color:var(--green)">✓</span>
+          <span>Allow you to cancel the retainer anytime with zero penalty</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Ready to Understand Your <span>AI Spend?</span></h2>
+    <p>Book your complimentary discovery call and learn how Sailoxx approaches AI visibility, governance and optimization for companies like yours.</p>
+    <div class="cta-actions">
+      <a href="/index.html#forms" class="btn-primary">Book Discovery Call →</a>
+      <a href="/pdf/sample-ai-spend-audit.pdf" download class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 2v8M5 7l3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download Sample Report
+      </a>
+    </div>
+    <p class="cta-note">No credit card. No commitment. Just a 20-minute conversation.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/index.html" class="nav-logo" style="font-size:1.3rem">Sail<span style="color:var(--cyan)">oxx</span></a>
+        <p>India's first AI spend audit service. We help companies with 20–200 employees find out exactly which AI tools are worth keeping — and how much they're wasting on the ones that aren't.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/index.html#pricing">One-Time Audit</a>
+        <a href="/index.html#pricing">Monthly Monitoring</a>
+        <a href="/index.html#pricing">Enterprise</a>
+        <a href="/index.html#calculator">ROI Calculator</a>
+        <a href="/sample-ai-spend-audit.html">Sample Report</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/index.html#about">About Us</a>
+        <a href="/index.html#faq">FAQ</a>
+        <a href="/index.html#forms">Book a Call</a>
+        <a href="mailto:hello@sailoxx.com">hello@sailoxx.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Sailoxx. All rights reserved.</span>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">NDA Template</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+if(window.innerWidth > 768){
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx+'px'; cursor.style.top = my+'px';
+  });
+  (function animRing(){
+    rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('a,button,.inside-card').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-grow'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-grow'));
+  });
+}
+
+/* ── MOBILE MENU ── */
+function toggleMob(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+}
+function closeMob(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.background =
+    window.scrollY > 50 ? 'rgba(5,10,31,0.97)' : 'rgba(5,10,31,0.7)';
+});
+
+/* ── REVEAL ON SCROLL ── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── INSIDE CARD GLOW ── */
+document.querySelectorAll('.inside-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+/* ── PDF FALLBACK ── */
+(function checkPDF(){
+  const frame = document.getElementById('pdfFrame');
+  const fallback = document.getElementById('pdfFallback');
+  if(!frame) return;
+  frame.addEventListener('error', () => {
+    frame.style.display = 'none';
+    fallback.style.display = 'flex';
+  });
+  // iOS Safari and some mobile browsers don't support PDF iframes
+  const ua = navigator.userAgent.toLowerCase();
+  const isIOSSafari = /iphone|ipad|ipod/.test(ua) && /safari/.test(ua) && !/chrome/.test(ua);
+  if(isIOSSafari){
+    frame.style.display = 'none';
+    fallback.style.display = 'flex';
+  }
+})();
+</script>
+</body>
+</html>
