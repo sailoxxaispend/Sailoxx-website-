@@ -433,6 +433,416 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 .calc-metric .m-val{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-0.03em}
 .m-cyan{color:var(--cyan)}.m-gold{color:var(--gold)}.m-red{color:var(--red)}
 
+/* ============================================================
+   SX AI STACK REVIEW — namespaced .sx-asr-*
+   All classes prefixed to avoid conflicts with existing site
+   ============================================================ */
+ 
+.sx-asr-section {
+  padding: 6rem 2rem;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.sx-asr-section::before {
+  content: '';
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(0,229,204,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+ 
+/* HEADER */
+.sx-asr-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+}
+.sx-asr-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.sx-asr-label::before {
+  content: '';
+  width: 20px;
+  height: 1.5px;
+  background: var(--cyan);
+}
+.sx-asr-label::after {
+  content: '';
+  width: 20px;
+  height: 1.5px;
+  background: var(--cyan);
+}
+.sx-asr-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.9rem;
+  color: var(--white);
+}
+.sx-asr-headline span {
+  color: var(--cyan);
+}
+.sx-asr-subline {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+}
+ 
+/* CAROUSEL OUTER WRAPPER */
+.sx-asr-carousel-outer {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+ 
+/* TRACK VIEWPORT — clips overflow */
+.sx-asr-track-viewport {
+  overflow: hidden;
+  border-radius: 16px;
+  position: relative;
+}
+ 
+/* TRACK — slides horizontally */
+.sx-asr-track {
+  display: flex;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  gap: 0;
+}
+ 
+/* INDIVIDUAL SLIDE */
+.sx-asr-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4rem;
+  box-sizing: border-box;
+}
+@media (max-width: 768px) {
+  .sx-asr-slide {
+    padding: 0 1rem;
+  }
+}
+ 
+/* PAGE FRAME — the document preview card */
+.sx-asr-page-frame {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(0,229,204,0.06),
+    0 20px 60px rgba(0,0,0,0.5),
+    0 4px 16px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+.sx-asr-page-frame:hover {
+  box-shadow:
+    0 0 0 1px rgba(0,229,204,0.15),
+    0 24px 72px rgba(0,0,0,0.6),
+    0 6px 20px rgba(0,0,0,0.4);
+}
+ 
+/* PAGE TOP BAR — mimics document chrome */
+.sx-asr-page-bar {
+  background: var(--navy3);
+  border-bottom: 1px solid var(--border);
+  padding: 0.55rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.sx-asr-page-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.sx-asr-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border2);
+}
+.sx-asr-page-bar-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.sx-asr-page-bar-badge {
+  background: var(--cyan3);
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--cyan);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+ 
+/* REPORT IMAGE */
+.sx-asr-page-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top;
+  background: var(--navy2);
+}
+ 
+/* PEEK SLIDES — partial visibility of neighbouring slides */
+.sx-asr-carousel-outer::before,
+.sx-asr-carousel-outer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.sx-asr-carousel-outer::before {
+  left: 0;
+  background: linear-gradient(to right, var(--navy) 0%, transparent 100%);
+}
+.sx-asr-carousel-outer::after {
+  right: 0;
+  background: linear-gradient(to left, var(--navy) 0%, transparent 100%);
+}
+@media (max-width: 768px) {
+  .sx-asr-carousel-outer::before,
+  .sx-asr-carousel-outer::after {
+    width: 24px;
+  }
+}
+ 
+/* CONTROLS ROW */
+.sx-asr-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+ 
+/* ARROW BUTTONS */
+.sx-asr-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: var(--card);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  outline: none;
+}
+.sx-asr-arrow:hover {
+  background: var(--cyan3);
+  border-color: var(--cyan2);
+  color: var(--cyan);
+  transform: scale(1.08);
+}
+.sx-asr-arrow:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+.sx-asr-arrow svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+ 
+/* PAGE COUNTER */
+.sx-asr-counter {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  min-width: 52px;
+  text-align: center;
+}
+.sx-asr-counter .sx-asr-current {
+  color: var(--cyan);
+}
+ 
+/* DOT INDICATORS */
+.sx-asr-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 0.5rem;
+}
+.sx-asr-dot-btn {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+  outline: none;
+}
+.sx-asr-dot-btn.active {
+  background: var(--cyan);
+  transform: scale(1.4);
+}
+.sx-asr-dot-btn:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+ 
+/* CAPTION */
+.sx-asr-caption {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.74rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.sx-asr-caption::before,
+.sx-asr-caption::after {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--border);
+}
+ 
+/* PROGRESS BAR */
+.sx-asr-progress-wrap {
+  max-width: 680px;
+  margin: 1rem auto 0;
+  height: 2px;
+  background: var(--border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.sx-asr-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  border-radius: 100px;
+  transition: width 0.3s ease;
+  width: 6.67%; /* 1/15 */
+}
+ 
+/* CTA STRIP */
+.sx-asr-cta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.sx-asr-cta-primary {
+  background: var(--cyan);
+  color: var(--navy);
+  padding: 0.75rem 1.75rem;
+  border-radius: 100px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  cursor: pointer;
+}
+.sx-asr-cta-primary:hover {
+  background: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(255,184,48,0.25);
+}
+.sx-asr-cta-secondary {
+  border: 1px solid var(--border2);
+  color: var(--white);
+  padding: 0.75rem 1.75rem;
+  border-radius: 100px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  background: transparent;
+}
+.sx-asr-cta-secondary:hover {
+  background: var(--card);
+  border-color: var(--cyan);
+  transform: translateY(-1px);
+}
+ 
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .sx-asr-section {
+    padding: 4rem 1rem;
+  }
+  .sx-asr-page-frame {
+    border-radius: 8px;
+  }
+  .sx-asr-controls {
+    gap: 0.8rem;
+  }
+  .sx-asr-dots {
+    display: none;
+  }
+  .sx-asr-cta-strip {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sx-asr-cta-primary,
+  .sx-asr-cta-secondary {
+    justify-content: center;
+    width: 100%;
+  }
+}
 /* STEPS */
 .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem}
 .step-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.8rem}
@@ -562,7 +972,387 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
     </div>
   </div>
 </section>
-
+<!-- AI STACK REVIEW -->
+<section class="sx-asr-section" id="ai-stack-review">
+ 
+  <!-- HEADER -->
+  <div class="sx-asr-header reveal">
+    <div class="sx-asr-label">Sample AI Stack Review</div>
+    <h2 class="sx-asr-headline">See exactly what<br><span>your review looks like</span></h2>
+    <p class="sx-asr-subline">A look inside the analysis, findings, and executive recommendations Sailoxx delivers — 15 pages covering every dimension of your AI stack.</p>
+  </div>
+ 
+  <!-- CAROUSEL -->
+  <div class="sx-asr-carousel-outer reveal">
+ 
+    <!-- TRACK VIEWPORT -->
+    <div class="sx-asr-track-viewport" id="sxAsrViewport">
+      <div class="sx-asr-track" id="sxAsrTrack" role="region" aria-label="Sample AI Stack Review pages" aria-live="polite">
+ 
+        <!-- PAGE 01 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 1 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 01 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-01.webp"
+              alt="Sample Sailoxx AI Stack Review — page 1"
+              loading="eager"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 02 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 2 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 02 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-02.webp"
+              alt="Sample Sailoxx AI Stack Review — page 2"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 03 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 3 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 03 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-03.webp"
+              alt="Sample Sailoxx AI Stack Review — page 3"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 04 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 4 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 04 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-04.webp"
+              alt="Sample Sailoxx AI Stack Review — page 4"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 05 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 5 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 05 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-05.webp"
+              alt="Sample Sailoxx AI Stack Review — page 5"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 06 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 6 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 06 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-06.webp"
+              alt="Sample Sailoxx AI Stack Review — page 6"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 07 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 7 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 07 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-07.webp"
+              alt="Sample Sailoxx AI Stack Review — page 7"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 08 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 8 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 08 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-08.webp"
+              alt="Sample Sailoxx AI Stack Review — page 8"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 09 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 9 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 09 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-09.webp"
+              alt="Sample Sailoxx AI Stack Review — page 9"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 10 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 10 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 10 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-10.webp"
+              alt="Sample Sailoxx AI Stack Review — page 10"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 11 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 11 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 11 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-11.webp"
+              alt="Sample Sailoxx AI Stack Review — page 11"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 12 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 12 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 12 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-12.webp"
+              alt="Sample Sailoxx AI Stack Review — page 12"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 13 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 13 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 13 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-13.webp"
+              alt="Sample Sailoxx AI Stack Review — page 13"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 14 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 14 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 14 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-14.webp"
+              alt="Sample Sailoxx AI Stack Review — page 14"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+        <!-- PAGE 15 -->
+        <div class="sx-asr-slide" role="group" aria-label="Page 15 of 15">
+          <div class="sx-asr-page-frame">
+            <div class="sx-asr-page-bar">
+              <div class="sx-asr-page-bar-left">
+                <div class="sx-asr-dot"></div>
+                <span class="sx-asr-page-bar-title">Sailoxx · AI Stack Review</span>
+              </div>
+              <span class="sx-asr-page-bar-badge">Page 15 of 15</span>
+            </div>
+            <img
+              class="sx-asr-page-img"
+              src="ai-stack-review/page-15.webp"
+              alt="Sample Sailoxx AI Stack Review — page 15"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+ 
+      </div><!-- end .sx-asr-track -->
+    </div><!-- end .sx-asr-track-viewport -->
+ 
+    <!-- PROGRESS BAR -->
+    <div class="sx-asr-progress-wrap">
+      <div class="sx-asr-progress-bar" id="sxAsrProgressBar"></div>
+    </div>
+ 
+  </div><!-- end .sx-asr-carousel-outer -->
+ 
+  <!-- CONTROLS -->
+  <div class="sx-asr-controls">
+    <button
+      class="sx-asr-arrow"
+      id="sxAsrPrev"
+      aria-label="Previous report page"
+      title="Previous page"
+    >
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+ 
+    <div class="sx-asr-counter">
+      <span class="sx-asr-current" id="sxAsrCurrent">01</span>
+      <span style="color:var(--border2);margin:0 2px">/</span>
+      <span>15</span>
+    </div>
+ 
+    <div class="sx-asr-dots" id="sxAsrDots" aria-hidden="true">
+      <!-- Dots injected by JS -->
+    </div>
+ 
+    <button
+      class="sx-asr-arrow"
+      id="sxAsrNext"
+      aria-label="Next report page"
+      title="Next page"
+    >
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+ 
+  <!-- CAPTION -->
+  <div class="sx-asr-caption">
+    Sample report · 15 pages · Illustrative example
+  </div>
+ 
+  <!-- CTA STRIP -->
+  <div class="sx-asr-cta-strip">
+    <a href="#forms" class="sx-asr-cta-primary">
+      Request Your AI Stack Review
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="sample-ai-spend-audit.html" class="sx-asr-cta-secondary" target="_blank" rel="noopener">
+      View full sample report
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+ 
+</section>
+<!-- END AI STACK REVIEW -->
 <!-- ROI CALCULATOR -->
 <section class="calc-section" id="calculator">
   <div class="container">
@@ -1337,6 +2127,126 @@ function sxSetOutcome(state){
     if(display) display.style.borderColor = 'rgba(255,184,48,0.2)';
   }
 }
+  /* ============================================================
+   SX AI STACK REVIEW CAROUSEL — fully IIFE-scoped
+   No global variable conflicts with existing site JS
+   ============================================================ */
+(function() {
+  'use strict';
+ 
+  var SX_TOTAL   = 15;
+  var SX_DELAY   = 6000;   // 6 seconds per slide
+  var SX_RESUME  = 4000;   // resume auto-play 4s after user interaction
+ 
+  var track      = document.getElementById('sxAsrTrack');
+  var viewport   = document.getElementById('sxAsrViewport');
+  var btnPrev    = document.getElementById('sxAsrPrev');
+  var btnNext    = document.getElementById('sxAsrNext');
+  var counterEl  = document.getElementById('sxAsrCurrent');
+  var dotsWrap   = document.getElementById('sxAsrDots');
+  var progressEl = document.getElementById('sxAsrProgressBar');
+ 
+  if (!track || !viewport || !btnPrev || !btnNext) return;
+ 
+  var sxCurrent   = 0;
+  var sxTimer     = null;
+  var sxResumeT   = null;
+  var sxPaused    = false;
+ 
+  /* Build dots */
+  var dots = [];
+  for (var d = 0; d < SX_TOTAL; d++) {
+    var dot = document.createElement('button');
+    dot.className = 'sx-asr-dot-btn' + (d === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to page ' + (d + 1));
+    dot.dataset.idx = d;
+    dot.addEventListener('click', function(e) {
+      var idx = parseInt(e.currentTarget.dataset.idx, 10);
+      sxGoTo(idx);
+      sxUserInteracted();
+    });
+    dotsWrap.appendChild(dot);
+    dots.push(dot);
+  }
+ 
+  function sxGoTo(idx) {
+    sxCurrent = ((idx % SX_TOTAL) + SX_TOTAL) % SX_TOTAL;
+    track.style.transform = 'translateX(-' + (sxCurrent * 100) + '%)';
+ 
+    /* Counter */
+    if (counterEl) {
+      counterEl.textContent = (sxCurrent + 1 < 10 ? '0' : '') + (sxCurrent + 1);
+    }
+ 
+    /* Progress bar */
+    if (progressEl) {
+      progressEl.style.width = (((sxCurrent + 1) / SX_TOTAL) * 100).toFixed(2) + '%';
+    }
+ 
+    /* Dots */
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle('active', i === sxCurrent);
+    });
+ 
+    /* Aria live */
+    track.setAttribute('aria-label', 'Page ' + (sxCurrent + 1) + ' of ' + SX_TOTAL + ' — Sample AI Stack Review');
+  }
+ 
+  function sxNext() { sxGoTo(sxCurrent + 1); }
+  function sxPrev() { sxGoTo(sxCurrent - 1); }
+ 
+  function sxStartAuto() {
+    clearInterval(sxTimer);
+    sxTimer = setInterval(function() {
+      if (!sxPaused) sxNext();
+    }, SX_DELAY);
+  }
+ 
+  function sxStopAuto() { clearInterval(sxTimer); }
+ 
+  function sxUserInteracted() {
+    sxStopAuto();
+    clearTimeout(sxResumeT);
+    sxResumeT = setTimeout(sxStartAuto, SX_RESUME);
+  }
+ 
+  /* Arrow buttons */
+  btnPrev.addEventListener('click', function() { sxPrev(); sxUserInteracted(); });
+  btnNext.addEventListener('click', function() { sxNext(); sxUserInteracted(); });
+ 
+  /* Keyboard navigation */
+  viewport.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft')  { sxPrev(); sxUserInteracted(); }
+    if (e.key === 'ArrowRight') { sxNext(); sxUserInteracted(); }
+  });
+ 
+  /* Hover pause */
+  viewport.addEventListener('mouseenter', function() { sxPaused = true; });
+  viewport.addEventListener('mouseleave', function() { sxPaused = false; });
+  viewport.addEventListener('focusin',    function() { sxPaused = true; });
+  viewport.addEventListener('focusout',   function() { sxPaused = false; });
+ 
+  /* Touch / swipe */
+  var sxTouchX = null;
+  viewport.addEventListener('touchstart', function(e) {
+    sxTouchX = e.touches[0].clientX;
+  }, { passive: true });
+  viewport.addEventListener('touchend', function(e) {
+    if (sxTouchX === null) return;
+    var dx = e.changedTouches[0].clientX - sxTouchX;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) sxNext(); else sxPrev();
+      sxUserInteracted();
+    }
+    sxTouchX = null;
+  }, { passive: true });
+ 
+  /* Init */
+  sxGoTo(0);
+  sxStartAuto();
+ 
+})();
+/* END SX AI STACK REVIEW CAROUSEL */
 </script>
 </body>
 </html>
