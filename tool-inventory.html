@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tool Inventory — Sailoxx</title>
+<meta name="description" content="Submit your company's AI tool inventory for your Sailoxx AI Stack Review.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--navy:#050A1F;--navy2:#0B1530;--navy3:#0F1E42;
+--cyan:#00E5CC;--cyan2:#00B8A4;--cyan3:rgba(0,229,204,0.12);
+--gold:#FFB830;--white:#F0F4FF;--muted:#8899BB;
+--card:#0D1A3A;--card2:#111F45;
+--border:rgba(0,229,204,0.15);--border2:rgba(0,229,204,0.3);
+--red:#FF4D6A;--green:#00E5A0;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.7;min-height:100vh}
+
+/* PROGRESS */
+.prog-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.06);z-index:999}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));width:0%;transition:width 0.4s ease}
+
+/* NAV */
+.top-nav{background:rgba(5,10,31,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--cyan)}
+.nav-badge{background:var(--cyan3);border:1px solid var(--border2);border-radius:100px;padding:0.25rem 0.8rem;font-size:0.72rem;font-weight:600;color:var(--cyan);letter-spacing:0.06em;text-transform:uppercase}
+
+/* LAYOUT */
+.page-wrap{max-width:760px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+/* HERO */
+.form-hero{text-align:center;padding:2rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.form-hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--cyan3);border:1px solid var(--border2);padding:0.35rem 1rem;border-radius:100px;font-size:0.75rem;font-weight:600;color:var(--cyan);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:1.2rem}
+.badge-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.5)}}
+.form-hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:0.8rem;line-height:1.15}
+.form-hero h1 span{color:var(--cyan)}
+.form-hero p{color:var(--muted);font-size:0.92rem;max-width:500px;margin:0 auto;line-height:1.75}
+.time-pill{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;background:rgba(255,184,48,0.1);border:1px solid rgba(255,184,48,0.25);border-radius:100px;padding:0.3rem 0.9rem;font-size:0.75rem;color:var(--gold);font-weight:500}
+
+/* STEP TABS */
+.step-tabs{display:flex;gap:0;margin-bottom:2rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:4px;overflow-x:auto}
+.step-tab{flex:1;min-width:fit-content;padding:0.6rem 1rem;border-radius:10px;border:none;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;cursor:pointer;transition:all 0.2s;white-space:nowrap;text-align:center}
+.step-tab.active{background:var(--navy3);color:var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.step-tab.done{color:var(--green)}
+
+/* STEP PANELS */
+.step-panel{display:none}
+.step-panel.active{display:block;animation:fadeUp 0.35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION HEADER */
+.section-header{margin-bottom:1.5rem}
+.section-num{font-size:0.68rem;font-weight:700;color:var(--cyan);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem}
+.section-title{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:0.3rem}
+.section-desc{font-size:0.84rem;color:var(--muted);line-height:1.65}
+
+/* CARDS */
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem;margin-bottom:1rem;transition:border-color 0.2s}
+.q-card:focus-within{border-color:var(--border2)}
+.q-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.4rem}
+.q-label{font-size:0.86rem;font-weight:600;color:var(--white);line-height:1.4;flex:1}
+.q-req{color:var(--red);margin-left:2px}
+.q-optional{font-size:0.68rem;color:var(--muted);font-style:italic;flex-shrink:0;margin-top:2px}
+.q-hint{font-size:0.78rem;color:var(--muted);margin-bottom:0.9rem;line-height:1.6}
+
+/* INPUTS */
+.q-input,.q-select,.q-textarea{width:100%;padding:0.75rem 1rem;background:var(--navy3);border:1px solid var(--border);border-radius:12px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.88rem;transition:all 0.2s;outline:none}
+.q-input:focus,.q-select:focus,.q-textarea:focus{border-color:var(--cyan2);box-shadow:0 0 0 3px rgba(0,229,204,0.09)}
+.q-input::placeholder,.q-textarea::placeholder{color:rgba(136,153,187,0.45)}
+.q-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%238899BB' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer}
+.q-select option{background:var(--navy2)}
+.q-textarea{resize:vertical;min-height:90px;line-height:1.6}
+.q-row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem}
+@media(max-width:560px){.q-row{grid-template-columns:1fr}}
+.q-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.9rem}
+@media(max-width:640px){.q-row-3{grid-template-columns:1fr 1fr}}
+@media(max-width:400px){.q-row-3{grid-template-columns:1fr}}
+
+/* CHOICE BUTTONS */
+.choices{display:flex;flex-direction:column;gap:0.45rem}
+.choices.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.45rem}
+@media(max-width:480px){.choices.grid-2{grid-template-columns:1fr}}
+.choice-btn{display:flex;align-items:center;gap:0.6rem;padding:0.6rem 0.9rem;background:var(--navy3);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.84rem;cursor:pointer;transition:all 0.18s;text-align:left}
+.choice-btn:hover{border-color:var(--border2);color:var(--white)}
+.choice-btn.selected{border-color:var(--cyan2);background:var(--cyan3);color:var(--cyan)}
+.cb-dot{width:15px;height:15px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
+.choice-btn.selected .cb-dot{background:var(--cyan);border-color:var(--cyan)}
+.choice-btn.selected .cb-dot::after{content:'';width:5px;height:5px;background:var(--navy);border-radius:50%}
+input[type=hidden]{display:none}
+
+/* TOOL BLOCKS */
+.tool-block{background:var(--card2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:0.8rem}
+.tool-block-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;cursor:pointer;user-select:none}
+.tool-block-head:hover{background:rgba(255,255,255,0.02)}
+.tool-block-name{display:flex;align-items:center;gap:0.6rem;font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--cyan)}
+.tool-num{width:24px;height:24px;border-radius:6px;background:var(--cyan3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:800;color:var(--cyan)}
+.tool-toggle{width:24px;height:24px;border-radius:50%;border:1px solid var(--border2);background:var(--navy3);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--muted);transition:all 0.2s;flex-shrink:0}
+.tool-block.open .tool-toggle{background:var(--cyan);color:var(--navy);transform:rotate(45deg)}
+.tool-block-body{display:none;padding:0 1.2rem 1.2rem;border-top:1px solid var(--border)}
+.tool-block.open .tool-block-body{display:block}
+.tb-inner{background:var(--navy3);border-radius:10px;padding:1rem;margin-top:1rem;display:flex;flex-direction:column;gap:1rem}
+
+/* STAR RATING */
+.star-wrap{display:flex;gap:6px;margin-top:0.4rem}
+.star{font-size:1.4rem;cursor:pointer;color:rgba(136,153,187,0.25);transition:all 0.12s;user-select:none;line-height:1}
+.star:hover,.star.lit{color:var(--gold);transform:scale(1.1)}
+.star-labels{display:flex;justify-content:space-between;font-size:0.68rem;color:var(--muted);margin-top:0.3rem}
+
+/* ADD TOOL BUTTON */
+.add-tool-btn{width:100%;padding:0.85rem;background:transparent;border:1px dashed var(--border2);border-radius:14px;color:var(--cyan);font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.5rem}
+.add-tool-btn:hover{background:var(--cyan3);border-style:solid}
+
+/* REMOVE TOOL */
+.remove-tool-btn{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--red);background:none;border:none;cursor:pointer;padding:0.3rem 0.6rem;border-radius:6px;transition:background 0.15s}
+.remove-tool-btn:hover{background:rgba(255,77,106,0.1)}
+
+/* SCALE INPUT */
+.scale-wrap{margin-top:0.4rem}
+.scale-val{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--cyan);text-align:center;margin-bottom:0.3rem}
+.q-slider{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
+.scale-labels{display:flex;justify-content:space-between;font-size:0.68rem;color:var(--muted);margin-top:0.3rem}
+
+/* CHAR COUNT */
+.char-count{font-size:0.68rem;color:var(--muted);text-align:right;margin-top:0.3rem}
+
+/* DIVIDER */
+.q-divider{height:1px;background:var(--border);margin:0.9rem 0}
+
+/* NAV BUTTONS */
+.step-nav{display:flex;align-items:center;justify-content:space-between;margin-top:2rem;gap:1rem;flex-wrap:wrap}
+.btn-back{padding:0.75rem 1.5rem;background:transparent;border:1px solid var(--border2);border-radius:100px;color:var(--muted);font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.btn-back:hover{color:var(--white);border-color:var(--white)}
+.btn-next{padding:0.75rem 2rem;background:var(--cyan);border:none;border-radius:100px;color:var(--navy);font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;flex:1;max-width:220px}
+.btn-next:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,184,48,0.25)}
+.btn-submit{width:100%;padding:1rem;background:var(--cyan);border:none;border-radius:100px;color:var(--navy);font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.25s;box-shadow:0 0 30px rgba(0,229,204,0.2);margin-top:1.5rem}
+.btn-submit:hover{background:var(--gold);box-shadow:0 0 50px rgba(255,184,48,0.3);transform:translateY(-1px)}
+.btn-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:4rem 1rem}
+.success-screen.show{display:block;animation:fadeUp 0.5s ease}
+.success-icon{width:72px;height:72px;border-radius:50%;background:rgba(0,229,160,0.12);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1.5rem}
+.success-screen h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:0.8rem}
+.success-screen p{color:var(--muted);max-width:420px;margin:0 auto;line-height:1.75;font-size:0.92rem}
+
+/* INFO BOX */
+.info-box{background:var(--cyan3);border:1px solid var(--border2);border-radius:12px;padding:0.9rem 1.1rem;margin-bottom:1.2rem;font-size:0.8rem;color:var(--cyan);line-height:1.6}
+.info-box strong{color:var(--white)}
+
+/* VERDICT BADGE */
+.verdict-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.4rem}
+.verdict-badge{padding:0.35rem 0.8rem;border-radius:100px;font-size:0.75rem;font-weight:700;cursor:pointer;border:1.5px solid transparent;transition:all 0.15s;font-family:'Syne',sans-serif}
+.verdict-badge.keep{background:rgba(0,229,160,0.1);color:var(--green);border-color:rgba(0,229,160,0.3)}
+.verdict-badge.cut{background:rgba(255,77,106,0.1);color:var(--red);border-color:rgba(255,77,106,0.3)}
+.verdict-badge.fix{background:rgba(255,184,48,0.1);color:var(--gold);border-color:rgba(255,184,48,0.3)}
+.verdict-badge.replace{background:rgba(136,153,187,0.1);color:var(--muted);border-color:rgba(136,153,187,0.3)}
+.verdict-badge.selected{transform:scale(1.05)}
+.verdict-badge.keep.selected{background:rgba(0,229,160,0.25);border-color:var(--green)}
+.verdict-badge.cut.selected{background:rgba(255,77,106,0.25);border-color:var(--red)}
+.verdict-badge.fix.selected{background:rgba(255,184,48,0.25);border-color:var(--gold)}
+.verdict-badge.replace.selected{background:rgba(136,153,187,0.25);border-color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="prog-wrap"><div class="prog-bar" id="progBar"></div></div>
+
+<nav class="top-nav">
+  <a href="https://sailoxx.com" class="nav-logo">Sail<span>oxx</span></a>
+  <div class="nav-badge">AI Tool Inventory</div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="form-hero">
+    <div class="form-hero-badge"><span class="badge-dot"></span>Confidential — Sailoxx Audit</div>
+    <h1>Your AI Tool <span>Inventory</span></h1>
+    <p>Tell us everything about the AI tools your company uses. This feeds directly into your AI Stack Review report. The more honest and complete this is, the better your audit will be.</p>
+    <div class="time-pill">⏱ Takes 10–15 minutes · Fill for your whole company</div>
+  </div>
+
+  <!-- MAIN FORM -->
+  <form id="inventoryForm" action="https://formspree.io/f/xeaqoyyr" method="POST">
+    <input type="hidden" name="form-type" value="AI Tool Inventory — Sailoxx Audit">
+    <input type="hidden" name="_replyto" value="team@sailoxx.com">
+
+    <!-- STEP TABS -->
+    <div class="step-tabs" id="stepTabs">
+      <button type="button" class="step-tab active" onclick="goStep(0,this)">1 · Company</button>
+      <button type="button" class="step-tab" onclick="goStep(1,this)">2 · AI Stack</button>
+      <button type="button" class="step-tab" onclick="goStep(2,this)">3 · Tools</button>
+      <button type="button" class="step-tab" onclick="goStep(3,this)">4 · Governance</button>
+      <button type="button" class="step-tab" onclick="goStep(4,this)">5 · Final</button>
+    </div>
+
+    <!-- ===== STEP 1 — COMPANY ===== -->
+    <div class="step-panel active" id="step-0">
+      <div class="section-header">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">Company information</div>
+        <div class="section-desc">Basic details about your organisation so we can contextualise every finding correctly.</div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Company name<span class="q-req">*</span></label></div>
+        <input class="q-input" type="text" name="company-name" placeholder="e.g. Acme Technologies Pvt Ltd" required>
+      </div>
+
+      <div class="q-card">
+        <div class="q-row">
+          <div>
+            <div class="q-card-header"><label class="q-label">Your name<span class="q-req">*</span></label></div>
+            <input class="q-input" type="text" name="submitter-name" placeholder="Full name" required>
+          </div>
+          <div>
+            <div class="q-card-header"><label class="q-label">Your role<span class="q-req">*</span></label></div>
+            <input class="q-input" type="text" name="submitter-role" placeholder="e.g. COO, Head of Ops" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-row">
+          <div>
+            <div class="q-card-header"><label class="q-label">Work email<span class="q-req">*</span></label></div>
+            <input class="q-input" type="email" name="submitter-email" placeholder="you@company.com" required>
+          </div>
+          <div>
+            <div class="q-card-header"><label class="q-label">WhatsApp / Phone</label><span class="q-optional">optional</span></div>
+            <input class="q-input" type="tel" name="submitter-phone" placeholder="+91 98765 43210">
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-row">
+          <div>
+            <div class="q-card-header"><label class="q-label">Total employees<span class="q-req">*</span></label></div>
+            <select class="q-select" name="employee-count" required>
+              <option value="">Select range</option>
+              <option>1–20</option><option>21–50</option><option>51–100</option>
+              <option>101–200</option><option>201–500</option><option>500+</option>
+            </select>
+          </div>
+          <div>
+            <div class="q-card-header"><label class="q-label">Industry<span class="q-req">*</span></label></div>
+            <select class="q-select" name="industry" required>
+              <option value="">Select industry</option>
+              <option>B2B SaaS</option><option>Fintech</option><option>Edtech</option>
+              <option>Healthtech</option><option>D2C / E-commerce</option><option>IT Services</option>
+              <option>Marketing / Agency</option><option>HR Tech</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-row">
+          <div>
+            <div class="q-card-header"><label class="q-label">Funding stage</label><span class="q-optional">optional</span></div>
+            <select class="q-select" name="funding-stage">
+              <option value="">Select stage</option>
+              <option>Bootstrapped</option><option>Pre-seed</option><option>Seed</option>
+              <option>Series A</option><option>Series B</option><option>Series C+</option><option>Profitable / No VC</option>
+            </select>
+          </div>
+          <div>
+            <div class="q-card-header"><label class="q-label">HQ city<span class="q-req">*</span></label></div>
+            <input class="q-input" type="text" name="hq-city" placeholder="e.g. Bangalore" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">How many employees use AI tools regularly?<span class="q-req">*</span></label></div>
+        <div class="q-hint">Include anyone who uses ChatGPT, Copilot, Notion AI, or any AI feature as part of their work.</div>
+        <select class="q-select" name="ai-users-count" required>
+          <option value="">Select range</option>
+          <option>Fewer than 5</option><option>5–15</option><option>16–30</option>
+          <option>31–60</option><option>61–100</option><option>More than 100</option>
+        </select>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Which departments use AI tools?<span class="q-req">*</span></label></div>
+        <div class="q-hint">Select all that apply.</div>
+        <div class="choices grid-2" id="dept-choices">
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>Engineering / Tech</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>Marketing / Content</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>Sales / Revenue</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>Operations</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>Finance / Accounts</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>HR / People</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>Customer Support</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>Product / Design</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>Leadership / C-suite</button>
+          <button type="button" class="choice-btn" onclick="toggleMulti(this,'departments')"><span class="cb-dot"></span>All departments</button>
+        </div>
+        <input type="hidden" name="departments" id="val-departments">
+      </div>
+
+      <div class="step-nav">
+        <div></div>
+        <button type="button" class="btn-next" onclick="nextStep(0)">Next — AI Stack →</button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 2 — AI STACK OVERVIEW ===== -->
+    <div class="step-panel" id="step-1">
+      <div class="section-header">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">Your AI stack overview</div>
+        <div class="section-desc">Big-picture questions about how AI is used and managed across your company before we go tool by tool.</div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Estimated total monthly spend on AI tools (₹)<span class="q-req">*</span></label></div>
+        <div class="q-hint">Include all subscriptions — ChatGPT, Copilot, Notion AI, GitHub Copilot, everything. Rough estimate is fine.</div>
+        <select class="q-select" name="total-monthly-spend" required>
+          <option value="">Select range</option>
+          <option>Under ₹10,000/month</option><option>₹10,000–₹30,000/month</option>
+          <option>₹30,000–₹75,000/month</option><option>₹75,000–₹1,50,000/month</option>
+          <option>₹1,50,000–₹3,00,000/month</option><option>Over ₹3,00,000/month</option>
+          <option>We don't track this / don't know</option>
+        </select>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">How many separate AI tools does your company currently pay for?<span class="q-req">*</span></label></div>
+        <div class="choices" id="toolcount-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'tool-count')"><span class="cb-dot"></span>1–3 tools</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'tool-count')"><span class="cb-dot"></span>4–6 tools</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'tool-count')"><span class="cb-dot"></span>7–10 tools</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'tool-count')"><span class="cb-dot"></span>11–15 tools</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'tool-count')"><span class="cb-dot"></span>More than 15 tools</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'tool-count')"><span class="cb-dot"></span>We don't have a complete count</button>
+        </div>
+        <input type="hidden" name="tool-count" id="val-tool-count">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">How were most AI tools purchased?<span class="q-req">*</span></label></div>
+        <div class="choices" id="purchase-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'purchase-method')"><span class="cb-dot"></span>Centrally — one person or team approves all AI purchases</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'purchase-method')"><span class="cb-dot"></span>Mixed — some central, some by department heads independently</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'purchase-method')"><span class="cb-dot"></span>Decentralised — each department buys whatever they need</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'purchase-method')"><span class="cb-dot"></span>We don't have a clear process — it just happened organically</button>
+        </div>
+        <input type="hidden" name="purchase-method" id="val-purchase-method">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Does someone in your company currently track AI tool ROI?<span class="q-req">*</span></label></div>
+        <div class="choices" id="roi-track-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'roi-tracking')"><span class="cb-dot"></span>Yes — we have formal tracking and regular reviews</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'roi-tracking')"><span class="cb-dot"></span>Informally — some people track it but nothing systematic</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'roi-tracking')"><span class="cb-dot"></span>No — we have no ROI tracking for AI tools</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'roi-tracking')"><span class="cb-dot"></span>We didn't know we should</button>
+        </div>
+        <input type="hidden" name="roi-tracking" id="val-roi-tracking">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Are there AI tools your team uses that are NOT officially approved or tracked by finance?</label><span class="q-optional">be honest</span></div>
+        <div class="q-hint">Shadow AI — employees using personal ChatGPT, browser extensions, or free tools on company work. This is extremely common.</div>
+        <div class="choices" id="shadow-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'shadow-ai')"><span class="cb-dot"></span>Yes — definitely, I know of some</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'shadow-ai')"><span class="cb-dot"></span>Probably — I suspect it happens</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'shadow-ai')"><span class="cb-dot"></span>No — we have tight controls</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'shadow-ai')"><span class="cb-dot"></span>I genuinely don't know</button>
+        </div>
+        <input type="hidden" name="shadow-ai" id="val-shadow-ai">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">If yes — which unapproved tools do you know about?</label><span class="q-optional">optional</span></div>
+        <input class="q-input" type="text" name="shadow-tools-named" placeholder="e.g. ChatGPT free, personal Grammarly, browser AI extensions...">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Has a CFO, board member, or investor ever asked you to justify your AI spend?<span class="q-req">*</span></label></div>
+        <div class="choices" id="justify-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'justify-asked')"><span class="cb-dot"></span>Yes — and I struggled to answer</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'justify-asked')"><span class="cb-dot"></span>Yes — and I gave a rough/estimated answer</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'justify-asked')"><span class="cb-dot"></span>Not yet — but I expect it soon</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'justify-asked')"><span class="cb-dot"></span>No — it hasn't come up</button>
+        </div>
+        <input type="hidden" name="justify-asked" id="val-justify-asked">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Are there any AI tool contracts coming up for renewal in the next 90 days?</label><span class="q-optional">optional</span></div>
+        <input class="q-input" type="text" name="upcoming-renewals" placeholder="e.g. Copilot annual contract renews October 2025">
+      </div>
+
+      <div class="step-nav">
+        <button type="button" class="btn-back" onclick="prevStep(1)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(1)">Next — Tools →</button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 3 — TOOL ENTRIES ===== -->
+    <div class="step-panel" id="step-2">
+      <div class="section-header">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Tool-by-tool inventory</div>
+        <div class="section-desc">Add every AI tool your company pays for — one block per tool. Be as complete as possible. Even tools you are unsure about are worth adding.</div>
+      </div>
+
+      <div class="info-box">
+        <strong>Include everything</strong> — ChatGPT Team, Microsoft Copilot, GitHub Copilot, Notion AI, Jasper, Grammarly AI, Zapier, Make, any AI API costs, internal AI tools, and anything else you pay for that uses AI.
+      </div>
+
+      <div id="toolsContainer">
+        <!-- Tool 1 injected by JS on load -->
+      </div>
+
+      <button type="button" class="add-tool-btn" id="addToolBtn" onclick="addTool()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Add another tool
+      </button>
+
+      <div class="step-nav" style="margin-top:1.5rem">
+        <button type="button" class="btn-back" onclick="prevStep(2)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(2)">Next — Governance →</button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 4 — GOVERNANCE ===== -->
+    <div class="step-panel" id="step-3">
+      <div class="section-header">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">Governance and risk</div>
+        <div class="section-desc">How your company manages, controls, and oversees AI tool usage. This feeds into your AI Maturity Score.</div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Is there a formal process for approving new AI tools before purchase?<span class="q-req">*</span></label></div>
+        <div class="choices" id="approval-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'approval-process')"><span class="cb-dot"></span>Yes — formal approval required every time</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'approval-process')"><span class="cb-dot"></span>Informal — manager sign-off but no written process</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'approval-process')"><span class="cb-dot"></span>No process — anyone can buy and expense</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'approval-process')"><span class="cb-dot"></span>No — and we know this is a problem</button>
+        </div>
+        <input type="hidden" name="approval-process" id="val-approval-process">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Does your company have a written AI usage policy?<span class="q-req">*</span></label></div>
+        <div class="choices" id="policy-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'ai-policy')"><span class="cb-dot"></span>Yes — formal written policy, staff are aware of it</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'ai-policy')"><span class="cb-dot"></span>Draft — something exists but not formally rolled out</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'ai-policy')"><span class="cb-dot"></span>No — nothing written</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'ai-policy')"><span class="cb-dot"></span>We're planning to create one</button>
+        </div>
+        <input type="hidden" name="ai-policy" id="val-ai-policy">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Are employees allowed to input sensitive company data into AI tools?<span class="q-req">*</span></label></div>
+        <div class="q-hint">Customer data, financial data, source code, personal information.</div>
+        <div class="choices" id="data-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'data-policy')"><span class="cb-dot"></span>No — explicitly prohibited with controls in place</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'data-policy')"><span class="cb-dot"></span>Partially — allowed for some data types, restricted for others</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'data-policy')"><span class="cb-dot"></span>We haven't addressed this formally</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'data-policy')"><span class="cb-dot"></span>I don't know what employees are inputting</button>
+        </div>
+        <input type="hidden" name="data-policy" id="val-data-policy">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Who owns the AI tool budget in your company?<span class="q-req">*</span></label></div>
+        <div class="choices" id="owner-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'budget-owner')"><span class="cb-dot"></span>Finance / CFO owns it centrally</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'budget-owner')"><span class="cb-dot"></span>IT / CTO owns it centrally</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'budget-owner')"><span class="cb-dot"></span>Each department owns their own AI budget</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'budget-owner')"><span class="cb-dot"></span>The founder/CEO pays for everything</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'budget-owner')"><span class="cb-dot"></span>Nobody specifically owns it — it is scattered</button>
+        </div>
+        <input type="hidden" name="budget-owner" id="val-budget-owner">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Rate your company's AI governance maturity overall</label></div>
+        <div class="q-hint">1 = total chaos, no visibility · 10 = fully governed, tracked, and measured</div>
+        <div class="scale-wrap">
+          <div class="scale-val" id="gov-val">5 / 10</div>
+          <input type="range" class="q-slider" min="1" max="10" value="5" name="governance-score" id="gov-slider" oninput="document.getElementById('gov-val').textContent=this.value+' / 10'">
+          <div class="scale-labels"><span>1 — No visibility</span><span>10 — Fully governed</span></div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Have you had any data or security incidents related to AI tool usage?</label><span class="q-optional">optional</span></div>
+        <div class="choices" id="incident-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'ai-incidents')"><span class="cb-dot"></span>Yes — we have had an incident</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'ai-incidents')"><span class="cb-dot"></span>Not that we know of</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'ai-incidents')"><span class="cb-dot"></span>We would not necessarily know if we had</button>
+        </div>
+        <input type="hidden" name="ai-incidents" id="val-ai-incidents">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">What is your biggest concern about your current AI tool setup?<span class="q-req">*</span></label></div>
+        <div class="q-hint">Be direct — this shapes the entire audit focus.</div>
+        <textarea class="q-textarea" name="biggest-concern" placeholder="e.g. We are spending too much and don't know if it's working. Or: I don't know what data employees are putting into these tools." oninput="updateChar(this,'char-concern',400)" required></textarea>
+        <div class="char-count" id="char-concern">0 / 400</div>
+      </div>
+
+      <div class="step-nav">
+        <button type="button" class="btn-back" onclick="prevStep(3)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(3)">Next — Final →</button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 5 — FINAL ===== -->
+    <div class="step-panel" id="step-4">
+      <div class="section-header">
+        <div class="section-num">Section 05</div>
+        <div class="section-title">Final details</div>
+        <div class="section-desc">Last few questions to help us prepare and prioritise your AI Stack Review correctly.</div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">What outcome would make this audit a 10/10 for you?<span class="q-req">*</span></label></div>
+        <div class="q-hint">Be specific. The more clearly you tell us what success looks like, the more targeted our findings will be.</div>
+        <textarea class="q-textarea" name="success-definition" placeholder="e.g. A clear list of what to cancel immediately, what to keep, and a number I can tell my investors we saved." oninput="updateChar(this,'char-success',400)" required></textarea>
+        <div class="char-count" id="char-success">0 / 400</div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Is there a specific department or tool you are most concerned about?</label><span class="q-optional">optional</span></div>
+        <input class="q-input" type="text" name="priority-concern" placeholder="e.g. Engineering team spend on GitHub Copilot — not sure it's being used">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Who should receive the final audit report?<span class="q-req">*</span></label></div>
+        <div class="choices" id="report-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'report-recipient')"><span class="cb-dot"></span>Just me</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'report-recipient')"><span class="cb-dot"></span>Me and my co-founder</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'report-recipient')"><span class="cb-dot"></span>Full leadership team</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'report-recipient')"><span class="cb-dot"></span>Board or investors too</button>
+        </div>
+        <input type="hidden" name="report-recipient" id="val-report-recipient">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Additional email addresses to copy on the report</label><span class="q-optional">optional</span></div>
+        <input class="q-input" type="text" name="additional-emails" placeholder="email1@company.com, email2@company.com">
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Preferred timing for the audit kickoff call</label><span class="q-optional">optional</span></div>
+        <select class="q-select" name="call-timing">
+          <option value="">Select preference</option>
+          <option>Morning — 9am to 12pm IST</option>
+          <option>Afternoon — 12pm to 3pm IST</option>
+          <option>Late afternoon — 3pm to 6pm IST</option>
+          <option>Evening — 6pm to 8pm IST</option>
+          <option>Any time — I'll follow your availability</option>
+        </select>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Any additional context for us before we begin?</label><span class="q-optional">optional</span></div>
+        <textarea class="q-textarea" name="additional-context" placeholder="Anything else we should know going into the audit — company context, priorities, sensitivities, or anything you want us to watch for..." style="min-height:80px"></textarea>
+      </div>
+
+      <div class="q-card">
+        <div class="q-card-header"><label class="q-label">Do you give Sailoxx permission to use anonymized findings from this audit as a case study?</label><span class="q-optional">optional</span></div>
+        <div class="choices" id="casestudy-choices">
+          <button type="button" class="choice-btn" onclick="selectOne(this,'case-study-permission')"><span class="cb-dot"></span>Yes — anonymized findings are fine</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'case-study-permission')"><span class="cb-dot"></span>No — keep everything strictly confidential</button>
+          <button type="button" class="choice-btn" onclick="selectOne(this,'case-study-permission')"><span class="cb-dot"></span>Let me think about it — ask me after the audit</button>
+        </div>
+        <input type="hidden" name="case-study-permission" id="val-case-study-permission">
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Tool Inventory →</button>
+
+      <div class="step-nav" style="justify-content:center;margin-top:0.5rem">
+        <button type="button" class="btn-back" onclick="prevStep(4)">← Back to Governance</button>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <h2>Inventory received. <span style="color:var(--cyan)">Thank you.</span></h2>
+    <p>We have everything we need to begin your AI Stack Review. Expect a kickoff call invitation from team@sailoxx.com within one business day.</p>
+    <p style="margin-top:1rem;font-size:0.8rem;color:var(--muted)">Your information is strictly confidential and will only be used for your audit.</p>
+  </div>
+
+</div>
+
+<script>
+// ── PROGRESS ──
+var TOTAL_STEPS = 5;
+var currentStep = 0;
+function updateProgress(){
+  var pct = ((currentStep + 1) / TOTAL_STEPS) * 100;
+  document.getElementById('progBar').style.width = pct + '%';
+}
+
+// ── STEP NAVIGATION ──
+function goStep(idx, btn){
+  if(idx > currentStep) return; // only allow back via tabs
+  switchToStep(idx);
+}
+function nextStep(from){
+  switchToStep(from + 1);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function prevStep(from){
+  switchToStep(from - 1);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function switchToStep(idx){
+  document.getElementById('step-'+currentStep).classList.remove('active');
+  document.querySelectorAll('.step-tab')[currentStep].classList.remove('active');
+  if(currentStep < idx) document.querySelectorAll('.step-tab')[currentStep].classList.add('done');
+  currentStep = idx;
+  document.getElementById('step-'+currentStep).classList.add('active');
+  document.querySelectorAll('.step-tab')[currentStep].classList.add('active');
+  updateProgress();
+}
+
+// ── CHOICE BUTTONS ──
+function selectOne(btn, fieldName){
+  var parent = btn.closest('.choices');
+  parent.querySelectorAll('.choice-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  var h = document.getElementById('val-'+fieldName);
+  if(h) h.value = btn.textContent.trim();
+}
+function toggleMulti(btn, fieldName){
+  btn.classList.toggle('selected');
+  var parent = btn.closest('.choices');
+  var selected = Array.from(parent.querySelectorAll('.choice-btn.selected')).map(function(b){ return b.textContent.trim(); }).join(', ');
+  var h = document.getElementById('val-'+fieldName);
+  if(h) h.value = selected;
+}
+
+// ── CHAR COUNT ──
+function updateChar(el, countId, max){
+  var n = el.value.length;
+  var el2 = document.getElementById(countId);
+  if(el2){
+    el2.textContent = n + ' / ' + max;
+    el2.style.color = n > max * 0.8 ? 'var(--gold)' : 'var(--muted)';
+  }
+}
+
+// ── STAR RATING ──
+function rateStar(groupId, fieldName, rating){
+  var group = document.getElementById(groupId);
+  if(!group) return;
+  group.querySelectorAll('.star').forEach(function(s,i){
+    s.classList.toggle('lit', i < rating);
+  });
+  var h = document.getElementById('val-'+fieldName);
+  if(h) h.value = rating + ' / 5';
+}
+
+// ── VERDICT ──
+function pickVerdict(btn, toolIdx){
+  var parent = btn.closest('.verdict-row');
+  parent.querySelectorAll('.verdict-badge').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  var h = document.getElementById('val-verdict-'+toolIdx);
+  if(h) h.value = btn.textContent.trim();
+}
+
+// ── TOOL BLOCKS ──
+var toolCount = 0;
+function addTool(){
+  toolCount++;
+  var idx = toolCount;
+  var div = document.createElement('div');
+  div.className = 'tool-block';
+  div.id = 'tool-'+idx;
+  div.innerHTML = buildToolBlock(idx);
+  document.getElementById('toolsContainer').appendChild(div);
+}
+function removeToolBlock(idx){
+  var el = document.getElementById('tool-'+idx);
+  if(el) el.remove();
+}
+function toggleTool(idx){
+  var block = document.getElementById('tool-'+idx);
+  if(block) block.classList.toggle('open');
+}
+function buildToolBlock(idx){
+  return '<div class="tool-block-head" onclick="toggleTool('+idx+')">'
+    + '<div class="tool-block-name"><span class="tool-num">'+idx+'</span>Tool '+idx+'</div>'
+    + '<div style="display:flex;align-items:center;gap:0.5rem">'
+    + '<button type="button" class="remove-tool-btn" onclick="event.stopPropagation();removeToolBlock('+idx+')">'
+    + '<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 1l8 8M9 1l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Remove</button>'
+    + '<div class="tool-toggle">+</div></div></div>'
+    + '<div class="tool-block-body"><div class="tb-inner">'
+
+    // Tool name
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Tool name<span class="q-req">*</span></label>'
+    + '<input class="q-input" type="text" name="tool-'+idx+'-name" placeholder="e.g. ChatGPT Team, GitHub Copilot..." required></div>'
+
+    // Vendor + Category
+    + '<div class="q-row">'
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Vendor / Company</label>'
+    + '<input class="q-input" type="text" name="tool-'+idx+'-vendor" placeholder="e.g. OpenAI, Microsoft..."></div>'
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Category</label>'
+    + '<select class="q-select" name="tool-'+idx+'-category">'
+    + '<option value="">Select type</option>'
+    + '<option>Writing / Content</option><option>Coding / Dev</option><option>Research / Search</option>'
+    + '<option>Automation / Workflow</option><option>Meeting / Transcription</option><option>Data / Analytics</option>'
+    + '<option>Image / Creative</option><option>HR / People</option><option>Sales / CRM</option>'
+    + '<option>Customer Support</option><option>Finance</option><option>General AI Assistant</option><option>Other</option>'
+    + '</select></div></div>'
+
+    // Monthly cost + Licenses
+    + '<div class="q-row">'
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Monthly cost (₹)<span class="q-req">*</span></label>'
+    + '<input class="q-input" type="number" name="tool-'+idx+'-monthly-cost" placeholder="e.g. 15000" min="0" required></div>'
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Licenses / seats paid for</label>'
+    + '<input class="q-input" type="number" name="tool-'+idx+'-licenses" placeholder="e.g. 25" min="0"></div>'
+    + '</div>'
+
+    // Department + Approved by
+    + '<div class="q-row">'
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Primary department using it</label>'
+    + '<select class="q-select" name="tool-'+idx+'-department">'
+    + '<option value="">Select department</option>'
+    + '<option>Engineering</option><option>Marketing</option><option>Sales</option><option>Operations</option>'
+    + '<option>Finance</option><option>HR</option><option>Product</option><option>Support</option>'
+    + '<option>Leadership</option><option>All departments</option><option>Multiple</option>'
+    + '</select></div>'
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Who approved the purchase?</label>'
+    + '<input class="q-input" type="text" name="tool-'+idx+'-approved-by" placeholder="Name or role"></div>'
+    + '</div>'
+
+    // Purchase date + Contract
+    + '<div class="q-row">'
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">First purchased (month/year)</label>'
+    + '<input class="q-input" type="text" name="tool-'+idx+'-purchase-date" placeholder="e.g. March 2024"></div>'
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Renewal date</label>'
+    + '<input class="q-input" type="date" name="tool-'+idx+'-renewal-date"></div>'
+    + '</div>'
+
+    // Contract type
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Contract type</label>'
+    + '<select class="q-select" name="tool-'+idx+'-contract-type">'
+    + '<option value="">Select</option>'
+    + '<option>Monthly — cancel anytime</option><option>Annual contract</option><option>Multi-year contract</option><option>Usage-based / Pay as you go</option><option>Free tier (no cost)</option><option>Unknown</option>'
+    + '</select></div>'
+
+    // What it was bought for
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">What was this tool purchased to do?</label>'
+    + '<input class="q-input" type="text" name="tool-'+idx+'-purpose" placeholder="e.g. Help the marketing team write content faster"></div>'
+
+    // Is it still used
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Current usage status</label>'
+    + '<select class="q-select" name="tool-'+idx+'-usage-status">'
+    + '<option value="">Select</option>'
+    + '<option>Active — used daily by most who have access</option>'
+    + '<option>Partial — only some users are active</option>'
+    + '<option>Low — barely used anymore</option>'
+    + '<option>Ghost — we pay but almost nobody uses it</option>'
+    + '<option>Unknown — I am not sure of actual usage</option>'
+    + '</select></div>'
+
+    // Estimated active users
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Estimated active users (out of total licensed)</label>'
+    + '<input class="q-input" type="text" name="tool-'+idx+'-active-users" placeholder="e.g. 8 out of 25 licensed seats"></div>'
+
+    // ROI feeling
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Do you feel this tool delivers value for its cost?</label>'
+    + '<select class="q-select" name="tool-'+idx+'-value-feeling">'
+    + '<option value="">Select</option>'
+    + '<option>Definitely — clear ROI, would not cancel it</option>'
+    + '<option>Probably — seems useful but hard to measure</option>'
+    + '<option>Unsure — hard to say</option>'
+    + '<option>Probably not — questionable value</option>'
+    + '<option>Definitely not — we are wasting money on it</option>'
+    + '</select></div>'
+
+    // Duplicate overlap
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Does this tool overlap with any other tool in your stack?</label>'
+    + '<select class="q-select" name="tool-'+idx+'-overlap">'
+    + '<option value="">Select</option>'
+    + '<option>Yes — it duplicates another tool we already pay for</option>'
+    + '<option>Partially — some overlap but each does something unique</option>'
+    + '<option>No — this is the only tool that does this job</option>'
+    + '<option>Not sure</option>'
+    + '</select></div>'
+
+    // Overlap tool name
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">If overlaps — which tool does it overlap with?</label>'
+    + '<input class="q-input" type="text" name="tool-'+idx+'-overlap-tool" placeholder="e.g. Overlaps with Grammarly"></div>'
+
+    // Trust rating
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">How much do you trust this tool\'s output without heavy editing?</label>'
+    + '<div class="q-hint" style="font-size:0.72rem;margin-bottom:0.5rem">1 star = always rewrite everything · 5 stars = use output as-is most of the time</div>'
+    + '<div class="star-wrap" id="stars-'+idx+'">'
+    + '<span class="star" onclick="rateStar(\'stars-'+idx+'\',\'trust-'+idx+'\',1)">★</span>'
+    + '<span class="star" onclick="rateStar(\'stars-'+idx+'\',\'trust-'+idx+'\',2)">★</span>'
+    + '<span class="star" onclick="rateStar(\'stars-'+idx+'\',\'trust-'+idx+'\',3)">★</span>'
+    + '<span class="star" onclick="rateStar(\'stars-'+idx+'\',\'trust-'+idx+'\',4)">★</span>'
+    + '<span class="star" onclick="rateStar(\'stars-'+idx+'\',\'trust-'+idx+'\',5)">★</span>'
+    + '</div>'
+    + '<input type="hidden" name="tool-'+idx+'-trust" id="val-trust-'+idx+'"></div>'
+
+    // Your verdict
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Your gut verdict on this tool</label>'
+    + '<div class="verdict-row">'
+    + '<button type="button" class="verdict-badge keep" onclick="pickVerdict(this,'+idx+')">KEEP</button>'
+    + '<button type="button" class="verdict-badge cut" onclick="pickVerdict(this,'+idx+')">CUT</button>'
+    + '<button type="button" class="verdict-badge fix" onclick="pickVerdict(this,'+idx+')">FIX</button>'
+    + '<button type="button" class="verdict-badge replace" onclick="pickVerdict(this,'+idx+')">REPLACE</button>'
+    + '</div>'
+    + '<input type="hidden" name="tool-'+idx+'-verdict" id="val-verdict-'+idx+'"></div>'
+
+    // Notes
+    + '<div><label class="q-label" style="font-size:0.8rem;margin-bottom:0.4rem;display:block">Any additional notes about this tool?</label>'
+    + '<input class="q-input" type="text" name="tool-'+idx+'-notes" placeholder="Anything else Sailoxx should know about this tool..."></div>'
+
+    + '</div></div>';
+}
+
+// ── FORM SUBMISSION ──
+document.getElementById('inventoryForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = document.getElementById('submitBtn');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  fetch('https://formspree.io/f/xeaqoyyr', {
+    method: 'POST',
+    body: new FormData(this),
+    headers: { Accept: 'application/json' }
+  })
+  .then(function(res){
+    if(res.ok){
+      document.getElementById('inventoryForm').style.display = 'none';
+      document.getElementById('stepTabs').style.display = 'none';
+      document.getElementById('successScreen').classList.add('show');
+      document.getElementById('progBar').style.width = '100%';
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+      btn.style.background = 'var(--red)';
+    }
+  })
+  .catch(function(){
+    btn.textContent = 'Network error — try again';
+    btn.disabled = false;
+    btn.style.background = 'var(--red)';
+  });
+});
+
+// ── INIT — add first tool on load ──
+addTool();
+document.getElementById('tool-1').classList.add('open');
+updateProgress();
+</script>
+</body>
+</html>
