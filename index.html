@@ -154,167 +154,794 @@ section{padding:6rem 2rem}
 .step-detail{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.8rem;font-size:0.78rem;background:var(--cyan3);border:1px solid var(--border);padding:0.3rem 0.8rem;border-radius:100px;color:var(--cyan)}
 
 /* PRICING */
-/* PRICING — SAILOXX OUTCOME-BASED MODEL */
-.pricing-section{background:var(--navy2);padding:6rem 2rem;position:relative;overflow:hidden}
-.pricing-section::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(0,229,204,0.04) 0%,transparent 70%);pointer-events:none}
+/* ============================================================
+   SAILOXX — PRODUCTS & PRICING SECTION
+   All classes prefixed .sxp- to avoid conflicts
+   ============================================================ */
 
-/* SECTION HEADER */
-.sx-pricing-header{text-align:center;max-width:640px;margin:0 auto 3.5rem}
-.sx-pricing-header .section-label{justify-content:center}
-.sx-pricing-headline{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem}
-.sx-pricing-headline span{color:var(--cyan)}
-.sx-pricing-subline{font-size:1rem;color:var(--muted);line-height:1.75;font-weight:300}
-
-/* OUTER CONTAINER */
-.sx-pricing-wrap{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:1.5rem}
-
-/* MAIN CARD */
-.sx-main-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:0;
-  overflow:hidden;
-  transition:border-color 0.4s ease,box-shadow 0.4s ease;
-  position:relative;
+/* SECTION */
+.sxp-section {
+  background: var(--navy);
+  padding: 7rem 2rem;
+  position: relative;
+  overflow: hidden;
 }
-.sx-main-card:hover{
-  border-color:rgba(0,229,204,0.25);
-  box-shadow:0 40px 80px rgba(0,0,0,0.35),0 0 0 1px rgba(0,229,204,0.08);
+.sxp-section::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(0,229,204,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.sxp-container {
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
-/* CARD TOP BAR */
-.sx-card-topbar{
-  background:var(--navy3);
-  border-bottom:1px solid var(--border);
-  padding:1rem 2rem;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem;
+/* HEADER */
+.sxp-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 1.5rem;
 }
-.sx-card-topbar-left{display:flex;align-items:center;gap:0.75rem}
-.sx-card-label{font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
-.sx-card-divider{width:1px;height:16px;background:var(--border)}
-.sx-card-tag{
-  display:inline-flex;align-items:center;gap:0.35rem;
-  background:var(--cyan3);border:1px solid var(--border2);
-  padding:0.2rem 0.75rem;border-radius:100px;
-  font-size:0.7rem;font-weight:600;color:var(--cyan);letter-spacing:0.06em;text-transform:uppercase;
+.sxp-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--cyan);
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
-.sx-card-tag-dot{width:5px;height:5px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite}
-.sx-card-topbar-right{font-size:0.75rem;color:var(--muted);font-weight:400}
+.sxp-eyebrow::before,
+.sxp-eyebrow::after {
+  content: '';
+  width: 28px;
+  height: 1.5px;
+  background: var(--cyan);
+}
+.sxp-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.sxp-headline span { color: var(--cyan); }
+.sxp-subline {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
 
-/* CARD BODY */
-.sx-card-body{padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-@media(max-width:768px){.sx-card-body{grid-template-columns:1fr;gap:2rem;padding:2rem}}
-@media(max-width:480px){.sx-card-body{padding:1.5rem}}
-
-/* LEFT COLUMN */
-.sx-card-left{}
-.sx-price-block{margin-bottom:2rem}
-.sx-price-label{font-size:0.72rem;color:var(--muted);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem}
-.sx-price-main{display:flex;align-items:flex-start;gap:0.25rem;margin-bottom:0.4rem}
-.sx-price-currency{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;color:var(--muted);margin-top:0.4rem}
-.sx-price-amount{font-family:'Syne',sans-serif;font-size:4.5rem;font-weight:800;letter-spacing:-0.05em;color:var(--white);line-height:1}
-.sx-price-sub{font-size:0.82rem;color:var(--muted);line-height:1.6;max-width:280px}
-
-/* OUTCOME TOGGLE */
-.sx-outcome-block{margin-bottom:2rem}
-.sx-outcome-label{font-size:0.72rem;color:var(--muted);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem}
-.sx-outcome-tabs{display:flex;background:var(--navy3);border:1px solid var(--border);border-radius:12px;padding:3px;gap:3px}
-.sx-outcome-tab{
-  flex:1;padding:0.55rem 0.75rem;border-radius:9px;
-  font-size:0.78rem;font-weight:500;font-family:'DM Sans',sans-serif;
-  cursor:pointer;border:none;background:transparent;color:var(--muted);
-  transition:all 0.2s;text-align:center;line-height:1.3;
+/* CURRENCY TOGGLE */
+.sxp-currency-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 3rem;
 }
-.sx-outcome-tab.active{background:var(--card2);color:var(--white);box-shadow:0 1px 4px rgba(0,0,0,0.3)}
-.sx-outcome-display{
-  margin-top:0.75rem;
-  background:var(--navy3);border:1px solid var(--border);
-  border-radius:12px;padding:1rem 1.1rem;
-  min-height:72px;transition:all 0.25s ease;
+.sxp-currency-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
 }
-.sx-outcome-result{display:none;animation:sxFadeIn 0.25s ease}
-.sx-outcome-result.show{display:block}
-@keyframes sxFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.sx-outcome-title{font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;margin-bottom:0.25rem}
-.sx-outcome-desc{font-size:0.8rem;color:var(--muted);line-height:1.6}
-.sx-outcome-highlight{display:inline;font-weight:600}
-.sx-outcome-highlight.zero{color:var(--green)}
-.sx-outcome-highlight.fee{color:var(--gold)}
+.sxp-currency-toggle {
+  display: flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 3px;
+  gap: 3px;
+}
+.sxp-currency-btn {
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
+  border: none;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--muted);
+}
+.sxp-currency-btn.active {
+  background: var(--cyan);
+  color: var(--navy);
+}
+.sxp-geo-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: var(--cyan3);
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  padding: 0.25rem 0.9rem;
+}
 
-/* CTA BLOCK */
-.sx-cta-block{}
-.sx-cta-btn{
-  display:block;width:100%;text-align:center;
-  padding:0.95rem 1.5rem;border-radius:100px;
-  background:var(--cyan);color:var(--navy);
-  font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;
-  text-decoration:none;cursor:pointer;border:none;
-  transition:all 0.25s;letter-spacing:0.02em;
-  box-shadow:0 0 24px rgba(0,229,204,0.2);
+/* PRODUCT CATEGORY LABEL */
+.sxp-cat-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-left: 2px;
 }
-.sx-cta-btn:hover{background:var(--gold);box-shadow:0 0 40px rgba(255,184,48,0.25);transform:translateY(-1px)}
-.sx-cta-note{font-size:0.72rem;color:var(--muted);text-align:center;margin-top:0.75rem;line-height:1.6}
+.sxp-cat-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
 
-/* RIGHT COLUMN */
-.sx-card-right{}
+/* ── TIER 1: FULL REVIEW ── */
+.sxp-full-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+@media(max-width: 900px) { .sxp-full-grid { grid-template-columns: 1fr; } }
+@media(min-width: 600px) and (max-width: 900px) { .sxp-full-grid { grid-template-columns: 1fr 1fr; } }
 
-/* FEATURES */
-.sx-features-label{font-size:0.72rem;color:var(--muted);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
-.sx-features-list{list-style:none;display:flex;flex-direction:column;gap:0}
-.sx-feature-item{
-  display:flex;align-items:flex-start;gap:0.75rem;
-  padding:0.55rem 0;
-  border-bottom:1px solid rgba(0,229,204,0.06);
-  cursor:default;
-  transition:background 0.15s;
-  border-radius:6px;
-  padding-left:4px;padding-right:4px;
+.sxp-tier-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  cursor: default;
 }
-.sx-feature-item:last-child{border-bottom:none}
-.sx-feature-item:hover{background:rgba(0,229,204,0.03)}
-.sx-feature-icon{
-  width:18px;height:18px;border-radius:50%;
-  background:var(--cyan3);border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;margin-top:1px;
+.sxp-tier-card:hover {
+  border-color: rgba(0,229,204,0.25);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+  transform: translateY(-4px);
 }
-.sx-feature-icon svg{display:block}
-.sx-feature-text{font-size:0.84rem;color:var(--muted);line-height:1.5;transition:color 0.15s}
-.sx-feature-item:hover .sx-feature-text{color:var(--white)}
+.sxp-tier-card.featured {
+  border-color: var(--cyan);
+  background: linear-gradient(160deg, #0D1A3A 0%, rgba(0,229,204,0.04) 100%);
+}
+.sxp-tier-card.featured::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cyan);
+  color: var(--navy);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 1.1rem;
+  border-radius: 0 0 10px 10px;
+  white-space: nowrap;
+}
+.sxp-tier-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.sxp-tier-size {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+.sxp-price-block {
+  margin-bottom: 1.5rem;
+}
+.sxp-price-prefix {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+.sxp-price-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+.sxp-price-sym {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+.sxp-price-amt {
+  font-family: 'Syne', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--white);
+  line-height: 1;
+}
+.sxp-tier-card.featured .sxp-price-amt { color: var(--cyan); }
+.sxp-price-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+.sxp-delivery-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255,184,48,0.1);
+  border: 1px solid rgba(255,184,48,0.2);
+  border-radius: 100px;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.sxp-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex: 1;
+  margin-bottom: 1.75rem;
+}
+.sxp-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.5;
+  transition: color 0.15s;
+}
+.sxp-tier-card:hover .sxp-features li { color: rgba(240,244,255,0.85); }
+.sxp-feat-icon {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--cyan3);
+  border: 1px solid rgba(0,229,204,0.25);
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sxp-feat-icon svg { display: block; }
+.sxp-tier-cta {
+  display: block;
+  text-align: center;
+  padding: 0.85rem;
+  border-radius: 100px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: all 0.25s;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.02em;
+  margin-top: auto;
+}
+.sxp-tier-cta.outline {
+  border: 1px solid var(--border2);
+  color: var(--white);
+  background: transparent;
+}
+.sxp-tier-cta.outline:hover {
+  background: var(--cyan3);
+  border-color: var(--cyan2);
+}
+.sxp-tier-cta.solid {
+  background: var(--cyan);
+  color: var(--navy);
+  box-shadow: 0 0 24px rgba(0,229,204,0.2);
+}
+.sxp-tier-cta.solid:hover {
+  background: var(--gold);
+  box-shadow: 0 0 40px rgba(255,184,48,0.3);
+  transform: translateY(-1px);
+}
+/* Enterprise row */
+.sxp-enterprise-row {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+  transition: border-color 0.2s;
+}
+.sxp-enterprise-row:hover { border-color: var(--border2); }
+.sxp-ent-left { flex: 1; min-width: 240px; }
+.sxp-ent-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+.sxp-ent-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 0.3rem;
+}
+.sxp-ent-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.sxp-ent-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: center;
+}
+.sxp-ent-pill {
+  font-size: 0.72rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.25rem 0.8rem;
+  white-space: nowrap;
+}
+.sxp-ent-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--gold2);
+  border: 1px solid rgba(255,184,48,0.35);
+  border-radius: 100px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--gold);
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.sxp-ent-cta:hover {
+  background: rgba(255,184,48,0.2);
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
 
-/* PROCESS STRIP */
-.sx-process-strip{
-  border-top:1px solid var(--border);
-  padding:1.5rem 2.5rem;
-  background:rgba(0,0,0,0.15);
+/* ── TIER 2: MINI SERVICES ── */
+.sxp-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 4rem;
 }
-@media(max-width:480px){.sx-process-strip{padding:1.25rem 1.5rem}}
-.sx-process-label{font-size:0.68rem;color:var(--muted);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;text-align:center}
-.sx-process-steps{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}
-.sx-process-step{display:flex;flex-direction:column;align-items:center;gap:0.3rem;flex-shrink:0}
-.sx-step-num{font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;color:var(--cyan);letter-spacing:0.06em}
-.sx-step-name{font-size:0.72rem;color:var(--muted);white-space:nowrap;font-weight:400}
-.sx-process-connector{width:28px;height:1px;background:var(--border);flex-shrink:0;margin:0 4px;margin-bottom:10px}
-@media(max-width:480px){.sx-process-connector{width:16px}.sx-step-name{font-size:0.65rem}}
+@media(max-width: 1000px) { .sxp-mini-grid { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width: 500px) { .sxp-mini-grid { grid-template-columns: 1fr; } }
 
-/* TRUST ROW */
-.sx-trust-row{
-  max-width:960px;margin:1.5rem auto 0;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:var(--border);
-  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+.sxp-mini-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
 }
-@media(max-width:600px){.sx-trust-row{grid-template-columns:1fr}}
-.sx-trust-item{
-  background:var(--card);
-  padding:1.1rem 1.3rem;
-  display:flex;align-items:flex-start;gap:0.75rem;
+.sxp-mini-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,229,204,0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
-.sx-trust-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
-.sx-trust-text .sxt-title{font-size:0.8rem;font-weight:600;color:var(--white);margin-bottom:0.15rem;font-family:'Syne',sans-serif}
-.sx-trust-text .sxt-desc{font-size:0.74rem;color:var(--muted);line-height:1.5}
+.sxp-mini-card:hover::before { opacity: 1; }
+.sxp-mini-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.sxp-mini-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--cyan3);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.sxp-mini-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+.sxp-mini-tagline {
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+.sxp-mini-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+.sxp-mini-list li {
+  font-size: 0.76rem;
+  color: var(--muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.4;
+}
+.sxp-mini-list li::before {
+  content: '→';
+  color: var(--cyan);
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  margin-top: 1px;
+}
+.sxp-mini-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.sxp-mini-price-wrap .sxp-mini-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+}
+.sxp-mini-price-wrap .sxp-mini-days {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+.sxp-mini-cta {
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  background: var(--cyan3);
+  border: 1px solid var(--border2);
+  color: var(--cyan);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.sxp-mini-cta:hover {
+  background: var(--cyan);
+  color: var(--navy);
+  border-color: var(--cyan);
+}
 
+/* ── TIER 3: AI OFFICER ── */
+.sxp-officer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+@media(max-width: 800px) { .sxp-officer-grid { grid-template-columns: 1fr; } }
+@media(min-width: 500px) and (max-width: 800px) { .sxp-officer-grid { grid-template-columns: 1fr 1fr; } }
+
+.sxp-officer-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+  position: relative;
+}
+.sxp-officer-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.sxp-officer-card.featured-officer {
+  border-color: rgba(255,184,48,0.4);
+  background: linear-gradient(160deg, #0D1A3A 0%, rgba(255,184,48,0.03) 100%);
+}
+.sxp-officer-tier {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+.sxp-officer-price-block {
+  margin-bottom: 0.5rem;
+}
+.sxp-officer-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  line-height: 1;
+}
+.sxp-officer-card.featured-officer .sxp-officer-price { color: var(--gold); }
+.sxp-officer-per {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+.sxp-officer-hours {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(0,229,204,0.08);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.7rem;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+.sxp-officer-includes {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.sxp-officer-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+.sxp-officer-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.sxp-officer-features li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.sxp-officer-cta {
+  display: block;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 100px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.84rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  margin-top: auto;
+}
+.sxp-officer-cta.soft {
+  border: 1px solid var(--border2);
+  color: var(--white);
+  background: transparent;
+}
+.sxp-officer-cta.soft:hover {
+  background: var(--cyan3);
+  border-color: var(--cyan2);
+}
+.sxp-officer-cta.gold-cta {
+  background: rgba(255,184,48,0.15);
+  border: 1px solid rgba(255,184,48,0.3);
+  color: var(--gold);
+}
+.sxp-officer-cta.gold-cta:hover {
+  background: rgba(255,184,48,0.25);
+  border-color: var(--gold);
+}
+/* Officer disclaimer */
+.sxp-officer-disclaimer {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.74rem;
+  color: var(--muted);
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 4rem;
+}
+
+/* ── STANDALONE: POLICY PACK ── */
+.sxp-pack-banner {
+  background: linear-gradient(135deg, var(--card2) 0%, var(--navy3) 100%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  transition: border-color 0.2s;
+  margin-bottom: 4rem;
+}
+.sxp-pack-banner:hover { border-color: var(--border2); }
+.sxp-pack-left { flex: 1; min-width: 260px; }
+.sxp-pack-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(0,229,160,0.1);
+  border: 1px solid rgba(0,229,160,0.25);
+  border-radius: 100px;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.sxp-pack-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+.sxp-pack-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 440px;
+}
+.sxp-pack-docs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.sxp-pack-doc {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.sxp-pack-doc::before {
+  content: '📄';
+  font-size: 0.75rem;
+}
+.sxp-pack-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+.sxp-pack-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: -0.04em;
+}
+.sxp-pack-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.6rem;
+  background: rgba(0,229,160,0.12);
+  border: 1px solid rgba(0,229,160,0.3);
+  border-radius: 100px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--green);
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.sxp-pack-cta:hover {
+  background: rgba(0,229,160,0.2);
+  border-color: var(--green);
+}
+.sxp-pack-note {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+/* ── TRUST FOOTER ── */
+.sxp-trust-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+@media(max-width: 700px) { .sxp-trust-row { grid-template-columns: 1fr 1fr; } }
+@media(max-width: 400px) { .sxp-trust-row { grid-template-columns: 1fr; } }
+.sxp-trust-item {
+  background: var(--card);
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+.sxp-trust-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.sxp-trust-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+.sxp-trust-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.5; }
+
+/* RESPONSIVE FIXES */
+@media(max-width: 480px) {
+  .sxp-section { padding: 5rem 1.25rem; }
+  .sxp-enterprise-row { flex-direction: column; text-align: center; }
+  .sxp-ent-pills { justify-content: center; }
+  .sxp-pack-banner { flex-direction: column; text-align: center; align-items: center; }
+  .sxp-pack-docs { align-items: center; }
+}
 /* ===== FORMS ===== */
 .forms-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
 .form-tab{padding:0.55rem 1.2rem;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.2s}
@@ -866,7 +1493,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
   <a href="#problem" onclick="closeMob()">Problem</a>
   <a href="#ai-stack-review" onclick="closeMob()">AI Stack Review</a>
   <a href="#process" onclick="closeMob()">Process</a>
-  <a href="#pricing" onclick="closeMob()">Pricing</a>
+  <a href="#products" onclick="closeMob()">Products &amp; Pricing</a>
   <a href="#forms" onclick="closeMob()">Get Started</a>
   <a href="#faq" onclick="closeMob()">FAQ</a>
   <a href="#forms" class="mob-cta" onclick="closeMob()">Book Free Call →</a>
@@ -882,7 +1509,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
     <a href="#problem">Problem</a>
     <a href="#ai-stack-review">AI Stack Review</a>
     <a href="#process">Process</a>
-    <a href="#pricing">Pricing</a>
+    <a href="#products">Products &amp; Pricing</a>
     <a href="#forms">Get Started</a>
     <a href="#faq">FAQ</a>
   </div>
@@ -1392,436 +2019,387 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
 </section>
 
 <!-- PRICING -->
-<section class="pricing-section" id="pricing">
-  <div class="container">
+<section class="sxp-section" id="products">
+  <div class="sxp-container">
 
     <!-- HEADER -->
-    <div class="sx-pricing-header">
-      <div class="section-label" style="justify-content:center">Pricing</div>
-      <h2 class="sx-pricing-headline">Pay for results,<br><span>not assumptions.</span></h2>
-      <p class="sx-pricing-subline">A 5-day AI Spend Audit with an outcome-based fee. You only pay when we identify meaningful, validated savings.</p>
+    <div class="sxp-header reveal">
+      <div class="sxp-eyebrow">Products &amp; Pricing</div>
+      <h2 class="sxp-headline">Every service we offer.<br><span>Exactly what you pay.</span></h2>
+      <p class="sxp-subline">Transparent, fixed pricing. No lengthy proposals. No surprise invoices. Choose the engagement that fits your situation — or start with a free discovery call.</p>
     </div>
 
-    <!-- WRAP -->
-    <div class="sx-pricing-wrap">
-
-      <!-- MAIN CARD -->
-      <div class="sx-main-card reveal">
-
-        <!-- TOP BAR -->
-        <div class="sx-card-topbar">
-          <div class="sx-card-topbar-left">
-            <div class="sx-card-label">AI Spend Audit</div>
-            <div class="sx-card-divider"></div>
-            <div class="sx-card-tag"><span class="sx-card-tag-dot"></span>5-Day Engagement</div>
-          </div>
-          <div class="sx-card-topbar-right">Outcome-based · No upfront commitment</div>
-        </div>
-
-        <!-- BODY -->
-        <div class="sx-card-body">
-
-          <!-- LEFT -->
-          <div class="sx-card-left">
-
-            <div class="sx-price-block">
-              <div class="sx-price-label">Upfront audit fee</div>
-              <div class="sx-price-main">
-                <span class="sx-price-currency">₹</span>
-                <span class="sx-price-amount">0</span>
-              </div>
-              <p class="sx-price-sub">No upfront fee to begin. The complete audit is delivered before any commercial discussion.</p>
-            </div>
-
-            <div class="sx-outcome-block">
-              <div class="sx-outcome-label">Then — what happens next</div>
-              <div class="sx-outcome-tabs" role="tablist" aria-label="Outcome scenarios">
-                <button
-                  class="sx-outcome-tab active"
-                  role="tab"
-                  aria-selected="true"
-                  aria-controls="sx-outcome-no-savings"
-                  id="sx-tab-no"
-                  onclick="sxSetOutcome('none')"
-                >
-                  No savings found
-                </button>
-                <button
-                  class="sx-outcome-tab"
-                  role="tab"
-                  aria-selected="false"
-                  aria-controls="sx-outcome-savings"
-                  id="sx-tab-yes"
-                  onclick="sxSetOutcome('savings')"
-                >
-                  Savings identified
-                </button>
-              </div>
-              <div class="sx-outcome-display" id="sxOutcomeDisplay" aria-live="polite">
-                <div class="sx-outcome-result show" id="sx-outcome-no-savings" role="tabpanel" aria-labelledby="sx-tab-no">
-                  <div class="sx-outcome-title">Audit fee: <span class="sx-outcome-highlight zero">₹0</span></div>
-                  <div class="sx-outcome-desc">No charge. You still receive the completed audit report, findings, and recommendations — at no cost.</div>
-                </div>
-                <div class="sx-outcome-result" id="sx-outcome-savings" role="tabpanel" aria-labelledby="sx-tab-yes">
-                  <div class="sx-outcome-title">Success fee: <span class="sx-outcome-highlight fee">Agreed percentage of validated savings</span></div>
-                  <div class="sx-outcome-desc">A success fee is charged only on validated, actionable savings we identify together. Agreed before the engagement begins.</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sx-cta-block">
-              <a href="#forms" class="sx-cta-btn">Request an Audit</a>
-              <p class="sx-cta-note">No upfront audit fee. Success fee applies only<br>when validated savings are identified.</p>
-            </div>
-
-          </div>
-
-          <!-- RIGHT -->
-          <div class="sx-card-right">
-            <div class="sx-features-label">What you receive</div>
-            <ul class="sx-features-list">
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Complete AI tool inventory across your organisation</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Usage and adoption analysis per tool</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Duplicate and overlapping capability review</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Subscription cost and spend efficiency analysis</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Business value assessment per tool</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Governance and ownership review</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">KEEP · CUT · FIX · CONSOLIDATE recommendations</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Prioritised action roadmap</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Executive findings report</span>
-              </li>
-              <li class="sx-feature-item">
-                <span class="sx-feature-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span class="sx-feature-text">Final audit presentation — live executive review</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- PROCESS STRIP -->
-        <div class="sx-process-strip">
-          <div class="sx-process-label">5-day structured engagement</div>
-          <div class="sx-process-steps">
-            <div class="sx-process-step">
-              <div class="sx-step-num">01</div>
-              <div class="sx-step-name">Discovery</div>
-            </div>
-            <div class="sx-process-connector"></div>
-            <div class="sx-process-step">
-              <div class="sx-step-num">02</div>
-              <div class="sx-step-name">Data Collection</div>
-            </div>
-            <div class="sx-process-connector"></div>
-            <div class="sx-process-step">
-              <div class="sx-step-num">03</div>
-              <div class="sx-step-name">Analysis</div>
-            </div>
-            <div class="sx-process-connector"></div>
-            <div class="sx-process-step">
-              <div class="sx-step-num">04</div>
-              <div class="sx-step-name">Findings</div>
-            </div>
-            <div class="sx-process-connector"></div>
-            <div class="sx-process-step">
-              <div class="sx-step-num">05</div>
-              <div class="sx-step-name">Executive Review</div>
-            </div>
-          </div>
-        </div>
-
+    <!-- CURRENCY TOGGLE -->
+    <div class="sxp-currency-row reveal">
+      <span class="sxp-currency-label">Prices in</span>
+      <div class="sxp-currency-toggle">
+        <button class="sxp-currency-btn active" id="sxp-inr-btn" onclick="sxpSetCurrency('INR')">₹ INR</button>
+        <button class="sxp-currency-btn" id="sxp-usd-btn" onclick="sxpSetCurrency('USD')">$ USD</button>
       </div>
-      <!-- END MAIN CARD -->
-
-      <!-- TRUST ROW -->
-      <div class="sx-trust-row reveal">
-        <div class="sx-trust-item">
-          <div class="sx-trust-icon">◎</div>
-          <div class="sx-trust-text">
-            <div class="sxt-title">Outcome-based engagement</div>
-            <div class="sxt-desc">Our fee is contingent on results. If we don't identify validated savings, you pay nothing.</div>
-          </div>
-        </div>
-        <div class="sx-trust-item">
-          <div class="sx-trust-icon">◎</div>
-          <div class="sx-trust-text">
-            <div class="sxt-title">Complete findings, regardless</div>
-            <div class="sxt-desc">You receive the full audit report and recommendations whether or not a success fee applies.</div>
-          </div>
-        </div>
-        <div class="sx-trust-item">
-          <div class="sx-trust-icon">◎</div>
-          <div class="sx-trust-text">
-            <div class="sxt-title">Transparent success-fee structure</div>
-            <div class="sxt-desc">The success fee percentage is agreed before the engagement begins. No surprises.</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-<!-- FORMS -->
-<section id="forms" style="padding:6rem 2rem">
-  <div class="container">
-    <div class="section-label">Get Started</div>
-    <h2 class="section-title">Ready to find your <span>savings?</span></h2>
-    <p class="section-sub" style="margin-bottom:2.5rem">Choose the right form below — whether you're a founder/COO booking a discovery call, or a team member filling out our usage survey.</p>
-
-    <div class="forms-tabs">
-      <button class="form-tab active" onclick="switchTab('discovery',this)">🎯 Discovery Call</button>
-      <button class="form-tab" onclick="switchTab('survey',this)">📋 Employee Survey</button>
-      <button class="form-tab" onclick="switchTab('tool',this)">🔧 Tool Inventory</button>
+      <span class="sxp-geo-note" id="sxp-geo-note">Auto-detected based on your location</span>
     </div>
 
-    <!-- DISCOVERY FORM -->
-    <div class="form-panel active" id="tab-discovery">
-      <div class="ai-form">
-        <h3 style="font-size:1.2rem;margin-bottom:0.4rem">Book Your Free Discovery Call</h3>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">20 minutes. No sales pressure. We'll tell you honestly if an audit makes sense for your company.</p>
-        <form action="https://formspree.io/f/xojpoyel" method="POST" onsubmit="handleSubmit(event,'disc-success')">
-          <input type="hidden" name="form-type" value="Discovery Call">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Your Name <span>*</span></label>
-              <input class="form-input" type="text" name="full-name" placeholder="Rahul Sharma" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Your Role <span>*</span></label>
-              <input class="form-input" type="text" name="role" placeholder="COO / Founder / CFO" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Company Name <span>*</span></label>
-              <input class="form-input" type="text" name="company" placeholder="Acme Technologies" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Company Size <span>*</span></label>
-              <select class="form-select" name="company-size" required>
-                <option value="">Select team size</option>
-                <option>1–10 employees</option><option>11–30 employees</option><option>31–100 employees</option><option>101–250 employees</option><option>250+ employees</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Work Email <span>*</span></label>
-              <input class="form-input" type="email" name="email" placeholder="rahul@company.com" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">WhatsApp / Phone</label>
-              <input class="form-input" type="tel" name="phone" placeholder="+91 98765 43210">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Rough monthly AI tool spend <span>*</span></label>
-            <select class="form-select" name="monthly-spend" required>
-              <option value="">Select range</option>
-              <option>Under ₹20,000/month</option><option>₹20,000 – ₹75,000/month</option><option>₹75,000 – ₹2,00,000/month</option><option>₹2,00,000 – ₹5,00,000/month</option><option>Over ₹5,00,000/month</option><option>I don't know / not tracked</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Which AI tools does your team currently use?</label>
-            <input class="form-input" type="text" name="ai-tools" placeholder="e.g. ChatGPT, Copilot, Jasper, Notion AI...">
-          </div>
-          <div class="form-group">
-            <label class="form-label">What is your biggest frustration with your current AI setup?</label>
-            <textarea class="form-textarea" name="frustration" placeholder="Tell us what's not working — we'll come prepared to your call..."></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Preferred call time</label>
-            <select class="form-select" name="call-time">
-              <option value="">Select preference</option>
-              <option>Morning (9am–12pm IST)</option><option>Afternoon (12pm–3pm IST)</option><option>Evening (5pm–8pm IST)</option><option>Any time — send me a calendar link</option>
-            </select>
-          </div>
-          <button type="submit" class="form-submit">Book My Free Call →</button>
-        </form>
-        <div class="form-success" id="disc-success">✅ Submitted! We'll be in touch within 4 business hours.</div>
-        <p class="form-note">We respond within 4 business hours. Your information is never shared with third parties.</p>
+    <!-- ════════════════════════════════════
+         PRODUCT 1 — AI STACK REVIEW (FULL)
+         ════════════════════════════════════ -->
+    <div class="reveal">
+      <div class="sxp-cat-label" style="color:var(--cyan)">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--cyan);flex-shrink:0"></span>
+        Product 01 — AI Stack Review (Full Governance Report)
       </div>
     </div>
 
-    <!-- EMPLOYEE SURVEY -->
-    <div class="form-panel" id="tab-survey">
-      <div class="ai-form">
-        <h3 style="font-size:1.2rem;margin-bottom:0.4rem">Employee AI Usage Survey</h3>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">Takes 5 minutes. Your answers are anonymous.</p>
-        <form action="https://formspree.io/f/xojpoyel" method="POST" onsubmit="handleSubmit(event,'surv-success')">
-          <input type="hidden" name="form-type" value="Employee Survey">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Your Department <span>*</span></label>
-              <select class="form-select" name="department" required>
-                <option value="">Select department</option>
-                <option>Marketing</option><option>Sales</option><option>Operations</option><option>Engineering / Tech</option><option>Finance</option><option>HR / People</option><option>Customer Support</option><option>Product</option><option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Company (if provided by manager)</label>
-              <input class="form-input" type="text" name="company" placeholder="Optional">
-            </div>
+    <div class="sxp-full-grid reveal">
+
+      <!-- STARTUP TIER -->
+      <div class="sxp-tier-card">
+        <div class="sxp-tier-name">Startup</div>
+        <div class="sxp-tier-size">Up to 50 employees · Up to 10 AI tools</div>
+        <div class="sxp-price-block">
+          <div class="sxp-price-prefix">Fixed price — no surprises</div>
+          <div class="sxp-price-main">
+            <span class="sxp-price-sym sxp-sym">₹</span>
+            <span class="sxp-price-amt" data-inr="18,000" data-usd="220">18,000</span>
           </div>
-          <div class="form-group">
-            <label class="form-label">Which AI tools do you use at work? <span>*</span></label>
-            <div class="tools-grid" id="toolsGrid">
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>ChatGPT</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>MS Copilot</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Notion AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Jasper AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Grammarly AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Zapier AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Claude AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Midjourney</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>GitHub Copilot</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Gemini</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>HubSpot AI</div>
-              <div class="tool-chip" onclick="toggleTool(this)"><span class="tool-dot"></span>Salesforce AI</div>
-            </div>
-            <input type="hidden" name="tools-used" id="tools-hidden">
-            <input class="form-input" type="text" name="other-tools" placeholder="Other tools not listed..." style="margin-top:0.8rem">
+          <div class="sxp-price-note">One flat fee · Paid before we begin</div>
+        </div>
+        <div class="sxp-delivery-pill">⏱ 5-day delivery</div>
+        <ul class="sxp-features">
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Complete AI tool inventory — every tool mapped</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Adoption and usage analysis per tool</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ghost and unused subscription detection</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Duplicate tool and overlap analysis</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Shadow AI risk identification</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>KEEP · CUT · FIX · REPLACE verdicts</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AI Maturity Score (0–100)</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Savings roadmap with exact amounts</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>15-page executive PDF report</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30-min executive debrief call</li>
+        </ul>
+        <a href="#forms" class="sxp-tier-cta outline">Request This Review →</a>
+      </div>
+
+      <!-- GROWTH TIER — FEATURED -->
+      <div class="sxp-tier-card featured">
+        <div class="sxp-tier-name">Growth</div>
+        <div class="sxp-tier-size">51–150 employees · Up to 20 AI tools</div>
+        <div class="sxp-price-block">
+          <div class="sxp-price-prefix">Fixed price — no surprises</div>
+          <div class="sxp-price-main">
+            <span class="sxp-price-sym sxp-sym">₹</span>
+            <span class="sxp-price-amt" data-inr="35,000" data-usd="420">35,000</span>
           </div>
-          <div class="form-group">
-            <label class="form-label">How often do you use AI tools at work? <span>*</span></label>
-            <select class="form-select" name="frequency" required>
-              <option value="">Select frequency</option>
-              <option>Multiple times daily</option><option>Once a day</option><option>A few times per week</option><option>Once a week or less</option><option>Rarely / almost never</option>
-            </select>
+          <div class="sxp-price-note">One flat fee · Paid before we begin</div>
+        </div>
+        <div class="sxp-delivery-pill">⏱ 5-day delivery</div>
+        <ul class="sxp-features">
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Everything in Startup, plus:</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Department-by-department breakdown</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>ROI calculation per tool (time saved × hourly cost)</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Anonymous employee usage survey (up to 100 people)</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Governance gap assessment</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Data risk report — unapproved tools handling company data</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Vendor renewal calendar with recommendations</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Board-ready executive summary</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>45-min executive debrief call</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority email support for 14 days post-delivery</li>
+        </ul>
+        <a href="#forms" class="sxp-tier-cta solid">Request This Review →</a>
+      </div>
+
+      <!-- SCALE TIER -->
+      <div class="sxp-tier-card">
+        <div class="sxp-tier-name">Scale</div>
+        <div class="sxp-tier-size">151–500 employees · Unlimited AI tools</div>
+        <div class="sxp-price-block">
+          <div class="sxp-price-prefix">Fixed price — no surprises</div>
+          <div class="sxp-price-main">
+            <span class="sxp-price-sym sxp-sym">₹</span>
+            <span class="sxp-price-amt" data-inr="65,000" data-usd="780">65,000</span>
           </div>
-          <div class="form-group">
-            <label class="form-label">What specific task do you use AI for most? <span>*</span></label>
-            <input class="form-input" type="text" name="main-task" placeholder="e.g. Writing emails, summarising reports, writing code..." required>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Time BEFORE AI? (minutes) <span>*</span></label>
-              <input class="form-input" type="number" name="time-before" placeholder="e.g. 60" min="1" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Time NOW with AI? (minutes) <span>*</span></label>
-              <input class="form-input" type="number" name="time-now" placeholder="e.g. 15" min="1" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">How much do you trust AI output without heavy editing? <span>*</span></label>
-            <select class="form-select" name="trust-level" required>
-              <option value="">Select trust level</option>
-              <option>1 — I almost always rewrite it completely</option><option>2 — I fix a lot before using it</option><option>3 — I make minor edits most of the time</option><option>4 — I use it mostly as-is</option><option>5 — I trust it fully, rarely edit</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">If this tool disappeared tomorrow, how badly would it affect your work? <span>*</span></label>
-            <select class="form-select" name="impact" required>
-              <option value="">Select impact</option>
-              <option>Not at all — I'd manage fine</option><option>Slightly — I'd miss it but adapt quickly</option><option>Significantly — it would slow me down</option><option>Critically — I cannot do my job as well without it</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">What is your biggest frustration with AI tools at your company?</label>
-            <textarea class="form-textarea" name="frustration" placeholder="Be honest — this is anonymous..."></textarea>
-          </div>
-          <button type="submit" class="form-submit">Submit My Survey →</button>
-        </form>
-        <div class="form-success" id="surv-success">✅ Survey submitted! Your response is 100% anonymous. Thank you.</div>
-        <p class="form-note">100% anonymous. Your name is never stored.</p>
+          <div class="sxp-price-note">One flat fee · Paid before we begin</div>
+        </div>
+        <div class="sxp-delivery-pill">⏱ 7-day delivery</div>
+        <ul class="sxp-features">
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Everything in Growth, plus:</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited AI tool coverage — no cap</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full multi-department analysis</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Anonymous survey — unlimited employees</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Sector benchmarking vs similar Indian companies</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AI procurement policy recommendations</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3-year AI spend projection model</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Investor or board presentation deck</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>60-min executive debrief with Q&amp;A</li>
+          <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30-day WhatsApp support post-delivery</li>
+        </ul>
+        <a href="#forms" class="sxp-tier-cta outline">Request This Review →</a>
+      </div>
+
+    </div>
+
+    <!-- ENTERPRISE ROW -->
+    <div class="sxp-enterprise-row reveal">
+      <div class="sxp-ent-left">
+        <div class="sxp-ent-tag">Enterprise · 500+ Employees</div>
+        <div class="sxp-ent-title">Custom scope. Custom price.</div>
+        <div class="sxp-ent-desc">Large organisations with complex multi-department AI stacks, regulated data environments, or specific compliance requirements. We scope every engagement individually.</div>
+      </div>
+      <div class="sxp-ent-pills">
+        <span class="sxp-ent-pill">Multi-office support</span>
+        <span class="sxp-ent-pill">Custom delivery timeline</span>
+        <span class="sxp-ent-pill">Dedicated audit manager</span>
+        <span class="sxp-ent-pill">NDA before scoping</span>
+      </div>
+      <a href="#forms" class="sxp-ent-cta">Talk to Us →</a>
+    </div>
+
+    <!-- ════════════════════════════════════
+         PRODUCT 2 — FOCUSED REVIEWS (MINI)
+         ════════════════════════════════════ -->
+    <div class="reveal">
+      <div class="sxp-cat-label" style="color:var(--gold)">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0"></span>
+        Product 02 — Focused Reviews (Single-Area Deep Dives)
       </div>
     </div>
 
-    <!-- TOOL INVENTORY -->
-    <div class="form-panel" id="tab-tool">
-      <div class="ai-form">
-        <h3 style="font-size:1.2rem;margin-bottom:0.4rem">AI Tool Inventory Submission</h3>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem">Fill this for each AI tool your company pays for. Submit one entry per tool.</p>
-        <form action="https://formspree.io/f/xojpoyel" method="POST" onsubmit="handleSubmit(event,'tool-success')">
-          <input type="hidden" name="form-type" value="Tool Inventory">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Your Name <span>*</span></label>
-              <input class="form-input" type="text" name="submitter-name" placeholder="Person submitting this" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Company Name <span>*</span></label>
-              <input class="form-input" type="text" name="company" placeholder="Your company" required>
-            </div>
+    <div class="sxp-mini-grid reveal">
+
+      <!-- MINI 1: Cost Map -->
+      <div class="sxp-mini-card" onmousemove="sxpCardGlow(this,event)">
+        <div class="sxp-mini-icon">💸</div>
+        <div class="sxp-mini-name">AI Tool Cost Map</div>
+        <div class="sxp-mini-tagline">A complete financial map of every AI subscription your company is running — including tools nobody remembers authorising.</div>
+        <ul class="sxp-mini-list">
+          <li>Full paid tool inventory with verified costs</li>
+          <li>Ghost subscription identification</li>
+          <li>Duplicate capability detection</li>
+          <li>Total monthly and annual spend summary</li>
+          <li>Immediate cancellation recommendations</li>
+        </ul>
+        <div class="sxp-mini-bottom">
+          <div class="sxp-mini-price-wrap">
+            <div class="sxp-mini-price sxp-mini-price-el" data-inr="₹8,000" data-usd="$97">₹8,000</div>
+            <div class="sxp-mini-days">2-day delivery</div>
           </div>
-          <div class="form-group">
-            <label class="form-label">AI Tool Name <span>*</span></label>
-            <input class="form-input" type="text" name="tool-name" placeholder="e.g. Microsoft Copilot, ChatGPT Team..." required>
+          <a href="#forms" class="sxp-mini-cta">Get This →</a>
+        </div>
+      </div>
+
+      <!-- MINI 2: Adoption Scan -->
+      <div class="sxp-mini-card" onmousemove="sxpCardGlow(this,event)">
+        <div class="sxp-mini-icon">📊</div>
+        <div class="sxp-mini-name">AI Adoption Scan</div>
+        <div class="sxp-mini-tagline">An anonymous employee survey revealing which tools your team actually uses, trusts, and finds valuable — vs which ones are just billing you.</div>
+        <ul class="sxp-mini-list">
+          <li>Anonymous survey sent to your team</li>
+          <li>Active usage rate per tool</li>
+          <li>Employee trust and output quality scores</li>
+          <li>Time saved analysis</li>
+          <li>Adoption gap report per department</li>
+        </ul>
+        <div class="sxp-mini-bottom">
+          <div class="sxp-mini-price-wrap">
+            <div class="sxp-mini-price sxp-mini-price-el" data-inr="₹9,000" data-usd="$109">₹9,000</div>
+            <div class="sxp-mini-days">3-day delivery</div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Monthly Cost (₹) <span>*</span></label>
-              <input class="form-input" type="number" name="monthly-cost" placeholder="e.g. 25000" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Number of Licenses / Seats</label>
-              <input class="form-input" type="number" name="licenses" placeholder="e.g. 30">
-            </div>
+          <a href="#forms" class="sxp-mini-cta">Get This →</a>
+        </div>
+      </div>
+
+      <!-- MINI 3: Risk Check -->
+      <div class="sxp-mini-card" onmousemove="sxpCardGlow(this,event)">
+        <div class="sxp-mini-icon">🛡️</div>
+        <div class="sxp-mini-name">Shadow AI Risk Check</div>
+        <div class="sxp-mini-tagline">A focused review of unapproved AI tool usage — finding where sensitive company data may be flowing into tools nobody sanctioned.</div>
+        <ul class="sxp-mini-list">
+          <li>Shadow AI tool identification</li>
+          <li>Data exposure risk mapping</li>
+          <li>Unapproved tools handling company data</li>
+          <li>Governance gap summary</li>
+          <li>Immediate risk mitigation steps</li>
+        </ul>
+        <div class="sxp-mini-bottom">
+          <div class="sxp-mini-price-wrap">
+            <div class="sxp-mini-price sxp-mini-price-el" data-inr="₹12,000" data-usd="$145">₹12,000</div>
+            <div class="sxp-mini-days">3-day delivery</div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Which department uses it? <span>*</span></label>
-              <select class="form-select" name="department" required>
-                <option value="">Select department</option>
-                <option>Marketing</option><option>Sales</option><option>Engineering</option><option>Operations</option><option>HR</option><option>Finance</option><option>All departments</option><option>Multiple</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Who approved the purchase?</label>
-              <input class="form-input" type="text" name="approved-by" placeholder="Name or role">
-            </div>
+          <a href="#forms" class="sxp-mini-cta">Get This →</a>
+        </div>
+      </div>
+
+      <!-- MINI 4: Renewal Review -->
+      <div class="sxp-mini-card" onmousemove="sxpCardGlow(this,event)">
+        <div class="sxp-mini-icon">📅</div>
+        <div class="sxp-mini-name">AI Vendor Renewal Review</div>
+        <div class="sxp-mini-tagline">An AI contract is coming up for renewal and you need to know — renew, reduce, replace, or cancel. We give you the data to decide in 48 hours.</div>
+        <ul class="sxp-mini-list">
+          <li>Usage and adoption analysis for that tool</li>
+          <li>License right-sizing recommendation</li>
+          <li>Renew vs cancel vs replace verdict</li>
+          <li>Market price benchmark</li>
+          <li>Negotiation brief for your finance team</li>
+        </ul>
+        <div class="sxp-mini-bottom">
+          <div class="sxp-mini-price-wrap">
+            <div class="sxp-mini-price sxp-mini-price-el" data-inr="₹6,500" data-usd="$79">₹6,500</div>
+            <div class="sxp-mini-days">48-hr delivery · per tool</div>
           </div>
-          <div class="form-group">
-            <label class="form-label">What was this tool purchased to do? <span>*</span></label>
-            <textarea class="form-textarea" name="purpose" placeholder="e.g. Help the marketing team write content faster..." style="min-height:80px" required></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Is it still actively being used? <span>*</span></label>
-            <select class="form-select" name="still-used" required>
-              <option value="">Select</option>
-              <option>Yes — used regularly by most who have access</option><option>Partially — only some users are active</option><option>Rarely — almost nobody uses it anymore</option><option>Unknown — I'm not sure of actual usage</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Contract / Renewal date (if known)</label>
-            <input class="form-input" type="date" name="renewal-date">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Any notes about this tool?</label>
-            <textarea class="form-textarea" name="notes" placeholder="Anything else we should know..." style="min-height:70px"></textarea>
-          </div>
-          <button type="submit" class="form-submit">Submit Tool Entry →</button>
-        </form>
-        <div class="form-success" id="tool-success">✅ Tool entry submitted! Fill the form again to add another tool.</div>
-        <p class="form-note">Submit one entry per tool. Fill the form again to add the next tool.</p>
+          <a href="#forms" class="sxp-mini-cta">Get This →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ════════════════════════════════════
+         PRODUCT 3 — FRACTIONAL AI OFFICER
+         ════════════════════════════════════ -->
+    <div class="reveal">
+      <div class="sxp-cat-label" style="color:var(--green)">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0"></span>
+        Product 03 — Fractional AI Officer (Monthly Retainer)
       </div>
     </div>
+
+    <div class="sxp-officer-grid reveal">
+
+      <!-- ESSENTIAL -->
+      <div class="sxp-officer-card">
+        <div class="sxp-officer-tier">Essential</div>
+        <div class="sxp-officer-price-block">
+          <div class="sxp-officer-price sxp-officer-price-el" data-inr="₹15,000" data-usd="$180">₹15,000</div>
+          <div class="sxp-officer-per">per month · cancel anytime</div>
+        </div>
+        <div class="sxp-officer-hours">4 hours included per month</div>
+        <div class="sxp-officer-includes">What's included</div>
+        <ul class="sxp-officer-features">
+          <li>Monthly 1-hour AI strategy call</li>
+          <li>Evaluation of any new AI tool before you buy it</li>
+          <li>Monthly one-page AI spend update report</li>
+          <li>WhatsApp access for quick questions</li>
+          <li>Renewal decision support when contracts come due</li>
+          <li>AI tool onboarding guide for new hires</li>
+        </ul>
+        <a href="#forms" class="sxp-officer-cta soft">Start Essential →</a>
+      </div>
+
+      <!-- STANDARD — FEATURED -->
+      <div class="sxp-officer-card featured-officer">
+        <div class="sxp-officer-tier">Standard</div>
+        <div class="sxp-officer-price-block">
+          <div class="sxp-officer-price sxp-officer-price-el" data-inr="₹28,000" data-usd="$335">₹28,000</div>
+          <div class="sxp-officer-per">per month · cancel anytime</div>
+        </div>
+        <div class="sxp-officer-hours">8 hours included per month</div>
+        <div class="sxp-officer-includes">What's included</div>
+        <ul class="sxp-officer-features">
+          <li>Everything in Essential, plus:</li>
+          <li>Monthly 2-hour strategy and planning session</li>
+          <li>Department-level AI tool recommendations</li>
+          <li>Which departments should use which tools — and how much</li>
+          <li>Automation opportunity identification per function</li>
+          <li>AI vendor negotiation support</li>
+          <li>Quarterly AI Maturity Score update</li>
+          <li>AI usage policy drafting and updates</li>
+          <li>Board-level AI reporting template</li>
+          <li>New AI tool pilot design and evaluation framework</li>
+        </ul>
+        <a href="#forms" class="sxp-officer-cta gold-cta">Start Standard →</a>
+      </div>
+
+      <!-- FULL ENGAGEMENT -->
+      <div class="sxp-officer-card">
+        <div class="sxp-officer-tier">Full Engagement</div>
+        <div class="sxp-officer-price-block">
+          <div class="sxp-officer-price sxp-officer-price-el" data-inr="₹50,000" data-usd="$600">₹50,000</div>
+          <div class="sxp-officer-per">per month · cancel anytime</div>
+        </div>
+        <div class="sxp-officer-hours">15 hours included per month</div>
+        <div class="sxp-officer-includes">What's included</div>
+        <ul class="sxp-officer-features">
+          <li>Everything in Standard, plus:</li>
+          <li>Dedicated AI Officer — your name, your company</li>
+          <li>Weekly check-in calls with key stakeholders</li>
+          <li>Full AI stack oversight and governance management</li>
+          <li>Cross-department AI standardisation programme</li>
+          <li>AI implementation roadmap — 6 and 12 month</li>
+          <li>ROI tracking system setup and monthly reporting</li>
+          <li>AI tool pilot management end-to-end</li>
+          <li>Investor and board AI briefing preparation</li>
+          <li>Priority response within 4 hours on all days</li>
+        </ul>
+        <a href="#forms" class="sxp-officer-cta soft">Start Full Engagement →</a>
+      </div>
+
+    </div>
+
+    <!-- OFFICER DISCLAIMER -->
+    <div class="sxp-officer-disclaimer reveal">
+      The Fractional AI Officer retainer is available to companies that have already completed an AI Stack Review with Sailoxx, or as a standalone engagement for companies with an existing clear understanding of their AI stack. <strong>First audit, then ongoing advisory.</strong>
+    </div>
+
+    <!-- ════════════════════════════════════
+         PRODUCT 4 — AI POLICY PACK
+         ════════════════════════════════════ -->
+    <div class="reveal">
+      <div class="sxp-cat-label" style="color:var(--green)">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0"></span>
+        Product 04 — AI Governance Policy Pack (Digital Download)
+      </div>
+    </div>
+
+    <div class="sxp-pack-banner reveal">
+      <div class="sxp-pack-left">
+        <div class="sxp-pack-badge">✦ Instant download · No call needed</div>
+        <div class="sxp-pack-title">Start governing your AI stack today — without a full audit.</div>
+        <div class="sxp-pack-desc">A set of ready-to-use, India-context policy documents your HR, IT, or ops team can deploy immediately. Built from real patterns we see across Indian SaaS and Fintech companies.</div>
+      </div>
+      <div class="sxp-pack-docs">
+        <div class="sxp-pack-doc">AI Tool Usage Policy — employee-facing, ready to sign</div>
+        <div class="sxp-pack-doc">AI Procurement Approval Process document</div>
+        <div class="sxp-pack-doc">Data Classification Guide for AI tool inputs</div>
+        <div class="sxp-pack-doc">AI Vendor Evaluation Checklist (25 criteria)</div>
+        <div class="sxp-pack-doc">Board-level AI Reporting Template</div>
+      </div>
+      <div class="sxp-pack-right">
+        <div class="sxp-pack-price sxp-pack-price-el" data-inr="₹4,999" data-usd="$60">₹4,999</div>
+        <a href="#forms" class="sxp-pack-cta">Request Pack →</a>
+        <div class="sxp-pack-note">Delivered within 24 hours · PDF + editable DOCX</div>
+      </div>
+    </div>
+
+    <!-- TRUST ROW -->
+    <div class="sxp-trust-row reveal">
+      <div class="sxp-trust-item">
+        <div class="sxp-trust-icon">◎</div>
+        <div>
+          <div class="sxp-trust-title">Fixed prices. No surprises.</div>
+          <div class="sxp-trust-desc">Every price on this page is what you pay. No scope creep, no hidden fees.</div>
+        </div>
+      </div>
+      <div class="sxp-trust-item">
+        <div class="sxp-trust-icon">◎</div>
+        <div>
+          <div class="sxp-trust-title">100% independent</div>
+          <div class="sxp-trust-desc">We earn no commissions from any AI vendor. Every recommendation is based only on your data.</div>
+        </div>
+      </div>
+      <div class="sxp-trust-item">
+        <div class="sxp-trust-icon">◎</div>
+        <div>
+          <div class="sxp-trust-title">Cancel retainers anytime</div>
+          <div class="sxp-trust-desc">No annual lock-in on the AI Officer retainer. Month to month, always.</div>
+        </div>
+      </div>
+      <div class="sxp-trust-item">
+        <div class="sxp-trust-icon">◎</div>
+        <div>
+          <div class="sxp-trust-title">NDA before everything</div>
+          <div class="sxp-trust-desc">We sign a mutual NDA before any engagement begins. Your data stays yours.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2106,27 +2684,7 @@ function handleSubmit(e,successId){
     btn.style.background='var(--red)';
   });
 }
-  /* SAILOXX PRICING — OUTCOME TOGGLE */
-function sxSetOutcome(state){
-  var tabs = document.querySelectorAll('.sx-outcome-tab');
-  var results = document.querySelectorAll('.sx-outcome-result');
-  var display = document.getElementById('sxOutcomeDisplay');
-
-  tabs.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-  results.forEach(function(r){ r.classList.remove('show'); });
-
-  if(state === 'none'){
-    document.getElementById('sx-tab-no').classList.add('active');
-    document.getElementById('sx-tab-no').setAttribute('aria-selected','true');
-    document.getElementById('sx-outcome-no-savings').classList.add('show');
-    if(display) display.style.borderColor = '';
-  } else {
-    document.getElementById('sx-tab-yes').classList.add('active');
-    document.getElementById('sx-tab-yes').setAttribute('aria-selected','true');
-    document.getElementById('sx-outcome-savings').classList.add('show');
-    if(display) display.style.borderColor = 'rgba(255,184,48,0.2)';
-  }
-}
+ 
   /* ============================================================
    SX AI STACK REVIEW CAROUSEL — fully IIFE-scoped
    No global variable conflicts with existing site JS
@@ -2247,6 +2805,77 @@ function sxSetOutcome(state){
  
 })();
 /* END SX AI STACK REVIEW CAROUSEL */
+  /* ============================================================
+   SAILOXX — PRODUCTS & PRICING JS
+   Currency toggle + card glow + geo detection
+   ============================================================ */
+(function(){
+  'use strict';
+
+  var currentCurrency = 'INR';
+
+  /* ── GEO DETECTION ── */
+  function detectGeo(){
+    try {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      var isIndia = tz.toLowerCase().indexOf('calcutta') > -1
+                 || tz.toLowerCase().indexOf('kolkata') > -1;
+      if(!isIndia){
+        sxpSetCurrency('USD');
+        var note = document.getElementById('sxp-geo-note');
+        if(note) note.textContent = 'Showing USD — not in India? Toggle above.';
+      }
+    } catch(e){}
+  }
+
+  /* ── CURRENCY SWITCH ── */
+  window.sxpSetCurrency = function(cur){
+    currentCurrency = cur;
+
+    /* toggle buttons */
+    var inrBtn = document.getElementById('sxp-inr-btn');
+    var usdBtn = document.getElementById('sxp-usd-btn');
+    if(inrBtn) inrBtn.classList.toggle('active', cur === 'INR');
+    if(usdBtn) usdBtn.classList.toggle('active', cur === 'USD');
+
+    /* full tier price amounts */
+    document.querySelectorAll('.sxp-price-amt').forEach(function(el){
+      el.textContent = cur === 'INR' ? el.dataset.inr : el.dataset.usd;
+    });
+
+    /* currency symbol on tier cards */
+    document.querySelectorAll('.sxp-sym').forEach(function(el){
+      el.textContent = cur === 'INR' ? '₹' : '$';
+    });
+
+    /* mini card prices */
+    document.querySelectorAll('.sxp-mini-price-el').forEach(function(el){
+      el.textContent = cur === 'INR' ? el.dataset.inr : el.dataset.usd;
+    });
+
+    /* officer card prices */
+    document.querySelectorAll('.sxp-officer-price-el').forEach(function(el){
+      el.textContent = cur === 'INR' ? el.dataset.inr : el.dataset.usd;
+    });
+
+    /* policy pack price */
+    document.querySelectorAll('.sxp-pack-price-el').forEach(function(el){
+      el.textContent = cur === 'INR' ? el.dataset.inr : el.dataset.usd;
+    });
+  };
+
+  /* ── MINI CARD GLOW ── */
+  window.sxpCardGlow = function(card, e){
+    var r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  };
+
+  /* ── INIT ── */
+  detectGeo();
+
+})();
+/* END SAILOXX PRODUCTS & PRICING JS */
 </script>
 </body>
 </html>
