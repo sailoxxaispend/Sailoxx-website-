@@ -942,30 +942,467 @@ section{padding:6rem 2rem}
   .sxp-pack-banner { flex-direction: column; text-align: center; align-items: center; }
   .sxp-pack-docs { align-items: center; }
 }
-/* ===== FORMS ===== */
-.forms-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.form-tab{padding:0.55rem 1.2rem;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.2s}
-.form-tab.active,.form-tab:hover{background:var(--cyan3);border-color:var(--cyan2);color:var(--cyan)}
-.form-panel{display:none}
-.form-panel.active{display:block}
-.ai-form{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2.5rem;max-width:700px}
-@media(max-width:768px){.ai-form{padding:1.5rem;border-radius:16px}}
-.form-group{margin-bottom:1.5rem}
-.form-label{display:block;font-size:0.82rem;color:var(--muted);font-weight:500;margin-bottom:0.5rem;letter-spacing:0.03em}
-.form-label span{color:var(--red);margin-left:2px}
-.form-input,.form-select,.form-textarea{width:100%;padding:0.8rem 1rem;background:var(--navy3);border:1px solid var(--border);border-radius:12px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:all 0.2s;outline:none}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--cyan2);box-shadow:0 0 0 3px rgba(0,229,204,0.1)}
-.form-input::placeholder,.form-textarea::placeholder{color:rgba(136,153,187,0.5)}
-.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%238899BB' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
-.form-select option{background:var(--navy2)}
-.form-textarea{resize:vertical;min-height:100px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:600px){.form-row{grid-template-columns:1fr}}
-.form-submit{width:100%;padding:1rem;border-radius:100px;background:var(--cyan);color:var(--navy);font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all 0.25s;letter-spacing:0.02em}
-.form-submit:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 10px 30px rgba(255,184,48,0.3)}
-.form-note{font-size:0.78rem;color:var(--muted);margin-top:1rem;text-align:center;line-height:1.6}
-.form-success{display:none;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.3);border-radius:12px;padding:1.2rem;text-align:center;color:var(--green);font-size:0.95rem;margin-top:1rem;font-weight:500}
+/* ============================================================
+   SAILOXX — BOOK A CONSULTATION FORM
+   All classes prefixed .sxc- to avoid conflicts
+   ============================================================ */
 
+.sxc-section {
+  padding: 6rem 2rem;
+  background: var(--navy2);
+  position: relative;
+  overflow: hidden;
+}
+.sxc-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(0,229,204,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.sxc-container {
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* HEADER */
+.sxc-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.sxc-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--cyan);
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+.sxc-eyebrow::before,
+.sxc-eyebrow::after {
+  content: '';
+  width: 24px;
+  height: 1.5px;
+  background: var(--cyan);
+}
+.sxc-headline {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.8rem;
+}
+.sxc-headline span { color: var(--cyan); }
+.sxc-subline {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* FORM CARD */
+.sxc-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* SELECTED SERVICE BANNER */
+.sxc-service-banner {
+  background: var(--navy3);
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 2rem;
+}
+.sxc-service-banner-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.sxc-selected-display {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+.sxc-selected-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--cyan3);
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  padding: 0.4rem 1rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--cyan);
+}
+.sxc-selected-chip::before {
+  content: '✓';
+  font-size: 0.78rem;
+}
+.sxc-no-service-note {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.6;
+  font-style: italic;
+}
+@media(max-width: 560px) {
+  .sxc-service-banner { padding: 1rem 1.25rem; }
+}
+
+/* FORM BODY */
+.sxc-form-body {
+  padding: 2rem;
+}
+@media(max-width: 560px) { .sxc-form-body { padding: 1.25rem; } }
+
+/* FORM SECTIONS */
+.sxc-form-section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.sxc-form-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.sxc-section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.sxc-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ADDITIONAL SERVICES */
+.sxc-add-services-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+  line-height: 1.5;
+}
+.sxc-services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+@media(max-width: 560px) { .sxc-services-grid { grid-template-columns: 1fr; } }
+
+.sxc-service-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--navy3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.18s;
+  user-select: none;
+}
+.sxc-service-check:hover { border-color: var(--border2); }
+.sxc-service-check.sxc-checked {
+  border-color: var(--cyan2);
+  background: var(--cyan3);
+}
+.sxc-service-check input[type="checkbox"] {
+  display: none;
+}
+.sxc-check-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid var(--border2);
+  background: var(--navy);
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  font-size: 9px;
+  color: transparent;
+}
+.sxc-service-check.sxc-checked .sxc-check-box {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: var(--navy);
+}
+.sxc-check-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+.sxc-service-check.sxc-checked .sxc-check-label { color: var(--cyan); }
+.sxc-service-check.sxc-primary-service {
+  border-color: var(--cyan2);
+  background: rgba(0,229,204,0.08);
+  pointer-events: none;
+}
+.sxc-service-check.sxc-primary-service .sxc-check-box {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: var(--navy);
+}
+.sxc-service-check.sxc-primary-service .sxc-check-label { color: var(--cyan); font-weight: 500; }
+
+/* FIELDS */
+.sxc-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media(max-width: 560px) { .sxc-field-row { grid-template-columns: 1fr; } }
+.sxc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.sxc-field:last-child { margin-bottom: 0; }
+.sxc-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.sxc-req { color: var(--red); }
+.sxc-opt { font-size: 0.7rem; color: var(--muted); font-weight: 400; margin-left: 2px; font-style: italic; }
+.sxc-input, .sxc-select, .sxc-textarea {
+  width: 100%;
+  padding: 0.78rem 1rem;
+  background: var(--navy3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+}
+.sxc-input:focus, .sxc-select:focus, .sxc-textarea:focus {
+  border-color: var(--cyan2);
+  box-shadow: 0 0 0 3px rgba(0,229,204,0.09);
+}
+.sxc-input::placeholder, .sxc-textarea::placeholder {
+  color: rgba(136,153,187,0.45);
+}
+.sxc-select {
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%238899BB' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+.sxc-select option { background: var(--navy2); }
+.sxc-textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+/* CHOICE BUTTONS (AI setup / goal) */
+.sxc-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+@media(max-width: 480px) { .sxc-choices { grid-template-columns: 1fr; } }
+.sxc-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--navy3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-size: 0.8rem;
+  color: var(--muted);
+  user-select: none;
+}
+.sxc-choice:hover { border-color: var(--border2); color: var(--white); }
+.sxc-choice.sxc-sel {
+  border-color: var(--cyan2);
+  background: var(--cyan3);
+  color: var(--cyan);
+}
+.sxc-choice-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.sxc-choice.sxc-sel .sxc-choice-dot {
+  background: var(--cyan);
+  border-color: var(--cyan);
+}
+.sxc-choice.sxc-sel .sxc-choice-dot::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--navy);
+}
+
+/* HIDDEN FIELD INDICATOR */
+.sxc-hidden-fields { display: none; }
+
+/* SUBMIT AREA */
+.sxc-submit-area {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.sxc-submit-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--cyan);
+  border: none;
+  border-radius: 100px;
+  color: var(--navy);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 28px rgba(0,229,204,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.sxc-submit-btn:hover:not(:disabled) {
+  background: var(--gold);
+  box-shadow: 0 0 40px rgba(255,184,48,0.3);
+  transform: translateY(-1px);
+}
+.sxc-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.sxc-trust-note {
+  text-align: center;
+  margin-top: 0.9rem;
+  font-size: 0.74rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.sxc-error-msg {
+  display: none;
+  background: rgba(255,77,106,0.1);
+  border: 1px solid rgba(255,77,106,0.3);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 0.82rem;
+  color: var(--red);
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+.sxc-error-msg.show { display: block; }
+
+/* SUCCESS STATE */
+.sxc-success {
+  display: none;
+  text-align: center;
+  padding: 3.5rem 2rem;
+}
+.sxc-success.show { display: block; animation: fadeUp 0.5s ease; }
+.sxc-success-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(0,229,160,0.12);
+  border: 2px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  margin: 0 auto 1.5rem;
+}
+.sxc-success h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+}
+.sxc-success-sub {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+}
+.sxc-success-services {
+  background: var(--navy3);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  display: inline-block;
+  text-align: left;
+  max-width: 400px;
+  width: 100%;
+}
+.sxc-success-services-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.sxc-success-service-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  color: var(--green);
+  padding: 0.2rem 0;
+  font-weight: 500;
+}
+.sxc-success-service-item::before { content: '✓'; }
 /* TOOL CHIPS */
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.8rem;margin:1.5rem 0}
 .tool-chip{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.9rem;border-radius:12px;border:1px solid var(--border);background:var(--card);font-size:0.82rem;cursor:pointer;transition:all 0.2s;user-select:none}
@@ -2076,7 +2513,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>15-page executive PDF report</li>
           <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30-min executive debrief call</li>
         </ul>
-        <a href="#forms" class="sxp-tier-cta outline">Request This Review →</a>
+        <a href="#forms" class="sxp-tier-cta outline" onclick="event.preventDefault(); sxcSelectService('AI Stack Review — Startup')">Request This Review →</a>
       </div>
 
       <!-- GROWTH TIER — FEATURED -->
@@ -2104,7 +2541,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>45-min executive debrief call</li>
           <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority email support for 14 days post-delivery</li>
         </ul>
-        <a href="#forms" class="sxp-tier-cta solid">Request This Review →</a>
+        <a href="#forms" class="sxp-tier-cta solid" onclick="event.preventDefault(); sxcSelectService('AI Stack Review — Growth')">Request This Review →</a>
       </div>
 
       <!-- SCALE TIER -->
@@ -2132,7 +2569,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>60-min executive debrief with Q&amp;A</li>
           <li><span class="sxp-feat-icon"><svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="#00E5CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30-day WhatsApp support post-delivery</li>
         </ul>
-        <a href="#forms" class="sxp-tier-cta outline">Request This Review →</a>
+        <a href="#forms" class="sxp-tier-cta outline" onclick="event.preventDefault(); sxcSelectService('AI Stack Review — Scale')">Request This Review →</a>
       </div>
 
     </div>
@@ -2150,7 +2587,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
         <span class="sxp-ent-pill">Dedicated audit manager</span>
         <span class="sxp-ent-pill">NDA before scoping</span>
       </div>
-      <a href="#forms" class="sxp-ent-cta">Talk to Us →</a>
+      <a href="#forms" class="sxp-ent-cta" onclick="event.preventDefault(); sxcSelectService('AI Stack Review — Enterprise')">Talk to Us →</a>
     </div>
 
     <!-- ════════════════════════════════════
@@ -2182,7 +2619,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
             <div class="sxp-mini-price sxp-mini-price-el" data-inr="₹8,000" data-usd="$97">₹8,000</div>
             <div class="sxp-mini-days">2-day delivery</div>
           </div>
-          <a href="#forms" class="sxp-mini-cta">Get This →</a>
+          <a href="#forms" class="sxp-mini-cta" onclick="event.preventDefault(); sxcSelectService('AI Tool Cost Map')">Get This →</a>
         </div>
       </div>
 
@@ -2203,7 +2640,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
             <div class="sxp-mini-price sxp-mini-price-el" data-inr="₹9,000" data-usd="$109">₹9,000</div>
             <div class="sxp-mini-days">3-day delivery</div>
           </div>
-          <a href="#forms" class="sxp-mini-cta">Get This →</a>
+          <a href="#forms" class="sxp-mini-cta" onclick="event.preventDefault(); sxcSelectService('AI Adoption Scan')">Get This →</a>
         </div>
       </div>
 
@@ -2224,7 +2661,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
             <div class="sxp-mini-price sxp-mini-price-el" data-inr="₹12,000" data-usd="$145">₹12,000</div>
             <div class="sxp-mini-days">3-day delivery</div>
           </div>
-          <a href="#forms" class="sxp-mini-cta">Get This →</a>
+         <a href="#forms" class="sxp-mini-cta" onclick="event.preventDefault(); sxcSelectService('Shadow AI Risk Check')">Get This →</a>
         </div>
       </div>
 
@@ -2245,7 +2682,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
             <div class="sxp-mini-price sxp-mini-price-el" data-inr="₹6,500" data-usd="$79">₹6,500</div>
             <div class="sxp-mini-days">48-hr delivery · per tool</div>
           </div>
-          <a href="#forms" class="sxp-mini-cta">Get This →</a>
+          <a href="#forms" class="sxp-mini-cta" onclick="event.preventDefault(); sxcSelectService('AI Vendor Renewal Review')">Get This →</a>
         </div>
       </div>
 
@@ -2280,7 +2717,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           <li>Renewal decision support when contracts come due</li>
           <li>AI tool onboarding guide for new hires</li>
         </ul>
-        <a href="#forms" class="sxp-officer-cta soft">Start Essential →</a>
+        <a href="#forms" class="sxp-officer-cta soft" onclick="event.preventDefault(); sxcSelectService('Fractional AI Officer — Essential')">Start Essential →</a>
       </div>
 
       <!-- STANDARD — FEATURED -->
@@ -2304,7 +2741,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           <li>Board-level AI reporting template</li>
           <li>New AI tool pilot design and evaluation framework</li>
         </ul>
-        <a href="#forms" class="sxp-officer-cta gold-cta">Start Standard →</a>
+        <a href="#forms" class="sxp-officer-cta gold-cta" onclick="event.preventDefault(); sxcSelectService('Fractional AI Officer — Standard')">Start Standard →</a>
       </div>
 
       <!-- FULL ENGAGEMENT -->
@@ -2328,7 +2765,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
           <li>Investor and board AI briefing preparation</li>
           <li>Priority response within 4 hours on all days</li>
         </ul>
-        <a href="#forms" class="sxp-officer-cta soft">Start Full Engagement →</a>
+        <a href="#forms" class="sxp-officer-cta soft" onclick="event.preventDefault(); sxcSelectService('Fractional AI Officer — Full Engagement')">Start Full Engagement →</a>
       </div>
 
     </div>
@@ -2363,7 +2800,7 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
       </div>
       <div class="sxp-pack-right">
         <div class="sxp-pack-price sxp-pack-price-el" data-inr="₹4,999" data-usd="$60">₹4,999</div>
-        <a href="#forms" class="sxp-pack-cta">Request Pack →</a>
+        <a href="#forms" class="sxp-pack-cta" onclick="event.preventDefault(); sxcSelectService('AI Governance Policy Pack')">Request Pack →</a>
         <div class="sxp-pack-note">Delivered within 24 hours · PDF + editable DOCX</div>
       </div>
     </div>
@@ -2506,7 +2943,309 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
     </div>
   </div>
 </section>
+<!-- ================================================================
+  SAILOXX — BOOK A CONSULTATION SECTION
+  Replaces existing: <section id="forms" ...> through </section>
+  ================================================================ -->
 
+<section id="forms" class="sxc-section">
+  <div class="sxc-container">
+
+    <!-- HEADER -->
+    <div class="sxc-header reveal">
+      <div class="sxc-eyebrow">Book a Consultation</div>
+      <h2 class="sxc-headline">Tell us what you're<br><span>looking to solve.</span></h2>
+      <p class="sxc-subline">Share a few details about your company and what you're trying to achieve. We'll take it from there — no pressure, no pitch.</p>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="sxc-card reveal">
+
+      <!-- SELECTED SERVICE BANNER -->
+      <div class="sxc-service-banner">
+        <div class="sxc-service-banner-label">You're enquiring about</div>
+        <div class="sxc-selected-display" id="sxcSelectedDisplay">
+          <span class="sxc-no-service-note" id="sxcNoServiceNote">Not sure which service is right for you? That's completely fine — tell us what you're trying to solve and we'll guide you.</span>
+        </div>
+      </div>
+
+      <!-- THE FORM -->
+      <div class="sxc-form-body">
+        <form
+          id="sxcConsultForm"
+          action="https://formspree.io/f/xppzdlro"
+          method="POST"
+        >
+          <!-- HIDDEN FIELDS — populated by JS -->
+          <input type="hidden" name="form-type" value="Consultation Request — Sailoxx">
+          <input type="hidden" name="selected_services" id="sxcHiddenServices" value="">
+          <input type="hidden" name="_replyto" id="sxcReplyTo" value="">
+
+          <!-- ── SECTION: YOUR INTEREST ── -->
+          <div class="sxc-form-section">
+            <div class="sxc-section-title">What you're interested in</div>
+
+            <p class="sxc-add-services-label" id="sxcAddServicesLabel">Interested in anything else? Select any additional services below.</p>
+
+            <div class="sxc-services-grid" id="sxcServicesGrid">
+
+              <label class="sxc-service-check" id="sxc-svc-0" onclick="event.preventDefault(); sxcToggleService(0)">
+                <input type="checkbox" name="svc_startup" value="AI Stack Review — Startup">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">AI Stack Review — Startup<br><span style="font-size:0.7rem;opacity:0.7">Up to 50 employees</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-1" onclick="event.preventDefault(); sxcToggleService(1)">
+                <input type="checkbox" name="svc_growth" value="AI Stack Review — Growth">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">AI Stack Review — Growth<br><span style="font-size:0.7rem;opacity:0.7">51–150 employees</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-2" onclick="event.preventDefault(); sxcToggleService(2)">
+                <input type="checkbox" name="svc_scale" value="AI Stack Review — Scale">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">AI Stack Review — Scale<br><span style="font-size:0.7rem;opacity:0.7">151–500 employees</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-3" onclick="event.preventDefault(); sxcToggleService(3)">
+                <input type="checkbox" name="svc_enterprise" value="AI Stack Review — Enterprise">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">AI Stack Review — Enterprise<br><span style="font-size:0.7rem;opacity:0.7">500+ employees, custom</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-4" onclick="event.preventDefault(); sxcToggleService(4)">
+                <input type="checkbox" name="svc_costmap" value="AI Tool Cost Map">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">AI Tool Cost Map<br><span style="font-size:0.7rem;opacity:0.7">Focused review · ₹8,000</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-5" onclick="event.preventDefault(); sxcToggleService(5)">
+                <input type="checkbox" name="svc_adoption" value="AI Adoption Scan">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">AI Adoption Scan<br><span style="font-size:0.7rem;opacity:0.7">Focused review · ₹9,000</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-6" onclick="event.preventDefault(); sxcToggleService(6)">
+                <input type="checkbox" name="svc_shadow" value="Shadow AI Risk Check">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">Shadow AI Risk Check<br><span style="font-size:0.7rem;opacity:0.7">Focused review · ₹12,000</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-7" onclick="event.preventDefault(); sxcToggleService(7)">
+                <input type="checkbox" name="svc_renewal" value="AI Vendor Renewal Review">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">AI Vendor Renewal Review<br><span style="font-size:0.7rem;opacity:0.7">Focused review · ₹6,500</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-8" onclick="event.preventDefault(); sxcToggleService(8)">
+                <input type="checkbox" name="svc_officer_ess" value="Fractional AI Officer — Essential">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">Fractional AI Officer — Essential<br><span style="font-size:0.7rem;opacity:0.7">Retainer · ₹15,000/mo</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-9" onclick="event.preventDefault(); sxcToggleService(9)">
+                <input type="checkbox" name="svc_officer_std" value="Fractional AI Officer — Standard">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">Fractional AI Officer — Standard<br><span style="font-size:0.7rem;opacity:0.7">Retainer · ₹28,000/mo</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-10" onclick="event.preventDefault(); sxcToggleService(10)">
+                <input type="checkbox" name="svc_officer_full" value="Fractional AI Officer — Full Engagement">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">Fractional AI Officer — Full Engagement<br><span style="font-size:0.7rem;opacity:0.7">Retainer · ₹50,000/mo</span></span>
+              </label>
+
+              <label class="sxc-service-check" id="sxc-svc-11" onclick="event.preventDefault(); sxcToggleService(11)">
+                <input type="checkbox" name="svc_policy_pack" value="AI Governance Policy Pack">
+                <span class="sxc-check-box">✓</span>
+                <span class="sxc-check-label">AI Governance Policy Pack<br><span style="font-size:0.7rem;opacity:0.7">Digital download · ₹4,999</span></span>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- ── SECTION: ABOUT YOU ── -->
+          <div class="sxc-form-section">
+            <div class="sxc-section-title">About you</div>
+
+            <div class="sxc-field-row">
+              <div class="sxc-field">
+                <label class="sxc-label" for="sxc-name">Full Name <span class="sxc-req">*</span></label>
+                <input
+                  class="sxc-input"
+                  type="text"
+                  id="sxc-name"
+                  name="name"
+                  placeholder="Your full name"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+              <div class="sxc-field">
+                <label class="sxc-label" for="sxc-role">Your Role <span class="sxc-req">*</span></label>
+                <select class="sxc-select" id="sxc-role" name="role" required>
+                  <option value="">Select your role</option>
+                  <option>Founder / Co-Founder</option>
+                  <option>CEO</option>
+                  <option>COO</option>
+                  <option>CTO</option>
+                  <option>CFO</option>
+                  <option>CMO</option>
+                  <option>Head of AI</option>
+                  <option>Head of Operations</option>
+                  <option>Head of Technology</option>
+                  <option>Finance</option>
+                  <option>HR / People</option>
+                  <option>Procurement</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="sxc-field-row">
+              <div class="sxc-field">
+                <label class="sxc-label" for="sxc-email">Work Email <span class="sxc-req">*</span></label>
+                <input
+                  class="sxc-input"
+                  type="email"
+                  id="sxc-email"
+                  name="email"
+                  placeholder="you@company.com"
+                  autocomplete="email"
+                  required
+                  oninput="document.getElementById('sxcReplyTo').value=this.value"
+                >
+              </div>
+              <div class="sxc-field">
+                <label class="sxc-label" for="sxc-phone">Phone / WhatsApp <span class="sxc-opt">optional</span></label>
+                <input
+                  class="sxc-input"
+                  type="tel"
+                  id="sxc-phone"
+                  name="phone"
+                  placeholder="+91 98765 43210"
+                  autocomplete="tel"
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SECTION: ABOUT YOUR COMPANY ── -->
+          <div class="sxc-form-section">
+            <div class="sxc-section-title">About your company</div>
+
+            <div class="sxc-field">
+              <label class="sxc-label" for="sxc-company">Company Name <span class="sxc-req">*</span></label>
+              <input
+                class="sxc-input"
+                type="text"
+                id="sxc-company"
+                name="company"
+                placeholder="e.g. Acme Technologies"
+                autocomplete="organization"
+                required
+              >
+            </div>
+
+            <div class="sxc-field-row">
+              <div class="sxc-field">
+                <label class="sxc-label" for="sxc-size">Company Size <span class="sxc-req">*</span></label>
+                <select class="sxc-select" id="sxc-size" name="company_size" required>
+                  <option value="">Select team size</option>
+                  <option>1–10 employees</option>
+                  <option>11–50 employees</option>
+                  <option>51–150 employees</option>
+                  <option>151–250 employees</option>
+                  <option>251–500 employees</option>
+                  <option>500+ employees</option>
+                </select>
+              </div>
+              <div class="sxc-field">
+                <label class="sxc-label" for="sxc-spend">Monthly AI Spend <span class="sxc-req">*</span></label>
+                <select class="sxc-select" id="sxc-spend" name="monthly_ai_spend" required>
+                  <option value="">Select range</option>
+                  <option>Not sure — we don't track it</option>
+                  <option>Under ₹10,000 / month</option>
+                  <option>₹10,000–₹25,000 / month</option>
+                  <option>₹25,000–₹75,000 / month</option>
+                  <option>₹75,000–₹2,00,000 / month</option>
+                  <option>₹2,00,000+ / month</option>
+                  <option>Under $500 / month</option>
+                  <option>$500–$2,000 / month</option>
+                  <option>$2,000+ / month</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SECTION: WHAT DO YOU NEED ── -->
+          <div class="sxc-form-section">
+            <div class="sxc-section-title">What you need</div>
+
+            <div class="sxc-field" style="margin-bottom:1.25rem">
+              <label class="sxc-label">How would you describe your current AI setup?</label>
+              <div class="sxc-choices" id="sxcSetupChoices">
+                <div class="sxc-choice" onclick="sxcPickSetup(this)"><span class="sxc-choice-dot"></span>We're just getting started with AI tools</div>
+                <div class="sxc-choice" onclick="sxcPickSetup(this)"><span class="sxc-choice-dot"></span>A few teams use AI tools independently</div>
+                <div class="sxc-choice" onclick="sxcPickSetup(this)"><span class="sxc-choice-dot"></span>AI tools are used across multiple departments</div>
+                <div class="sxc-choice" onclick="sxcPickSetup(this)"><span class="sxc-choice-dot"></span>We have a large AI stack — hard to track</div>
+                <div class="sxc-choice" onclick="sxcPickSetup(this)"><span class="sxc-choice-dot"></span>We're not sure exactly what's being used</div>
+              </div>
+              <input type="hidden" name="ai_setup" id="sxcSetupVal">
+            </div>
+
+            <div class="sxc-field" style="margin-bottom:1.25rem">
+              <label class="sxc-label">What would you like from this consultation?</label>
+              <div class="sxc-choices" id="sxcGoalChoices">
+                <div class="sxc-choice" onclick="sxcPickGoal(this)"><span class="sxc-choice-dot"></span>Understand our full AI stack</div>
+                <div class="sxc-choice" onclick="sxcPickGoal(this)"><span class="sxc-choice-dot"></span>Reduce unnecessary AI spending</div>
+                <div class="sxc-choice" onclick="sxcPickGoal(this)"><span class="sxc-choice-dot"></span>Understand employee AI adoption</div>
+                <div class="sxc-choice" onclick="sxcPickGoal(this)"><span class="sxc-choice-dot"></span>Identify Shadow AI and data risks</div>
+                <div class="sxc-choice" onclick="sxcPickGoal(this)"><span class="sxc-choice-dot"></span>Review a specific vendor or renewal</div>
+                <div class="sxc-choice" onclick="sxcPickGoal(this)"><span class="sxc-choice-dot"></span>Build AI governance policies</div>
+                <div class="sxc-choice" onclick="sxcPickGoal(this)"><span class="sxc-choice-dot"></span>Set up ongoing AI oversight</div>
+                <div class="sxc-choice" onclick="sxcPickGoal(this)"><span class="sxc-choice-dot"></span>Not sure yet — I'd like guidance</div>
+              </div>
+              <input type="hidden" name="consultation_goal" id="sxcGoalVal">
+            </div>
+
+            <div class="sxc-field">
+              <label class="sxc-label" for="sxc-req">What would you like help with? <span class="sxc-opt">optional</span></label>
+              <textarea
+                class="sxc-textarea"
+                id="sxc-req"
+                name="requirements"
+                placeholder="Tell us briefly what you're trying to improve, understand, reduce, or put under control. The more specific you are, the better we can prepare."
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- SUBMIT -->
+          <div class="sxc-submit-area">
+            <button type="submit" class="sxc-submit-btn" id="sxcSubmitBtn">
+              Book My Consultation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 5l4 3-4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p class="sxc-trust-note">Your information is kept confidential and is only used to respond to your request.</p>
+            <div class="sxc-error-msg" id="sxcErrorMsg">Something went wrong while submitting your request. Please try again — your details have been kept.</div>
+          </div>
+
+        </form>
+
+        <!-- SUCCESS STATE -->
+        <div class="sxc-success" id="sxcSuccess">
+          <div class="sxc-success-icon">✓</div>
+          <h3>Consultation Request <span style="color:var(--cyan)">Received</span></h3>
+          <p class="sxc-success-sub">Thank you. Our team will review your details and get back to you within one business day.</p>
+          <div class="sxc-success-services" id="sxcSuccessServices"></div>
+        </div>
+
+      </div><!-- end .sxc-form-body -->
+    </div><!-- end .sxc-card -->
+
+  </div>
+</section>
+<!-- END BOOK A CONSULTATION -->
 <!-- CTA -->
 <section class="cta-section" style="padding:6rem 2rem">
   <div class="container" style="text-align:center">
@@ -2600,22 +3339,6 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// FORM TABS
-function switchTab(id,btn){
-  document.querySelectorAll('.form-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.form-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-}
-
-// TOOL CHIPS (survey)
-function toggleTool(el){
-  el.classList.toggle('selected');
-  const selected=[...document.querySelectorAll('#toolsGrid .tool-chip.selected')]
-    .map(c=>c.textContent.trim()).join(', ');
-  document.getElementById('tools-hidden').value=selected;
-}
-
 // CHECKER
 let cTotal=0,cCount=0;
 function calcChecker(el,cost){
@@ -2651,38 +3374,6 @@ function toggleFaq(el){
   const wasOpen=el.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
   if(!wasOpen)el.classList.add('open');
-}
-
-// FORM SUBMIT — sends to Formspree, shows success message
-function handleSubmit(e,successId){
-  e.preventDefault();
-  const form=e.target;
-  const btn=form.querySelector('button[type=submit]');
-  const orig=btn.textContent;
-  btn.textContent='Sending...';
-  btn.disabled=true;
-
-  fetch(form.action,{
-    method:'POST',
-    body:new FormData(form),
-    headers:{Accept:'application/json'}
-  })
-  .then(res=>{
-    if(res.ok){
-      form.style.display='none';
-      document.getElementById(successId).style.display='block';
-      form.reset();
-    } else {
-      btn.textContent='Something went wrong. Try again.';
-      btn.disabled=false;
-      btn.style.background='var(--red)';
-    }
-  })
-  .catch(()=>{
-    btn.textContent='Something went wrong. Try again.';
-    btn.disabled=false;
-    btn.style.background='var(--red)';
-  });
 }
  
   /* ============================================================
@@ -2876,6 +3567,228 @@ function handleSubmit(e,successId){
 
 })();
 /* END SAILOXX PRODUCTS & PRICING JS */
+   /* ============================================================
+   SAILOXX — BOOK A CONSULTATION FORM JS
+   All functions prefixed sxc- to avoid conflicts
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* Service list — order matches HTML checkbox order exactly */
+  var SXC_SERVICES = [
+    'AI Stack Review — Startup',
+    'AI Stack Review — Growth',
+    'AI Stack Review — Scale',
+    'AI Stack Review — Enterprise',
+    'AI Tool Cost Map',
+    'AI Adoption Scan',
+    'Shadow AI Risk Check',
+    'AI Vendor Renewal Review',
+    'Fractional AI Officer — Essential',
+    'Fractional AI Officer — Standard',
+    'Fractional AI Officer — Full Engagement',
+    'AI Governance Policy Pack'
+  ];
+
+  var sxcPrimaryIdx = -1;
+
+  /* ── UPDATE BANNER CHIPS ── */
+  function sxcUpdateBannerChips() {
+    var display = document.getElementById('sxcSelectedDisplay');
+    var noServiceNote = document.getElementById('sxcNoServiceNote');
+    if (!display) return;
+
+    /* Remove existing chips only — leave noServiceNote in DOM */
+    var chips = display.querySelectorAll('.sxc-selected-chip');
+    chips.forEach(function (chip) { chip.parentNode.removeChild(chip); });
+
+    /* Collect all visually checked services */
+    var checked = [];
+    for (var i = 0; i < SXC_SERVICES.length; i++) {
+      var el = document.getElementById('sxc-svc-' + i);
+      if (el && el.classList.contains('sxc-checked')) {
+        checked.push(SXC_SERVICES[i]);
+      }
+    }
+
+    if (checked.length === 0) {
+      if (noServiceNote) noServiceNote.style.display = '';
+    } else {
+      if (noServiceNote) noServiceNote.style.display = 'none';
+      checked.forEach(function (name) {
+        var chip = document.createElement('span');
+        chip.className = 'sxc-selected-chip';
+        chip.textContent = name;
+        display.appendChild(chip);
+      });
+    }
+  }
+
+  /* ── UPDATE HIDDEN FIELD ── */
+  function sxcUpdateHiddenServices() {
+    var selected = [];
+    for (var i = 0; i < SXC_SERVICES.length; i++) {
+      var el = document.getElementById('sxc-svc-' + i);
+      if (el && el.classList.contains('sxc-checked')) {
+        selected.push(SXC_SERVICES[i]);
+      }
+    }
+    var hidden = document.getElementById('sxcHiddenServices');
+    if (hidden) hidden.value = selected.length > 0 ? selected.join(', ') : 'No service selected';
+  }
+
+  /* ── SELECT SERVICE (called by pricing CTAs) ── */
+  window.sxcSelectService = function (serviceName) {
+    var idx = SXC_SERVICES.indexOf(serviceName);
+    sxcPrimaryIdx = idx;
+
+    /* Reset all checkboxes */
+    for (var i = 0; i < SXC_SERVICES.length; i++) {
+      var el = document.getElementById('sxc-svc-' + i);
+      if (!el) continue;
+      el.classList.remove('sxc-primary-service', 'sxc-checked');
+      var cb = el.querySelector('input[type="checkbox"]');
+      if (cb) cb.checked = false;
+    }
+
+    /* Mark primary */
+    if (idx >= 0) {
+      var primaryEl = document.getElementById('sxc-svc-' + idx);
+      if (primaryEl) {
+        primaryEl.classList.add('sxc-primary-service', 'sxc-checked');
+        var primaryCb = primaryEl.querySelector('input[type="checkbox"]');
+        if (primaryCb) primaryCb.checked = true;
+      }
+      var addLabel = document.getElementById('sxcAddServicesLabel');
+      if (addLabel) addLabel.textContent = 'Interested in anything else? Select any additional services below.';
+    } else {
+      var genericLabel = document.getElementById('sxcAddServicesLabel');
+      if (genericLabel) genericLabel.textContent = 'Which services are you interested in?';
+    }
+
+    sxcUpdateBannerChips();
+    sxcUpdateHiddenServices();
+
+    /* Smooth scroll to form */
+    var section = document.getElementById('forms');
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  /* ── TOGGLE ADDITIONAL SERVICES ── */
+  window.sxcToggleService = function (idx) {
+    /* Primary service is locked — cannot be untoggled */
+    if (idx === sxcPrimaryIdx) return;
+
+    var el = document.getElementById('sxc-svc-' + idx);
+    if (!el) return;
+
+    el.classList.toggle('sxc-checked');
+    var cb = el.querySelector('input[type="checkbox"]');
+    if (cb) cb.checked = el.classList.contains('sxc-checked');
+
+    sxcUpdateBannerChips();
+    sxcUpdateHiddenServices();
+  };
+
+  /* ── AI SETUP CHOICE (single select) ── */
+  window.sxcPickSetup = function (btn) {
+    var parent = document.getElementById('sxcSetupChoices');
+    if (!parent) return;
+    parent.querySelectorAll('.sxc-choice').forEach(function (b) {
+      b.classList.remove('sxc-sel');
+    });
+    btn.classList.add('sxc-sel');
+    var hidden = document.getElementById('sxcSetupVal');
+    if (hidden) hidden.value = btn.textContent.trim();
+  };
+
+  /* ── CONSULTATION GOAL CHOICE (single select) ── */
+  window.sxcPickGoal = function (btn) {
+    var parent = document.getElementById('sxcGoalChoices');
+    if (!parent) return;
+    parent.querySelectorAll('.sxc-choice').forEach(function (b) {
+      b.classList.remove('sxc-sel');
+    });
+    btn.classList.add('sxc-sel');
+    var hidden = document.getElementById('sxcGoalVal');
+    if (hidden) hidden.value = btn.textContent.trim();
+  };
+
+  /* ── FORM SUBMISSION ── */
+  var sxcForm = document.getElementById('sxcConsultForm');
+  if (sxcForm) {
+    sxcForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      sxcUpdateHiddenServices();
+
+      var btn = document.getElementById('sxcSubmitBtn');
+      var errorEl = document.getElementById('sxcErrorMsg');
+
+      if (btn) { btn.textContent = 'Submitting…'; btn.disabled = true; }
+      if (errorEl) errorEl.classList.remove('show');
+
+      fetch('https://formspree.io/f/xppzdlro', {
+        method: 'POST',
+        body: new FormData(sxcForm),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (res) {
+          if (res.ok) {
+            sxcForm.style.display = 'none';
+            var success = document.getElementById('sxcSuccess');
+            if (success) {
+              success.classList.add('show');
+
+              /* Populate success services list */
+              var servicesDiv = document.getElementById('sxcSuccessServices');
+              if (servicesDiv) {
+                var selected = [];
+                for (var i = 0; i < SXC_SERVICES.length; i++) {
+                  var el = document.getElementById('sxc-svc-' + i);
+                  if (el && el.classList.contains('sxc-checked')) selected.push(SXC_SERVICES[i]);
+                }
+                if (selected.length > 0) {
+                  var titleEl = document.createElement('div');
+                  titleEl.className = 'sxc-success-services-title';
+                  titleEl.textContent = selected.length > 1 ? 'Selected services' : 'Selected service';
+                  servicesDiv.appendChild(titleEl);
+                  selected.forEach(function (name) {
+                    var item = document.createElement('div');
+                    item.className = 'sxc-success-service-item';
+                    item.textContent = name;
+                    servicesDiv.appendChild(item);
+                  });
+                } else {
+                  servicesDiv.style.display = 'none';
+                }
+              }
+            }
+            var section = document.getElementById('forms');
+            if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            if (btn) { btn.textContent = 'Book My Consultation'; btn.disabled = false; }
+            if (errorEl) errorEl.classList.add('show');
+          }
+        })
+        .catch(function () {
+          if (btn) { btn.textContent = 'Book My Consultation'; btn.disabled = false; }
+          if (errorEl) errorEl.classList.add('show');
+        });
+    });
+  }
+
+  /* ── EMAIL FIELD → REPLY-TO SYNC ── */
+  var emailInput = document.getElementById('sxc-email');
+  if (emailInput) {
+    emailInput.addEventListener('input', function () {
+      var replyTo = document.getElementById('sxcReplyTo');
+      if (replyTo) replyTo.value = emailInput.value;
+    });
+  }
+
+})();
+/* END SAILOXX CONSULTATION FORM JS */
 </script>
 </body>
 </html>
