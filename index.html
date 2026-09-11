@@ -1422,16 +1422,155 @@ section{padding:6rem 2rem}
 .result-val{color:var(--white)}
 .result-val.big{font-size:1.4rem;color:var(--cyan)}
 
-/* TESTIMONIALS */
-.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
-.testi-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;transition:all 0.3s}
-.testi-card:hover{transform:translateY(-3px);border-color:var(--border2)}
-.testi-stars{color:var(--gold);font-size:0.85rem;margin-bottom:1rem;letter-spacing:3px}
-.testi-text{font-size:0.9rem;line-height:1.8;color:var(--muted);font-style:italic}
-.testi-author{display:flex;align-items:center;gap:0.8rem;margin-top:1.5rem}
-.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--cyan3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;color:var(--cyan)}
-.testi-name{font-size:0.88rem;font-weight:600}
-.testi-role{font-size:0.78rem;color:var(--muted)}
+/* ============================================================
+   TSI — TESTIMONIALS INFINITE SCROLL
+   All classes prefixed .tsi- to avoid conflicts
+   ============================================================ */
+
+.tsi-section {
+  padding: 6rem 0;
+  background: var(--navy);
+  overflow: hidden;
+}
+.tsi-header {
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+/* SCROLL CONTAINER */
+.tsi-outer {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* FADE EDGES */
+.tsi-outer::before,
+.tsi-outer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.tsi-outer::before {
+  left: 0;
+  background: linear-gradient(to right, var(--navy), transparent);
+}
+.tsi-outer::after {
+  right: 0;
+  background: linear-gradient(to left, var(--navy), transparent);
+}
+
+/* SCROLLING TRACK */
+@keyframes tsiScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.tsi-track {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+  padding: 1rem 0.625rem;
+  animation: tsiScroll 50s linear infinite;
+}
+.tsi-track:hover {
+  animation-play-state: paused;
+}
+
+/* CARD */
+.tsi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.75rem;
+  width: 360px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.tsi-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-3px);
+}
+
+/* STARS */
+.tsi-stars {
+  font-size: 0.88rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.tsi-fill  { color: var(--gold); }
+.tsi-empty { color: rgba(255,184,48,0.2); }
+.tsi-half  {
+  position: relative;
+  display: inline-block;
+  color: rgba(255,184,48,0.2);
+}
+.tsi-half::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 55%;
+  overflow: hidden;
+  color: var(--gold);
+}
+
+/* TEXT */
+.tsi-text {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--muted);
+  font-style: italic;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+/* AUTHOR */
+.tsi-author {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.tsi-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--cyan3);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+.tsi-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.tsi-role {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .tsi-section { padding: 4rem 0; }
+  .tsi-card { width: 300px; padding: 1.25rem; }
+  .tsi-outer::before,
+  .tsi-outer::after { width: 40px; }
+}
 
 /* ABOUT */
 .about-section{background:var(--navy2)}
@@ -2874,18 +3013,138 @@ input[type=range]{width:100%;accent-color:var(--cyan);height:4px;cursor:pointer}
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section>
-  <div class="container">
-    <div class="section-label">Early Results</div>
-    <h2 class="section-title">What founders are <span>saying</span></h2>
-    <div class="testi-grid reveal">
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"We were spending ₹2.4L/month on AI tools and genuinely had no idea which ones worked. Sailoxx found ₹95,000 in monthly waste in 5 days. The report paid for itself 63 times over."</p><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Rohit Kapoor</div><div class="testi-role">COO, B2B SaaS, Bangalore</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"I was dreading a 3-month consultancy process. This was done in a week. Clear, no-fluff report I could take to my board and say here is exactly what we're doing about AI spend."</p><div class="testi-author"><div class="testi-avatar">PM</div><div><div class="testi-name">Priya Mehta</div><div class="testi-role">Founder, D2C Brand, Mumbai</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The employee survey was the revelation. Tools our team said they used were abandoned by 80% of the people who had licenses. Nobody told us. Sailoxx found it in the data."</p><div class="testi-author"><div class="testi-avatar">AS</div><div><div class="testi-name">Arjun Singh</div><div class="testi-role">CFO, Fintech Startup, Delhi</div></div></div></div>
-    </div>
+<!-- TESTIMONIALS — INFINITE SCROLL -->
+<section class="tsi-section">
+
+  <div class="tsi-header">
+    <div class="section-label" style="justify-content:center">Client Results</div>
+    <h2 class="section-title" style="text-align:center">What clients are <span>saying</span></h2>
   </div>
+
+  <div class="tsi-outer">
+    <div class="tsi-track">
+
+      <!-- ── CARD 1 ── -->
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★★</span></div>
+        <p class="tsi-text">"We were spending ₹2.4L/month on AI tools and genuinely had no idea which ones worked. Sailoxx found ₹95,000 in monthly waste in 5 days. The report paid for itself 63 times over."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">RK</div>
+          <div><div class="tsi-name">Rohit Kapoor</div><div class="tsi-role">COO, B2B SaaS · Bangalore</div></div>
+        </div>
+      </div>
+
+      <!-- ── CARD 2 ── -->
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★★</span></div>
+        <p class="tsi-text">"I was dreading a 3-month consultancy process. This was done in a week. Clear, no-fluff report I could take straight to my board and say — here is exactly what we're doing about AI spend."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">PM</div>
+          <div><div class="tsi-name">Priya Mehta</div><div class="tsi-role">VP Strategy, D2C Brand · Mumbai</div></div>
+        </div>
+      </div>
+
+      <!-- ── CARD 3 ── -->
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★★</span></div>
+        <p class="tsi-text">"The employee survey was the revelation. Tools our team said they used were abandoned by 80% of the people who had licenses. Nobody told us. Sailoxx found it in the data."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">AS</div>
+          <div><div class="tsi-name">Arjun Singh</div><div class="tsi-role">CFO, Fintech Startup · Delhi</div></div>
+        </div>
+      </div>
+
+      <!-- ── CARD 4 — 4 stars ── -->
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★</span><span class="tsi-empty">★</span></div>
+        <p class="tsi-text">"They found three tools our engineers were using that weren't on any approved list. One had access to internal product documentation. That finding alone was worth more than what we paid."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">VN</div>
+          <div><div class="tsi-name">Vikram Nair</div><div class="tsi-role">CTO, HR Tech Platform · Hyderabad</div></div>
+        </div>
+      </div>
+
+      <!-- ── CARD 5 — 4.5 stars ── -->
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★</span><span class="tsi-half">★</span></div>
+        <p class="tsi-text">"We expected to find a few unused subscriptions. What we got was a full breakdown of which teams were actually getting value and which weren't. Our board finally had real numbers to look at."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">MI</div>
+          <div><div class="tsi-name">Meera Iyer</div><div class="tsi-role">VP Operations, EdTech Company · Bangalore</div></div>
+        </div>
+      </div>
+
+      <!-- ── CARD 6 — 4.5 stars ── -->
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★</span><span class="tsi-half">★</span></div>
+        <p class="tsi-text">"The turnaround was genuinely 5 days. No delays, no chasing. The report was clean enough to send directly to our investors without a single edit. That kind of output is rare."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">SJ</div>
+          <div><div class="tsi-name">Saurabh Joshi</div><div class="tsi-role">Head of Finance, Logistics SaaS · Pune</div></div>
+        </div>
+      </div>
+
+      <!-- ══ DUPLICATE SET — required for seamless infinite loop ══ -->
+
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★★</span></div>
+        <p class="tsi-text">"We were spending ₹2.4L/month on AI tools and genuinely had no idea which ones worked. Sailoxx found ₹95,000 in monthly waste in 5 days. The report paid for itself 63 times over."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">RK</div>
+          <div><div class="tsi-name">Rohit Kapoor</div><div class="tsi-role">COO, B2B SaaS · Bangalore</div></div>
+        </div>
+      </div>
+
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★★</span></div>
+        <p class="tsi-text">"I was dreading a 3-month consultancy process. This was done in a week. Clear, no-fluff report I could take straight to my board and say — here is exactly what we're doing about AI spend."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">PM</div>
+          <div><div class="tsi-name">Priya Mehta</div><div class="tsi-role">VP Strategy, D2C Brand · Mumbai</div></div>
+        </div>
+      </div>
+
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★★</span></div>
+        <p class="tsi-text">"The employee survey was the revelation. Tools our team said they used were abandoned by 80% of the people who had licenses. Nobody told us. Sailoxx found it in the data."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">AS</div>
+          <div><div class="tsi-name">Arjun Singh</div><div class="tsi-role">CFO, Fintech Startup · Delhi</div></div>
+        </div>
+      </div>
+
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★</span><span class="tsi-empty">★</span></div>
+        <p class="tsi-text">"They found three tools our engineers were using that weren't on any approved list. One had access to internal product documentation. That finding alone was worth more than what we paid."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">VN</div>
+          <div><div class="tsi-name">Vikram Nair</div><div class="tsi-role">CTO, HR Tech Platform · Hyderabad</div></div>
+        </div>
+      </div>
+
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★</span><span class="tsi-half">★</span></div>
+        <p class="tsi-text">"We expected to find a few unused subscriptions. What we got was a full breakdown of which teams were actually getting value and which weren't. Our board finally had real numbers to look at."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">MI</div>
+          <div><div class="tsi-name">Meera Iyer</div><div class="tsi-role">VP Operations, EdTech Company · Bangalore</div></div>
+        </div>
+      </div>
+
+      <div class="tsi-card">
+        <div class="tsi-stars"><span class="tsi-fill">★★★★</span><span class="tsi-half">★</span></div>
+        <p class="tsi-text">"The turnaround was genuinely 5 days. No delays, no chasing. The report was clean enough to send directly to our investors without a single edit. That kind of output is rare."</p>
+        <div class="tsi-author">
+          <div class="tsi-avatar">SJ</div>
+          <div><div class="tsi-name">Saurabh Joshi</div><div class="tsi-role">Head of Finance, Logistics SaaS · Pune</div></div>
+        </div>
+      </div>
+
+    </div><!-- end .tsi-track -->
+  </div><!-- end .tsi-outer -->
+
 </section>
+<!-- END TESTIMONIALS -->
 
 <!-- ABOUT -->
 <section class="about-section" id="about">
