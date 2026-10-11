@@ -35,4 +35,39 @@
       io2.observe(spv);
     } else { spv.classList.add('in'); }
   }
+    /* Search bar: types each question, holds it, erases it, then moves to the next (loops) */
+  var typeEl = document.querySelector('.ask-type-text');
+  if (typeEl) {
+    var caret = document.querySelector('.ask-caret');
+    var QUESTIONS = [
+      'Are you paying for AI tools that do the same job?',
+      'Do you know which AI tools are actually worth their cost?',
+      'Can you prove your AI spending is delivering real business value?',
+      'Do you know which AI tools your employees are using?',
+      'Do you know what to keep, cut, fix, or replace before your next AI renewal?'
+    ];
+    var qi = 0, ci = 0, erasing = false, tTimer = null, tVisible = true;
+    var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var later = function (fn, ms) { tTimer = setTimeout(fn, ms); };
+    var step = function () {
+      if (!tVisible || document.hidden) { later(step, 400); return; }
+      var q = QUESTIONS[qi];
+      if (calm) { typeEl.textContent = q; qi = (qi + 1) % QUESTIONS.length; later(step, 4500); return; }
+      if (!erasing) {
+        ci++; typeEl.textContent = q.slice(0, ci);
+        if (caret) caret.classList.add('is-typing');
+        if (ci >= q.length) { erasing = true; if (caret) caret.classList.remove('is-typing'); later(step, 2200); }
+        else later(step, 34 + Math.random() * 36);
+      } else {
+        ci--; typeEl.textContent = q.slice(0, ci);
+        if (caret) caret.classList.add('is-typing');
+        if (ci <= 0) { erasing = false; qi = (qi + 1) % QUESTIONS.length; if (caret) caret.classList.remove('is-typing'); later(step, 450); }
+        else later(step, 16);
+      }
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { tVisible = en[0].isIntersecting; }, { threshold: 0.05 }).observe(typeEl);
+    }
+    later(step, 1800);
+  }
 })();
